@@ -1,0 +1,77 @@
+<!--InsuranceProcedureSelect-->
+<section id="InsuranceProcedureSelect">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper padding3">
+      <h1 class="">マイページ</h1>
+      <h2 class="fs-20 ">保険契約に関する手続き</h2>
+      <div style="width: 100%; margin: auto; margin-top: 10px; margin-bottom: 20px;">
+        <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+        <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+      </div>
+      <div class="fs-14" style="padding-top: 20px">
+        <p>保険クリニックでご契約いただいた保険契約に関する手続きを行えます。</p>
+        <p style="color: #ff6400">※保険クリニック以外でご契約いただいた保険契約につきましてはご加入された連絡先にご連絡ください。</p>
+      </div>
+      <div style="display: inline-block; margin-bottom: 50px">
+        <div class="with100PC_50SP" (click)="goToInput(1)"
+          style="cursor: pointer; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.19);border: 1px solid #dedad7; border-radius: 5px; display: inline-block; padding: 10px; margin-top: 20px">
+          <div style="width:15%; float: left;">
+            <img src="assets/image/insurance2.JPG" width="80%">
+          </div>
+          <div style="width:75%; float: left;">
+            <div style="padding-left: 5px; padding-right: 5px; font-size: 15px">
+              <strong>保険契約に関するお手続き</strong>
+              <div style="width: 100%; border-top: 2px dotted #e5e3e2; margin-top: 10px; margin-bottom: 10px"></div>
+              <p><span style="color: #f0a000">・</span>住所の変更 <br>
+                <span style="color: #f0a000">・</span>電話番号の変更<br>
+                <span style="color: #f0a000">・</span>名義変更<br>
+                <span style="color: #f0a000">・</span>受取人の変更（保険金／給付金）<br>
+                <span style="color: #f0a000">・</span>保険料支払方法の変更<br>
+                ※担当店舗よりご連絡いたします。</p>
+            </div>
+          </div>
+          <div style="width:10%; float: left; text-align: right">
+            <i class="pi pi-arrow-right fs-20" style="color: #33804a"></i>
+          </div>
+        </div>
+        <div style="width: 25px; height: 10px; float: left"></div>
+          <!-- <div style=" box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.19);border: 1px solid #dedad7; border-radius: 5px; display: inline-block; padding: 10px; margin-top: 20px">
+            <div style="width:15%; float: left;">
+              <img src="assets/image/insurance1.JPG" width="80%">
+            </div>
+            <div style="width:75%; float: left;">
+              <div style="padding-left: 5px; padding-right: 5px; font-size: 15px">
+                <strong>契約情報（住所・電話番号）の依頼</strong>
+                <div style="width: 100%; border-top: 2px dotted #e5e3e2; margin-top: 10px; margin-bottom: 10px"></div>
+                <p>引越しなどで住所や電話番号が変わられた場合の変更手続きについてご案内します。</p>
+              </div>
+            </div>
+            <div style="width:10%; float: left; text-align: right">
+              <i class="pi pi-arrow-right fs-20" style="color: #33804a"></i>
+            </div>
+          </div> -->
+        
+          <div class="with100PC_50SP" (click)="goToInput(2)"style="cursor:pointer; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.19);border: 1px solid #dedad7; border-radius: 5px; display: inline-block; padding: 10px; margin-top: 20px">
+            <div style="width:15%; float: left;">
+              <img src="assets/image/insurance3.JPG" width="80%">
+            </div>
+            <div style="width:75%; float: left;">
+              <div style="padding-left: 5px; padding-right: 5px; font-size: 15px">
+                <strong>保険料控除証明書再発行</strong>
+                <div style="width: 100%; border-top: 2px dotted #e5e3e2; margin-top: 10px; margin-bottom: 10px"></div>
+                <p>紛失された場合や急ぎのご入用の場合は、再発行を承っております。<br>
+                  ※ご到着まで数日要する場合がございます。</p>
+              </div>
+            </div>
+            <div style="width:10%; float: left; text-align: right">
+              <i class="pi pi-arrow-right fs-20" style="color: #33804a"></i>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+  </div>
+</section>

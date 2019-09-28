@@ -1,0 +1,217 @@
+<section (window:resize)="onResize($event)" [class.footer-link-custom]="footerCustom == true" id="footer-link" style="display: block;margin-top: 20px;">
+    <!-- <div class="ui-widget-overlay ui-dialog-mask" style="z-index: 11010;"></div> -->
+    <div class="menu-link pc">
+        <app-breadcrum [breadcrumb]="position"></app-breadcrum>
+
+        <div class="w-100 height-link">
+            <div class="container-link fl-left">
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/list/">
+                        <span class="text-link under-below">店舗を探す</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/feature/">
+                        <span class="text-link under-below">初めての方へ</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/process/">
+                        <span class="text-link under-below">保険相談の流れ</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/voice/">
+                        <span class="text-link under-below">お客さまの声</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/teach/">
+                        <span class="text-link under-below">保険を学ぶ</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/qa/">
+                        <span class="text-link under-below">保険相談のよくある質問</span>
+                    </a>
+                </div>
+            </div>
+            <div class="container-link fl-left">
+                <div class="w-100 h-35">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/company/list.html">
+                        <span class="text-link under-below">取扱保険会社</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/login/">
+                        <span class="text-link under-below">ご契約者様専用ページ</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/news/">
+                        <span class="text-link under-below">お知らせ</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/contact/agree.html">
+                        <span class="text-link under-below">お問い合わせ</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/recommend/">
+                        <span class="text-link under-below">ネットで入れる保険</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/kasai/">
+                        <span class="text-link under-below">火災保険比較</span>
+                    </a>
+                </div>
+            </div>
+            <div class="container-link fl-left">
+                <div class="w-100 h-35">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/lp/recruit/">
+                        <span class="text-link under-below">店舗スタッフ募集</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/franchise/bukken.html">
+                        <span class="text-link under-below">新規店舗物件募集</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/franchise/">
+                        <span class="text-link under-below">FC（フランチャイズ）ビジネスパートナー募集</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/houjin/">
+                        <span class="text-link under-below">法人保険のご相談</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/company/">
+                        <span class="text-link under-below">運営会社</span>
+                    </a>
+                </div>
+            </div>
+            <div class="container-link fl-left">
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/social_activities/">
+                        <span class="text-link under-below">保険クリニックの社会貢献</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/photo/">
+                        <span class="text-link under-below">わが家のフォトコンテスト</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/pr/929/">
+                        <span class="text-link under-below">スマイルプロジェクト子どもの未来を応援しよう！</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" sty>
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/iqfamily/">
+                        <span class="text-link under-below">IQ(いっきゅう）ファミリー</span>
+                    </a>
+                </div>
+                <div class="w-100 h-35" style="padding-right: 10px">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                    <a href="https://www.hoken-clinic.com/agency/">
+                        <span class="text-link under-below">募集代理店一覧</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: #fbf7f6">
+        <app-breadcrum [breadcrumb]="position" class='sp' style=" padding-left: 3%; padding-right: 3%;"></app-breadcrum>
+    </div>
+    <div class="w-100 h-100px pc" style="font-size: 13px; line-height: 1.5">
+        <div style="width: 100%; border-top: 2px solid #eae5e1; padding-top: 20px; display: flex">
+            <div class="sponsor fl-left h100 flex-content">
+                <div class="image-footer fl-left">
+                    <a href="https://www.hoken-clinic.com/hawks/" target="_blank">
+                        <img src="assets/image/banner-sponsor.png" style="height: 100%; float: left;">
+                    </a>
+                </div>
+                <div class="text-image-footer fl-left"><span
+                        style="padding-right: 10px">『保険クリニック』は福岡ソフトバンクホークスのオフィシャルスポンサーです。</span></div>
+            </div>
+            <div class="sponsor fl-left h100 flex-content">
+                <div class="image-footer fl-left">
+                    <img src="assets/image/banner-jpx.png" style="height: 100%; float: left;">
+                </div>
+                <div class="text-image-footer fl-left "><span>保険クリニックの運営会社である（株）アイリックコーポレーションは東証マザーズに上場しています。</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-100 h-100px social-link">
+        <div class="social">
+            <div class="link-social">
+                <a href="https://www.hoken-clinic.com/company/" target="_blank">
+                    <div class="inline-block border-right"><span class="text-link under-below">運営会社</span></div>
+                </a>
+                <a href="https://www.hoken-clinic.com/privacy/" target="_blank">
+                    <div class="inline-block border-right"><span class="text-link under-below">個人情報保護方針</span></div>
+                </a>
+                <a href="https://www.hoken-clinic.com/policy/" target="_blank">
+                    <div class="inline-block border-right"><span class="text-link under-below">勧誘方針</span></div>
+                </a>
+                <a href="https://www.hoken-clinic.com/sitemap/" target="_blank">
+                    <div class="inline-block">
+                        <span class="text-link under-below">サイトマップ</span>
+                    </div>
+                </a>
+                <p style="font-size: 11px;">※『ホームドクター』は、東京海上日動火災保険株式会社の登録商標です。</p>
+                <div class="list-social" style="margin-top: 20px">
+                    <a href="https://www.facebook.com/hokenclinic929/" target="_blank">
+                        <div
+                            style="height: 40px; width: 40px; float: left;background-color: #fff; border-radius: 3px; border: 1px solid #d6d1ce; margin-left: 10px; padding: 10px">
+                            <img src="assets/image/facebook.png" width="20px">
+                        </div>
+                    </a>
+                    <a href="https://twitter.com/hokenclinic1999" target="_blank">
+                        <div
+                            style="height: 40px; width: 40px; float: left;background-color: #fff; border-radius: 3px;border: 1px solid #d6d1ce;margin-left: 10px; padding: 10px">
+                            <img src="assets/image/twitter.png" width="20px">
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/hokenclinic/" target="_blank">
+                        <div
+                            style="height: 40px; width: 40px; float: left;background-color: #fff;border-radius: 3px; border: 1px solid #d6d1ce;margin-left: 10px; padding: 10px">
+                            <img src="assets/image/instagram.png" width="20px">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-100 copyright ">
+        <span>© Hoken Clinic All rights reserved</span>
+    </div>
+    <div class="blank"></div>
+</section>

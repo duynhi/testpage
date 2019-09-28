@@ -1,0 +1,195 @@
+<section id="top">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper w-100">
+      <div class="padding3">
+        <h2 class="fs-25">マイページ</h2>
+        <div class="title">
+          <p>こんにちは！　{{name}}さん</p>
+          <p *ngIf="tantoChoose">
+            お客様ご担当店舗は 
+            <a class="text-link" style="cursor: pointer; text-decoration: underline;" (click)="goToScheduleMenu()" alt=""  title="">{{tantoChoose.shopName}}</a>
+            です。
+            <span *ngIf="masterTantoClinicInfo.length > 1">
+              (<a class="text-link" style="cursor: pointer" (click)="goToChooseAgent()" alt="" title="">他の店舗情報を見る</a>)
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="content list-menu" style="color: #333333; margin-bottom: 20px;">
+        <div class="pc padding3">
+          <div style="width: 100%; padding: 20px 0 20px 0; border-top: 2px dotted #b8b3b0; border-bottom: 2px dotted #b8b3b0; display: inline-block">
+            <div class="item-menu w-33 fl-left"
+              style="border-right: 2px dotted #b8b3b0;; padding-right: 20px; padding-left: 20px; cursor: pointer"
+              (click)="redirect('schedule-menu')">
+              <div class='icon-text'>
+                <img src="assets/image/icon1.png" width="30" style="height: 30px">
+                <div style="margin-left: 10px"><strong>ご予約</strong></div>
+              </div>
+              <div class='icon-go'>
+                <div style="text-align: right; width: 100%;">
+                  <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+                </div>
+              </div>
+            </div>
+            <div class="item-menu w-33 fl-left"
+              style="border-right: 2px dotted #b8b3b0;; padding-right: 20px; padding-left: 20px;cursor: pointer"
+              (click)="redirect('contract-list')">
+              <div class='icon-text'>
+                <img src="assets/image/icon2.png" width="30" style="height: 30px">
+                <div style="margin-left: 10px"><strong>ご契約一覧</strong></div>
+              </div>
+              <div class='icon-go'>
+                <div style="text-align: right; width: 100%;">
+                  <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+                </div>
+              </div>
+            </div>
+            <div class="item-menu w-33 fl-left"
+              style="padding-right: 20px; padding-left: 20px;cursor: pointer"
+              (click)="redirect('customer-setting')">
+              <div class='icon-text'>
+                <img src="assets/image/icon6.png" width="30" style="height: 30px">
+                <div style="margin-left: 10px"><strong>お客様情報</strong></div>
+              </div>
+              <div class='icon-go'>
+                <div style="text-align: right; width: 100%;">
+                  <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="tantoChoose && tantoChoose.insuranceProcedures === '1' || tantoChoose && tantoChoose.documentsCooperation === '1' || tantoChoose && tantoChoose.simpleAnalysis === '1'"
+          style="width: 100%; padding: 20px 0 20px 0; border-bottom: 2px dotted #b8b3b0; display: inline-block">
+              <div class="item-menu w-33 fl-left" (click)="redirect('insurance-procedure-select')" *ngIf="tantoChoose && tantoChoose.insuranceProcedures === '1'"
+                style="border-right: 2px dotted #b8b3b0;; padding-right: 20px; padding-left: 20px;cursor: pointer">
+                <div class='icon-text'>
+                  <img src="assets/image/icon3.png" width="30" style="height: 30px">
+                  <div style="margin-left: 10px"><strong>保険手続き</strong></div>
+                </div>
+                <div class='icon-go'>
+                  <div style="text-align: right; width: 100%;">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="item-menu w-33 fl-left" (click)="redirect('document-list')" *ngIf="tantoChoose && tantoChoose.documentsCooperation === '1'"
+                style="border-right: 2px dotted #b8b3b0;; padding-right: 20px; padding-left: 20px;cursor: pointer">
+                <div class='icon-text'>
+                  <img src="assets/image/icon4.png" width="30" style="height: 30px">
+                  <div style="margin-left: 10px"><strong>ご相談時の資料</strong></div>
+                </div>
+                <div class='icon-go'>
+                  <div style="text-align: right; width: 100%;">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="item-menu w-33 fl-left" *ngIf="tantoChoose && tantoChoose.simpleAnalysis === '1'"
+                style="padding-right: 20px; padding-left: 20px;cursor: pointer" >
+                <div class='icon-text'>
+                  <img src="assets/image/icon5.png" width="30" style="height: 30px">
+                  <div style="margin-left: 10px"><strong>簡易診断</strong></div>
+                </div>
+                <div class='icon-go'>
+                  <div style="text-align: right; width: 100%;">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="sp">
+          <div class="padding3 item-menu" style="cursor: pointer" (click)="redirect('schedule-menu')">
+            <div class='icon-text'>
+              <img src="assets/image/icon1.png" width="30" style="height: 30px">
+              <div style="margin-left: 10px"><strong>ご予約</strong></div>
+            </div>
+            <div class='icon-go'>
+              <div style="text-align: right; width: 100%;">
+                <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+              </div>
+            </div>
+          </div>
+          <div class="padding3 item-menu" style="cursor: pointer" (click)="redirect('contract-list')">
+            <div class='icon-text'>
+              <img src="assets/image/icon2.png" width="30" style="height: 30px">
+              <div style="margin-left: 10px"><strong>ご契約一覧</strong></div>
+            </div>
+            <div class='icon-go'>
+              <div style="text-align: right; width: 100%;">
+                <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+              </div>
+            </div>
+          </div>
+          <div (click)="redirect('insurance-procedure-select')" style="cursor: pointer" class="padding3 item-menu" *ngIf="tantoChoose && tantoChoose.insuranceProcedures === '1'">
+            <div class='icon-text'>
+              <img src="assets/image/icon3.png" width="30" style="height: 30px">
+              <div style="margin-left: 10px"><strong>保険手続き</strong></div>
+            </div>
+            <div class='icon-go'>
+              <div style="text-align: right; width: 100%;">
+                <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+              </div>
+            </div>
+          </div>
+          <div class="padding3 item-menu" (click)="redirect('document-list')" style="cursor: pointer" *ngIf="tantoChoose && tantoChoose.documentsCooperation === '1'">
+            <div class='icon-text'>
+              <img src="assets/image/icon4.png" width="30" style="height: 30px">
+              <div style="margin-left: 10px"><strong>ご相談時の資料</strong></div>
+            </div>
+            <div class='icon-go'>
+              <div style="text-align: right; width: 100%;">
+                <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+              </div>
+            </div>
+          </div>
+          <div class="padding3 item-menu" style="cursor: pointer" *ngIf="tantoChoose && tantoChoose.simpleAnalysis === '1'">
+            <div class='icon-text'>
+              <img src="assets/image/icon5.png" width="30" style="height: 30px">
+              <div style="margin-left: 10px"><strong>簡易診断</strong></div>
+            </div>
+            <div class='icon-go'>
+              <div style="text-align: right; width: 100%;">
+                <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+              </div>
+            </div>
+          </div>
+          <div class="padding3 item-menu" style="cursor: pointer" (click)="redirect('customer-setting')">
+            <div class='icon-text'>
+              <img src="assets/image/icon6.png" width="30" style="height: 30px">
+              <div style="margin-left: 10px"><strong>お客様情報</strong></div>
+            </div>
+            <div class='icon-go'>
+              <div style="text-align: right; width: 100%;">
+                <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="news padding3" *ngIf="listMessage.length > 0"> -->
+        <div class="news padding3" style="margin-top: 40px">
+          <div class="arrow_box" style="height: 45px; max-width: 300px; margin: auto; margin-bottom: 20px;">
+            <div style="margin: auto"><strong>お知らせ</strong></div>
+          </div>
+          <div class="block_pc" style="padding: 15px 20px; border-bottom: 2px dotted #b8b3b0;"
+            *ngFor="let message of listMessage, let i = index">
+            <div class="w-25 fl-left" style="display: flex; align-items: center;">{{message.sendDate}}</div>
+            <div class="w-75 fl-left" style="display: flex; align-items: center">
+              <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;&nbsp;
+              <a class="text-link under-below ellipse-text" style="-webkit-box-orient: vertical;" new-item alt="" style="cursor: pointer; text-decoration: underline;"
+                (click)="showDialog(i)" title={{message.messageTitle}}>{{message.messageTitle}}
+              </a>
+            </div>
+          </div>
+          <div style="text-align: right;padding-top: 5px;"> <a (click)="goToNotiList()" style="text-align: -webkit-right; display: initial" class="text-link ellipse-text"><span style="cursor: pointer;text-decoration: underline;">さらに表示</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+    <app-popup (valueChange)='changeDataAfterAdd($event)' [(display)]="display" [data]="data" [width]='dataWidth'></app-popup>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

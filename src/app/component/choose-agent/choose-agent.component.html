@@ -1,0 +1,32 @@
+<!--AgencyList-->
+<section id="AgencyList" (window:resize)="onResize($event)" [style.height.vh]="addDiv ? '100': ''" style="position: relative">
+  <div class="container" #myContainer>
+    <app-header></app-header>
+    <div class="wrapper">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">店舗選択</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+
+      <div class="content fs-14 padding3">
+        <div class="row">
+          <p class="sub-title">ご利用店舗を選択してください。</p>
+        </div>
+        <div class="row" style="margin-bottom: 30px">
+          <div class="item item-6-12" style="text-align: center" (click)="chooseAgent(agent.agentCd, agent.branchCd)" *ngFor="let agent of listAgent">
+            <div class="btn-choose-agent"><span>{{agent.shopName}}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div style="width: 100%; height: 50px;" [style.height.px]="heightBlankDiv" ></div> -->
+    <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+    <app-loading [loading]="loading"></app-loading>
+    <app-footer-link [style.position]="addDiv ? 'absolute': ''" class="bottom0"></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

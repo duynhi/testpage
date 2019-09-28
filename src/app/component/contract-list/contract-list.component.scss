@@ -1,0 +1,256 @@
+@import './../../../assets/variables.scss';
+@import '../../../assets/_mixin.scss';
+
+/deep/.owl-nav {
+    display: none !important;
+}
+/deep/.owl-dots {
+    display: none !important;
+}
+
+#ReservationList{
+    .family-insurance-fee{
+        margin-bottom: 1.5rem;
+    }
+    .box{
+        .family-insurance-detail{
+            border-bottom: 2px dotted #b8b3b0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+        }
+        .icon{
+            vertical-align: middle;
+        }
+        .detail{
+            padding-bottom: 0.3rem;
+        }
+        .payment-status{
+            .status{
+                text-align: center;
+                border: 2px pink solid;
+                margin: 0 auto;
+                padding: 0.2rem 0.1rem;
+            }   
+        }
+        .trash{
+            vertical-align: top;
+            .pi-trash{
+                color: #d6d1ce;
+            }
+        }
+    }
+
+    .add-more{
+        margin: 1.2rem 0;
+        .pi-plus-circle{
+            color: #ffa366;
+        }
+        .icon{
+            vertical-align: middle;
+        }
+    }
+    /*OWL CAROUSEL SLIDER*/
+    .contract{
+        margin-bottom: 1.5rem;
+        .wrapper{
+            display: inline-flex;
+        }
+       
+        .next-button{
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            text-align: center;
+            padding-left: 10px;
+            border-left: 1px #000000 solid;
+            // border-top: 2px #000000 solid;
+            // border-bottom: 2px #000000 solid;
+        }
+        .back-button{
+            display: flex;
+            align-items: center;
+            position: relative;
+            font-size: 1.5rem;
+            text-align: right;
+            border-right: 1px #000000 solid;
+            // border-top: 2px #000000 solid;
+            // border-bottom: 2px #000000 solid;
+        }
+    }
+}
+.body {
+    .owl-carousel .owl-stage {
+        margin: auto;
+    }
+    
+}
+
+
+
+.contract-item-pc{
+    background-color: #faf7f5;
+    display: grid;
+    padding: 10px;
+    // align-items: center;
+    // text-align: center;
+    .contract-name{
+        padding-left: 30px;
+        display: flex;
+        align-items: center;
+        word-break: break-all;
+        background-image: url("../../../assets/image/person.png");
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 30px;
+    }
+    &:hover{
+        background: #fac457;
+        border-radius: 5px;
+        cursor: pointer;
+        .contract-name{
+            background-image: url("../../../assets/image/person_white.png");
+            background-repeat: no-repeat;
+            background-position: left;
+            background-size: 30px;
+        }
+    }
+    .contract-face-pc {
+        position: absolute;
+        width: 30px;
+        top: 4px;
+        left: 10px
+    }
+    
+}
+
+
+.swiper-button-prev {
+    display: none;
+}
+
+.swiper-slide {
+    height: auto;
+  }
+
+.swiper-button-next {
+    display: none;
+}
+
+.item {
+    display: inline-block;
+}
+
+.status {
+    background-color: #ffa366;
+    border-radius: 3px;
+}
+
+.btn-next-prev-sp{
+    width: 20px;
+}
+
+.arrow_box {
+	position: relative;
+	background: #fac457 !important;
+    border: 1px solid #fac457;
+    display: grid;
+    border-radius: 5px;
+    // align-items: center;
+    // text-align: center;
+    .contract-name{
+        background-image: url("../../../assets/image/person_white.png");
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 30px;
+    }
+}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: #fff;;
+	border-top-color: #fac457;;
+	border-width: 10px;
+	margin-left: -10px;
+}
+.arrow_box:before {
+	border-color: #fff;
+	border-top-color: #fac457;
+	border-width: 10px;
+	margin-left: -10px;
+}
+.payment_info{
+    dl.parent{
+        margin: 0 0;
+        dd{
+            margin-left: 0px;
+            padding-left:15px;
+        }
+    }
+}
+.logo-clinic{
+    margin-top:20px;
+}
+@media screen and (max-width: 768px) {
+    .contract-item-pc{
+        background-color: #faf7f5;
+        display: grid;
+        padding: 10px;
+        position: relative;
+        // align-items: center;
+        // text-align: center;
+        .contract-name{
+            padding-left: 0px;
+            padding-bottom: 30px;
+            display: flex;
+            align-items: center;
+            word-break: break-all;
+            background-image: url("../../../assets/image/person.png");
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 30px;
+        }
+        &:hover{
+            background: #fac457;
+            border-radius: 5px;
+            cursor: pointer;
+            .contract-name{
+                background-image: url("../../../assets/image/person_white.png");
+                background-repeat: no-repeat;
+                background-position: bottom;
+                background-size: 30px;
+            }
+        }
+        .contract-face{
+            width: 30px;
+            margin: 0 auto;
+        }
+        
+    }
+    .contract-name{
+        word-break: break-all;
+        display: flex;
+        align-items: center;
+        background-image: none;
+    }
+    .arrow_box{
+        .contract-name{
+            background-image: url("../../../assets/image/person_white.png");
+            background-repeat: no-repeat;
+            background-position: bottom !important;
+            background-size: 30px;
+            }
+    }
+}
+.style-add-more:hover {
+    color:#007ad9;
+}

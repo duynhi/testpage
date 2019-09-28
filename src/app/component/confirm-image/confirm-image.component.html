@@ -1,0 +1,49 @@
+<!--CameraImageConfirm-->
+<section id="CameraImageConfirm">
+  <div class="container">
+    <app-header></app-header>
+    <div [className]="hadImage ? 'none wrapper w-100' : 'display wrapper w-100'">
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <div class="title text-center arrow_box">
+        <p style="margin: auto"><strong >画像補正を実施しました</strong></p>
+      </div>
+      <p style="text-align: center">ピントがあってない場合や枠内に証券画像全体が入っていない場合は再撮影をしてください。
+        </p>
+      <div class="box" style="margin-top: 20px">
+        <div class="item-12-12 text-center">
+          <div class="prev-button item item-2-12" style="height: 50px" (click)="owlCar.prev()"><span><i *ngIf="FirstItem" class="pi pi-angle-double-left"></i></span></div>
+          <div class="item item-8-12 v-middle">
+              <owl-carousel-o [options]="imageConfirmOption" (translated)="getPassedData($event)"  #owlCar>
+                <ng-template carouselSlide *ngFor="let data of imgDatas; index as i">
+                  <img class="contract-face" src="{{ data }}" alt="" title="">
+                </ng-template>
+              </owl-carousel-o>
+          </div>
+          <div class="next-button item item-2-12" (click)="owlCar.next()"><span><i *ngIf="LastItem" class="pi pi-angle-double-right"></i></span></div>
+        </div>
+      </div>      
+      <div class="box text-center" style="margin-top: 20px">
+          <button class="btn btn-gray item item-11-12 text-center saisatsuei" (click)="changeImage()">
+            <i class="pi pi-arrow-left" style="color: #5d9a6e"> </i>　
+            <span class="saisatsuei-label">再撮影する（やり直す）</span>
+          </button>
+          <div class="btn item item-11-12 text-center" style="border: 2px solid #d6d1ce; position: relative;" (click)="moreImage()">
+            <div>
+              追加撮影する<br><span class="remove-bold">（2ページ目や裏面がある場合）</span>　
+              <i style="position: absolute; right: 10px; top: 35%; color: #5d9a6e" class="pi pi-arrow-right"></i>
+            </div>
+          </div>
+          <div class="btn btn-orange item item-11-12 text-center" style="padding: 15px 0px">証券画像を登録する　
+            <!-- <i class="pi pi-arrow-right"></i> -->
+          </div>
+          <input *ngIf="isMobile || isTablet" id="fileinput" (change)='handleClick($event)' type="file" accept="image/*" style="display:none" capture="camera" />
+      </div>
+    </div>
+    <div [className]="hadImage ? 'display' : 'none'" style="margin: auto; text-align: center">
+      <img src={{lastData}} style="max-width: 300px">
+    </div>
+  </div>
+  <app-loading [loading]="loading"></app-loading>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+</section>

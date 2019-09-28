@@ -1,0 +1,526 @@
+<section id="header">
+    <header class="header-pc one-edge-shadow">
+        <div class="w-100 h-50" style="display: flex;align-items: center;">
+            <div style="height: 35px; float: left; width: 20%; margin-top: 8px; padding-right: 10px; cursor: pointer;"
+                (click)="goToTopPage()">
+                <img src="assets/image/logo.svg" style="height: 35px" (click)="goToTopPage()">
+            </div>
+            <div style="float: right; width: 80%; text-align: right">
+                <div class="top-link flex-content">
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;<a class="text-link"
+                        style="text-align: left; cursor: pointer" (click)="goToTop()">マイページ</a>&nbsp;&nbsp;&nbsp;
+                    <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;<a class="text-link"
+                        (click)="goToQA()" style="text-align: left; cursor: pointer">保険相談のよくある質問</a>&nbsp;&nbsp;&nbsp;
+                    <!-- <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;<span class="text-link" style="text-align: left">はじめてのご予約受付センター</span>&nbsp;&nbsp;&nbsp;&nbsp; -->
+                    <span class="text-link" style="text-align: left">はじめてのご予約受付センター</span>&nbsp;&nbsp;
+                    <div class="phone">
+                        <div class="text" style="display: inline-block">
+                            通話料無料
+                        </div>
+                        <!-- <fa-icon [icon]="faPhone" class="color-orange h-20"></fa-icon> -->
+                        <span class="icon-phone" style="text-align: left; display: flex">0120-366-929</span>
+                        &nbsp;&nbsp;
+                    </div>
+                    <span class="fs-10 two-line" style="text-align: left">
+                        <span>平日 9:00～20:00</span><br>
+                        <span>土日祝 9:00～20:00　定休日　年末開始　</span>
+                    </span>
+                    <span class="fs-10 three-line" style="text-align: left">
+                        <span>平日 9:00～20:00</span><br>
+                        <span>土日祝 9:00～20:00</span><br>
+                        <span>定休日　年末開始</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 h-50 flex-content">
+            <div class="w-20 flex-content link-menu">
+                <div class="line-menu border-left"></div>
+                <div class="item-menu text-center">
+                    <a href="https://www.hoken-clinic.com/list/" target="_blank">
+                        <strong>店舗を探す</strong>
+                    </a>
+                </div>
+                <div class="line-menu border-right"></div>
+            </div>
+            <div class="w-20 flex-content link-menu">
+                <div class="line-menu "></div>
+                <div class="item-menu text-center">
+                    <a href="https://www.hoken-clinic.com/feature/" target="_blank">
+                        <strong>はじめての方へ</strong>
+                    </a>
+                </div>
+                <div class="line-menu border-right"></div>
+            </div>
+            <div class="w-20 flex-content link-menu">
+                <div class="line-menu "></div>
+                <div class="item-menu text-center">
+                    <a href="https://www.hoken-clinic.com/process/" target="_blank">
+                        <strong>保険相談の流れ</strong>
+                    </a>
+                </div>
+                <div class="line-menu border-right"></div>
+            </div>
+            <div class="w-20 flex-content link-menu">
+                <div class="line-menu "></div>
+                <div class="item-menu text-center ">
+                    <a href="https://www.hoken-clinic.com/company/list.html" target="_blank">
+                        <strong>取扱保険会社</strong>
+                    </a>
+                </div>
+                <div class="line-menu border-right"></div>
+            </div>
+            <div class="w-20 flex-content link-menu">
+                <div class="line-menu "></div>
+                <div class="item-menu text-center">
+                    <a href="https://www.hoken-clinic.com/voice/" target="_blank">
+                        <strong>お客様の声</strong>
+                    </a>
+                </div>
+                <div class="line-menu border-right"></div>
+            </div>
+        </div>
+    </header>
+    <app-breadcrum [breadcrumb]="position"></app-breadcrum>
+    <header class="header-sp one-edge-shadow" style="height: 60px" (window:resize)="onResize($event)">
+        <div class="w-100 text-center" (click)="goToTopPage()">
+            <img src="assets/image/logo.svg" style="height: 30px;">
+        </div>
+        <div class="menu-sp">
+            <fa-icon [icon]="faBars" class="color-orange" (click)="visibleSidebar2 = true" style="font-size: 30px">
+            </fa-icon>
+        </div>
+    </header>
+    <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="1000" styleClass="sidebar-override"
+        [blockScroll]="true" [showCloseIcon]="false">
+        <!-- <div class="close">
+            <fa-icon [icon]="faTimes" class="icon-size"></fa-icon>
+        </div> -->
+        <div class="btn-container">
+            <div class="w-40 fl-left" style="padding-right: 5px;">
+                <a href="tel:0120366929"
+                    onclick="wa_sp_tel(); yahoo_report_conversion(undefined); goog_report_conversion('tel:0120-366-929');return false;"
+                    oncontextmenu="wa_sp_tel();">
+                    <button pButton type="button" (click)="visibleSidebar2 = false" label="電話予約"
+                        class="ui-button-success btn btn-call"></button>
+                </a>
+            </div>
+            <div class="w-60 fl-left" style="padding-left: 5px;">
+                <button pButton type="button" (click)="toogleDisplay()" label="お近くの店舗を探す"
+                    class="ui-button-secondary btn btn-search"></button>
+            </div>
+        </div>
+        <p-panel header="Title" [toggleable]="false" [collapsed]="display_menu" [transitionOptions]="'300ms'">
+            <div class="content-commont arrow_box">
+                <div class="menu-sidebar-header" style="padding-left: 7px;">
+                    <a href="https://www.hoken-clinic.com/list/gps/" target="_blank" class="w-100">
+
+                        <div class="item-header">
+                            <img src="assets/image/icon-access.png"
+                                style="width:20px;height:20px;margin-right: 10px">
+                            <div class="text-header">
+                                <span style="font-size: 1rem;font-weight:590;">現在地から近い店舗を探す(<span
+                                        style="font-weight:bold">GPS</span>)</span>
+                            </div>
+                            <div class="icon-header">
+                                <fa-icon [icon]="faAngleRight" class="color-green icon-size"></fa-icon>
+                            </div>
+
+                        </div>
+                    </a>
+                    <div class="menu-sidebar-common ">
+                        <div [ngClass]="currentSelect === 0 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-right: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="北海道・東北" style="width: 100%"
+                                    [ngClass]="currentSelect === 0 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(0)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[0]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div [ngClass]="currentSelect === 1 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-left: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="関東" style="width: 100%"
+                                    [ngClass]="currentSelect === 1 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(1)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[1]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 0" class="current_menu_common">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/01/001/" target="_blank">北海道</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/01/003/" target="_blank">岩手県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/01/004/" target="_blank">宮城県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/01/006/" target="_blank">山形県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/01/007/" target="_blank">福島県</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 1">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/02/013/" target="_blank">東京都</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/02/014/" target="_blank">神奈川県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/02/012/" target="_blank">千葉県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/02/011/" target="_blank">埼玉県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/02/010/" target="_blank">群馬県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/02/009/" target="_blank">栃木県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/02/008/" target="_blank">茨城県</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="clear"></div>
+                        <div [ngClass]="currentSelect === 2 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-right: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="甲信越・北陸" style="width: 100%"
+                                    [ngClass]="currentSelect === 2 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(2)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[2]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div [ngClass]="currentSelect === 3 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-left: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="東海" style="width: 100%"
+                                    [ngClass]="currentSelect === 3 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(3)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[3]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 2">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/04/015/" target="_blank">新潟県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/04/019/" target="_blank">山梨県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/04/020/" target="_blank">長野県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/03/016/" target="_blank">富山県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/03/017/" target="_blank">石川県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/03/018/" target="_blank">福井県</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 3">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/05/021/" target="_blank">岐阜県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/05/022/" target="_blank">静岡県</a>
+                                </div>
+
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/05/023/" target="_blank">愛知県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/05/024/" target="_blank">三重県</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div [ngClass]="currentSelect === 4 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-right: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="関西" style="width: 100%"
+                                    [ngClass]="currentSelect === 4 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(4)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[4]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div [ngClass]="currentSelect === 5 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-left: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="中国" style="width: 100%"
+                                    [ngClass]="currentSelect === 5 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(5)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[5]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 4">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/06/026/" target="_blank">京都府</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/06/027/" target="_blank">大阪府</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/06/028/" target="_blank">兵庫県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/06/029/" target="_blank">奈良県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/06/030/" target="_blank">和歌山県</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 5">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/07/033/" target="_blank">岡山県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/07/034/" target="_blank">広島県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/07/035/" target="_blank">山口県</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div [ngClass]="currentSelect === 6 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-right: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="四国" style="width: 100%"
+                                    [ngClass]="currentSelect === 6 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(6)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[6]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div [ngClass]="currentSelect === 7 ? 'test-before fl-left' : 'test-after fl-left'"
+                            style="margin-left: 4px;">
+                            <div class="w-100">
+                                <button pButton type="button" label="九州・沖縄" style="width: 100%"
+                                    [ngClass]="currentSelect === 7 ? 'btn-menu focus-btn' : 'btn-menu'"
+                                    (click)="toogleDisplayCommon(7)">
+                                    <div class="icon-common fl-right">
+                                        <span class="{{classion[7]}}"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 6">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/08/037/" target="_blank">香川県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/08/038/" target="_blank">愛媛県</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="displayCommon === 7">
+                            <div class="menu-common-common">
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/09/040/" target="_blank">福岡県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/09/041/" target="_blank">佐賀県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/09/042/" target="_blank">長崎県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/09/043/" target="_blank">熊本県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/09/045/" target="_blank">宮崎県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/09/046/" target="_blank">鹿児島県</a>
+                                </div>
+                                <div class="div-menu-common w-50 fl-left" style="border-bottom: none">
+                                    <fa-icon [icon]="faAngleRight" class="icon-common-common color-green icon-size">
+                                    </fa-icon>
+                                    <a href="https://www.hoken-clinic.com/list/09/047/" target="_blank">沖縄県</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+        <div class="menu-sidebar">
+            <a href="https://www.hoken-clinic.com/list/" target="_blank">
+                <div class="item">
+                    <div class="text">
+                        <span>店舗を探す</span>
+                    </div>
+                    <div class="icon">
+                        <fa-icon [icon]="faAngleRight" class="color-green icon-size"></fa-icon>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.hoken-clinic.com/feature/" target="_blank">
+                <div class="item">
+                    <div class="text">
+                        <span>はじめての方へ</span>
+                    </div>
+                    <div class="icon">
+                        <fa-icon [icon]="faAngleRight" class="color-green icon-size"></fa-icon>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.hoken-clinic.com/process/" target="_blank">
+                <div class="item">
+                    <div class="text">
+                        <span>保険相談の流れ</span>
+                    </div>
+                    <div class="icon">
+                        <fa-icon [icon]="faAngleRight" class="color-green icon-size"></fa-icon>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.hoken-clinic.com/company/list.html" target="_blank">
+                <div class="item">
+                    <div class="text">
+                        <span>取扱保険会社</span>
+                    </div>
+                    <div class="icon">
+                        <fa-icon [icon]="faAngleRight" class="color-green icon-size"></fa-icon>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.hoken-clinic.com/voice/" target="_blank">
+                <div class="item">
+                    <div class="text">
+                        <span>お客さまの声</span>
+                    </div>
+                    <div class="icon">
+                        <fa-icon [icon]="faAngleRight" class="color-green icon-size"></fa-icon>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </p-sidebar>
+</section>
+<div class="pc">
+    <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" position="top-center" closable="false"></p-toast>
+</div>
+<div class="sp">
+    <p-toast [style]="{marginBottom: '80px'}" position="top-center" position="bottom-center" closable="false"></p-toast>
+</div>

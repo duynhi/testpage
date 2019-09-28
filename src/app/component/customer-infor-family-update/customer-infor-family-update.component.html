@@ -1,0 +1,203 @@
+<section id="CustomerInfoUpdate-two">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper" [formGroup]="infoFamilyGroup" *ngIf="infoFamilyGroup">
+
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">ご家族の設定</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+
+      <div class="content padding3">
+        <div class="box form-input">
+          <div class="row">
+            <div class="item col-head" style="border-top: none;">続柄<span class="error">必須</span></div>
+            <div class="item col-body">
+              <div class="item item-5-12">
+                <p-dropdown styleClass="dropdown-w-100" [options]="relations" (onChange)="changeRelation()"
+                  formControlName="relation"></p-dropdown>
+                <div *ngIf="f.relation.errors" style="margin-top: 10px">
+                  <p-message severity="error" text={{MESSAGE.relationRequire}}
+                    *ngIf="!f.relation.value&&(infoFamilyGroup.controls['relation'].dirty || infoFamilyGroup.controls['relation'].touched)">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="item col-head">お名前<span class="error">必須</span></div>
+            <div class="item col-body">
+              <div class="item item-12-12">
+
+                <div class="item item-1-12 text-left col-label">姓</div>
+                <div class="item item-4-12">
+                  <input formControlName="nameLast" class="w-100 h-35" autocomplete="off" type="text" pInputText>
+                  <div *ngIf="f.nameLast.errors" style="margin-top:10px;">
+                    <p-message severity="error" text={{MESSAGE.lastNameRequire}}
+                      *ngIf="!f.nameLast.value&&(infoFamilyGroup.controls['nameLast'].dirty || infoFamilyGroup.controls['nameLast'].touched)">
+                    </p-message>
+                    <p-message severity="error" text={{MESSAGE.lastNameMaxLength50}}
+                      *ngIf="(f.nameLast.value && f.nameLast.value.length>50)&&(infoFamilyGroup.controls['nameLast'].dirty || infoFamilyGroup.controls['nameLast'].touched)">
+                    </p-message>
+                  </div>
+
+                </div>
+
+
+                <div class="item item-1-12 text-center col-label">名</div>
+
+                <div class="item item-4-12">
+                  <input formControlName="nameFirst" class="w-100 h-35" autocomplete="off" type="text" pInputText>
+                  <div *ngIf="f.nameFirst.errors" style="margin-top:10px;">
+                    <p-message severity="error" text={{MESSAGE.firstNameRequire}}
+                      *ngIf="!f.nameFirst.value&&(infoFamilyGroup.controls['nameFirst'].dirty || infoFamilyGroup.controls['nameFirst'].touched)">
+                    </p-message>
+                    <p-message severity="error" text={{MESSAGE.firstNameMaxLength50}}
+                      *ngIf="(f.nameFirst.value && f.nameFirst.value.length>50)&&(infoFamilyGroup.controls['nameFirst'].dirty || infoFamilyGroup.controls['nameFirst'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="item col-head">ふりがな</div>
+            <div class="item col-body">
+              <div class="item item-12-12">
+                <div class="item item-1-12 text-left col-label">せい</div>
+                <div class="item item-4-12">
+                  <input class="w-100 h-35" formControlName="nameKanaLast" autocomplete="off" type="text" pInputText>
+                  <div *ngIf="f.nameKanaLast.errors" style="margin-top:10px;">
+                    <!-- <p-message severity="error" text="ふりがな(めい)が未入力です。"
+                        *ngIf="(!f.nameKanaLast.value.length)&&(infoFamilyGroup.controls['nameKanaLast'].dirty || infoFamilyGroup.controls['nameKanaLast'].touched)">
+                      </p-message> -->
+                    <p-message severity="error" text={{MESSAGE.lastNameKanaFormatIncorrect}}
+                      *ngIf="(f.nameKanaLast.value && f.nameKanaLast.value.length<=50 && f.nameKanaLast.invalid)&&(infoFamilyGroup.controls['nameKanaLast'].dirty || infoFamilyGroup.controls['nameKanaLast'].touched)&&(f.nameKanaLast.errors)">
+                    </p-message>
+                    <p-message severity="error" text="ふりがな(せい)は50字以内で入力してください。"
+                      *ngIf="(f.nameKanaLast.value.length>50)&&(infoFamilyGroup.controls['nameKanaLast'].dirty || infoFamilyGroup.controls['nameKanaLast'].touched)">
+                    </p-message>
+                  </div>
+
+                </div>
+                <div class="item item-1-12 text-center col-label">めい</div>
+                <div class="item item-4-12">
+                  <input class="w-100 h-35" formControlName="nameKanaFirst" autocomplete="off" type="text" pInputText>
+                  <div *ngIf="f.nameKanaFirst.errors" style="margin-top:10px;">
+                    <!-- <p-message severity="error" text="ふりがな(せい)が未入力です。"
+                        *ngIf="(!f.nameKanaFirst.value.length)&&(f.nameKanaFirst.dirty || f.nameKanaFirst.touched)">
+                      </p-message> -->
+                    <p-message severity="error" text={{MESSAGE.firstNameKanaFormatIncorrect}}
+                      *ngIf="(f.nameKanaFirst.value && f.nameKanaFirst.value.length<=50 && f.nameKanaFirst.invalid)&&(infoFamilyGroup.controls['nameKanaFirst'].dirty || infoFamilyGroup.controls['nameKanaFirst'].touched)&&(f.nameKanaFirst.errors)">
+                    </p-message>
+                    <p-message severity="error" text="ふりがな(めい)は50字以内で入力してください。"
+                      *ngIf="(f.nameKanaFirst.value.length>50)&&(infoFamilyGroup.controls['nameKanaFirst'].dirty || infoFamilyGroup.controls['nameKanaFirst'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row birthday">
+            <div class="item col-head v-middle">生年月日<span class="error">必須</span></div>
+            <div class="item col-body">
+              <div class="item item-3-12 text-center">
+                <p-dropdown [options]="years" (onChange)="changeYear()" formControlName="year" styleClass="w-time">
+                </p-dropdown>
+                <div *ngIf="f.year.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='年が未入力です。'
+                    *ngIf="!f.year.value&&(infoFamilyGroup.controls['year'].dirty || infoFamilyGroup.controls['year'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="item item-1-12 text-center col-label">年</div>
+
+              <div class="item item-2-12 text-center">
+                <p-dropdown [options]="months" (onChange)="changeMonth()" formControlName="month"
+                  styleClass="dropdown-w-100 h-35 w-time"></p-dropdown>
+                <div *ngIf=" f.month.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='月が未入力です。'
+                    *ngIf="!f.month.value&&(infoFamilyGroup.controls['month'].dirty || infoFamilyGroup.controls['month'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="item item-1-12 text-center col-label">月</div>
+
+              <div class="item item-2-12 text-center">
+                <p-dropdown [options]="days" formControlName="day" styleClass="dropdown-w-100 h-35 w-time"></p-dropdown>
+                <div *ngIf="f.day.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='日が未入力です。'
+                    *ngIf="!f.day.value&&(infoFamilyGroup.controls['day'].dirty || infoFamilyGroup.controls['day'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="item item-1-12 text-center col-label">日</div>
+            </div>
+          </div>
+
+          <div class="row gender">
+            <div class="item col-head">性別<span class="error">必須</span></div>
+            <div class="item col-body">
+              <div class="item item-4-12" *ngFor="let item of genders">
+                <button
+                  [className]="selectedGender !== '' && selectedGender === item.value ||  selectedGender === item.value ? 'gender-selected' : 'gender-btn'"
+                  (click)="changeGender(item.value)" pButton type="button" label="{{item.label}}"> </button>
+              </div>
+              <div class="item item-12-12" *ngIf="selectedGender === ''" style="padding-top: 0px">
+                <p-message severity="error" text={{MESSAGE.sexRequire}} *ngIf="selectedGender === ''">
+                </p-message>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row policy-h">
+            <div class="item col-head v-middle">利用規約</div>
+            <div class="item col-body">
+              <div class="item item-11-12">
+                <textarea class="policy">【個人情報の取り扱いについて】
+当サイトに掲載されている各募集代理店が、お客様から取得した個人情報は(このwebサイトから取得した個人情報を含む)各募集代理店のプライバシーポリシーに従い、お取り扱いさせていただくことになりますのでご留意くださいますようお願いいたします。
+                </textarea>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="box btn-group sp">
+          <div class="item item-12-12 text-left">
+            <button class="btn-orange w-100" style="padding: 10px" [disabled]="infoFamilyGroup.invalid" pButton
+              (click)="saveFamily()" type="button">
+              <span class="fs-16">登録</span>
+            </button>
+          </div>
+          <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)='back()' pButton
+              type="button" label="前のページに戻る"></button>
+          </div>
+        </div>
+
+        <div class="box btn-group pc">
+          <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)='back()' pButton
+              type="button" label="前のページに戻る"></button>
+          </div>
+          <div class="item item-6-12 text-left">
+            <button class="btn-orange w-100" style="padding: 10px"
+              [disabled]="infoFamilyGroup.invalid || selectedGender === ''" pButton (click)="saveFamily()"
+              type="button">
+              <span class="fs-16">登録</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

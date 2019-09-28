@@ -1,0 +1,739 @@
+<section id="create-new-page">
+  <app-header></app-header>
+  <div class="padding-sp">
+
+    <div class="title">
+      <h2 class="fs-25">マイページ登録</h2>
+    </div>
+    <div style="max-width: 500px; margin:auto; height: 60px; margin-bottom: 20px">
+      <div class="item-12-12" style="height: 30px">
+        <div class="item-4-12 fl-left" style="text-align: left">
+          情報入力
+        </div>
+        <div class="item-4-12 fl-left" style="text-align: center">
+          内容確認
+        </div>
+        <div class="item-4-12 fl-left" style="text-align: right">
+          登録完了
+        </div>
+      </div>
+      <div *ngIf="!confirm && !success" class="item-12-12"
+        style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ;">
+        <div class="item-12-12" style="height: 16px; border-bottom: 3px dotted #d0ccc9"></div>
+        <div class='orange'
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; background-color: #fff">
+        </div>
+        <div class='gray'
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: 0; right: 0; margin-left: auto; margin-right: auto;  background-color: #fff">
+        </div>
+        <div class='gray'
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; right: 20px; background-color: #fff">
+        </div>
+      </div>
+      <div *ngIf="!success && confirm" class="item-12-12"
+        style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ;">
+        <div class="item-12-12" style="height: 16px; border-bottom: 3px dotted #d0ccc9"></div>
+        <div class="orange2"
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; background-color: #fff">
+        </div>
+        <div class="orange"
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: 0; right: 0; margin-left: auto; margin-right: auto;  background-color: #fff">
+        </div>
+        <div class='gray'
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; right: 20px; background-color: #fff">
+        </div>
+      </div>
+      <div *ngIf="!confirm && success" class="item-12-12"
+        style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ;">
+        <div class="item-12-12" style="height: 16px; border-bottom: 3px dotted #d0ccc9"></div>
+        <div class="orange2"
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; background-color: #fff">
+        </div>
+        <div class="orange2"
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: 0; right: 0; margin-left: auto; margin-right: auto;  background-color: #fff">
+        </div>
+        <div class="orange"
+          style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; right: 20px; background-color: #fff">
+        </div>
+      </div>
+    </div>
+    <form class="form-create-new-page" [formGroup]="createMyPageGroup" *ngIf="!confirm && !success">
+      <h2 class="sp text-center" style="margin-top:0;margin-bottom:10px;">情報入力</h2>
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text frm-clinic">
+          <div class="fs-14 font-bold text1">ご利用（ご希望）の店舗</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left display-flex-pc" style="display: grid !important">
+          <div class="w-50-res">
+            <p-dropdown [options]="favorites" formControlName="favorite" styleClass="dropdown-w-100 h-35"
+              placeholder=""></p-dropdown>
+          </div>
+          <div style="margin-top: 5px; width: 100%; display: inline-block;">
+            <p-message severity="error" text="ご利用（ご希望）の店舗が未入力です。"
+              *ngIf="!f.favorite.value&&(createMyPageGroup.controls['favorite'].dirty || createMyPageGroup.controls['favorite'].touched)">
+            </p-message>
+          </div>
+        </div>
+      </div>
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">メールアドレス（ログインID）</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left display-flex-pc">
+          <div class="w-50-res" style="float: left;">
+            <input formControlName="email" placeholder="aaa＠example.com（半角）" class="w-100 center h-35" type="text"
+              size="15" pInputText>
+            <div *ngIf="f.email.invalid">
+              <div style="margin-top: 5px">
+                <p-message severity="error" text={{MESSAGE.emailRequire}}
+                  *ngIf="!f.email.value&&(createMyPageGroup.controls['email'].dirty || createMyPageGroup.controls['email'].touched)">
+                </p-message>
+              </div>
+              <p-message severity="error" text={{MESSAGE.emailInvalid}} *ngIf="f.email.value && f.email.errors">
+              </p-message>
+            </div>
+          </div>
+          <div class="w-50-res padding-left-20-res" style="float: left; color: #ff6400">
+            ご登録いただいたメールアドレス宛に保険クリニックからのお知らせをお送りいたします。
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">氏名</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; padding: 20px">
+          <div style="width: 100%">
+            <div style="width: 50%; float: left; padding-right: 10px">
+              <div style="width: 40px; float: left; padding-top: 5px">姓</div>
+
+              <input formControlName="nameLast" class="w-100 center h-35"
+                style="width: calc(100% - 40px); float: left; margin-bottom: 5px" type="text" size="15" pInputText>
+              <div style="margin-top: 10px; width: 100%;">
+                <div style="padding-left: 40px;">
+                  <p-message severity="error" text={{MESSAGE.lastNameRequire}}
+                    *ngIf="!f.nameLast.value&&(createMyPageGroup.controls['nameLast'].dirty || createMyPageGroup.controls['nameLast'].touched)">
+                  </p-message>
+                  <p-message severity="error" text={{MESSAGE.lastNameMaxLength50}}
+                    *ngIf="( f.nameLast.value.length>50)&&(createMyPageGroup.controls['nameLast'].dirty || createMyPageGroup.controls['nameLast'].touched)">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+
+            <div style="width: 50%; float: left;">
+              <div style="width: 40px; float: left; padding-top: 5px; padding-left: 5px">名</div>
+              <input formControlName="nameFirst" class="w-100 center h-35"
+                style="width: calc(100% - 40px); float: left; margin-bottom: 5px" type="text" size="15" pInputText>
+              <div style="margin-top: 10px; width: 100%;">
+                <div style="padding-left: 40px;">
+                  <p-message severity="error" text={{MESSAGE.firstNameRequire}}
+                    *ngIf="!f.nameFirst.value&&(createMyPageGroup.controls['nameFirst'].dirty || createMyPageGroup.controls['nameFirst'].touched)">
+                  </p-message>
+                  <p-message severity="error" text={{MESSAGE.firstNameMaxLength50}}
+                    *ngIf="(f.nameFirst.value.length>50)&&(createMyPageGroup.controls['nameFirst'].dirty || createMyPageGroup.controls['nameFirst'].touched)">
+                  </p-message>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- <br> -->
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">ふりがな</div>
+          <!-- <div class="text2">必須</div> -->
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; padding: 20px">
+          <div style="width: 100%">
+            <div style="width: 50%; float: left; padding-right: 10px">
+              <div style="width: 40px; float: left; padding-top: 5px">せい</div>
+              <input formControlName="nameKanaLast" class="w-100 center h-35"
+                style="width: calc(100% - 40px); float: left; margin-bottom: 5px" type="text" size="15" pInputText>
+              <div *ngIf="f.nameKanaLast.invalid" style="margin-top: 10px; width: 100%;">
+                <div style="padding-left: 40px;">
+                  <!-- <p-message severity="error" text="ふりがな(めい)が未入力です。"
+                  *ngIf="(!f.nameKanaLast.value.length)&&(createMyPageGroup.controls['nameKanaLast'].dirty || createMyPageGroup.controls['nameKanaLast'].touched)">
+                </p-message> -->
+                  <p-message severity="error" text='ふりがな(せい)は50字以内で入力してください。'
+                    *ngIf="(f.nameKanaLast.value.length>50)&&(createMyPageGroup.controls['nameKanaLast'].dirty || createMyPageGroup.controls['nameKanaLast'].touched)">
+                  </p-message>
+                  <p-message severity="error" text={{MESSAGE.lastNameKanaFormatIncorrect}}
+                    *ngIf="(f.nameKanaLast.value && f.nameKanaLast.value.length<=50 && f.nameKanaLast.invalid)&&(createMyPageGroup.controls['nameKanaLast'].dirty || createMyPageGroup.controls['nameKanaLast'].touched)&&(f.nameKanaLast.errors)">
+                  </p-message>
+                </div>
+              </div>
+
+            </div>
+            <div style="width: 50%; float: left;">
+              <div style="width: 40px; float: left; padding-top: 5px">めい</div>
+              <input formControlName="nameKanaFirst" class="w-100 center h-35"
+                style="width: calc(100% - 40px); float: left; margin-bottom: 5px" type="text" size="15" pInputText>
+              <div *ngIf="f.nameKanaFirst.invalid" style="margin-top: 10px; width: 100%;">
+                <div style="padding-left: 40px;">
+                  <!-- <p-message severity="error" text="ふりがな(せい)が未入力です。"
+                  *ngIf="(!f.nameKanaFirst.value.length)&&(createMyPageGroup.controls['nameKanaFirst'].dirty || createMyPageGroup.controls['nameKanaFirst'].touched)">
+                </p-message> -->
+                  <p-message severity="error" text='ふりがな(めい)は50字以内で入力してください。'
+                    *ngIf="(f.nameKanaFirst.value.length>50 )&&(createMyPageGroup.controls['nameKanaFirst'].dirty || createMyPageGroup.controls['nameKanaFirst'].touched)">
+                  </p-message>
+                  <p-message severity="error" text={{MESSAGE.firstNameKanaFormatIncorrect}}
+                    *ngIf="(f.nameKanaFirst.value && f.nameKanaFirst.value.length<=50 && f.nameKanaFirst.invalid)&&(createMyPageGroup.controls['nameKanaFirst'].dirty || createMyPageGroup.controls['nameKanaFirst'].touched)&&(f.nameKanaFirst.errors)">
+                  </p-message>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">生年月日</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex">
+          <div style="width: 100%">
+            <div style="padding: 20px; width: 40%; float: left;">
+              <div class="w-time">
+                <p-dropdown [options]="years" (onChange)="changeYear()" formControlName="year" styleClass="w-time"
+                  placeholder=""></p-dropdown>
+                <div *ngIf="f.year.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='年が未入力です。'
+                    *ngIf="!f.year.value&&(createMyPageGroup.controls['year'].dirty || createMyPageGroup.controls['year'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div style="width: 20px; float: left; padding-top: 5px; text-align: right">年</div>
+            </div>
+            <div class="date_warrper">
+              <div class="w-time">
+                <p-dropdown [options]="months" (onChange)="changeMonth()" formControlName="month"
+                  styleClass="dropdown-w-100 h-35 w-time" placeholder=""></p-dropdown>
+                <div *ngIf=" f.month.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='月が未入力です。'
+                    *ngIf="!f.month.value&&(createMyPageGroup.controls['month'].dirty || createMyPageGroup.controls['month'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="date_label">月</div>
+            </div>
+            <div class="date_warrper">
+              <div class="w-time">
+                <p-dropdown [options]="days" formControlName="day" styleClass="dropdown-w-100 h-35 w-time"
+                  placeholder=""></p-dropdown>
+                <div *ngIf="f.day.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='日が未入力です。'
+                    *ngIf="!f.day.value&&(createMyPageGroup.controls['day'].dirty || createMyPageGroup.controls['day'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="date_label">日</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">性別</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex;">
+          <div style="width: 100%">
+            <div class="w-30-res" style="padding: 20px 20px">
+              <button [className]="selectedGender==='M' ? 'w-100 h-35 gender-selected' : 'w-100 h-35 gender-btn'"
+                (click)="chooseGender('M')" pButton type="button" label="男性"> </button>
+            </div>
+            <div class="w-30-res" style="padding: 20px 20px">
+              <button [className]="selectedGender==='F' ? 'w-100 h-35 gender-selected' : 'w-100 h-35 gender-btn'"
+                (click)="chooseGender('F')" pButton type="button" label="女性"> </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold" style="vertical-align: top">住所</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: inline-block;padding: 20px">
+          <div style="width: 100%; display: inline-block">
+            <div class="w-35 fl-left">
+              <div class="fs-14 text1">郵便番号</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <div class="margin-top-5-res" style="width: 100%">
+                <div style="width: 40%; float: left;">
+                  <div style="width: 100%;">
+                    <input formControlName="zipcode1" maxlength="3" class="center h-35" 
+                      style="width: 100% !important; float: left;" type="text" size="3" pInputText>
+                  </div>
+                  <!-- <div *ngIf="!f.zipcode1.value" style="margin-top: 5px; display: inline-block">
+                    <p-message severity="error" text='郵便番号が未入力です。'
+                      *ngIf="(!f.zipcode1.value&&(f.zipcode1.dirty || f.zipcode1.touched))">
+                    </p-message>
+                  </div> -->
+                  <div *ngIf="f.zipcode1.errors" style="margin-top: 5px; display: inline-block">
+                    <p-message severity="error" text='郵便番号に誤りがあります。'
+                      *ngIf="(f.zipcode1.value&&f.zipcode1.errors&&(f.zipcode1.dirty || f.zipcode1.touched))">
+                    </p-message>
+                  </div>
+                </div>
+                <div style="width: 10%; text-align: center; float:left"><span style="line-height: 35px">-</span></div>
+                <div style="width: 40%; float: left;">
+                  <div style="width: 100%">
+                    <input formControlName="zipcode2" maxlength="4" class="center h-35" 
+                      style="width: 100% !important; float: left;" type="text" size="4" pInputText>
+                  </div>
+                  <!-- <div *ngIf="!f.zipcode2.value" style="margin-top: 5px; display: inline-block">
+                    <p-message severity="error" text='郵便番号が未入力です。'
+                      *ngIf="(!f.zipcode2.value&&(f.zipcode2.dirty || f.zipcode2.touched))">
+                    </p-message>
+                  </div> -->
+                  <div *ngIf="f.zipcode2.errors" style="margin-top: 5px; display: inline-block">
+                    <p-message severity="error" text='郵便番号に誤りがあります。'
+                      *ngIf="(f.zipcode2.value&&f.zipcode2.errors&&(f.zipcode2.dirty || f.zipcode2.touched))">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-data">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14 text1"></div>
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+              <div class="w-100-res margin-top-5-res">
+                <p (click)="yuubinbango()" class="auto-fill" style="text-decoration: underline;font-size: 14px; display: inline-block;">郵便番号から住所を自動入力</p>
+              </div>
+            </div>
+          </div>
+          <div class="row-data" style="margin-top: 10px">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14 text1">都道府県</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+              <div class="w-100-res" style="margin-top: 5px;">
+                <p-dropdown [options]="cities" formControlName="city"></p-dropdown>
+              </div>
+              <!-- <div *ngIf="!f.city.value" style="margin-top: 5px; display: inline-block">
+                <p-message severity="error" text='都道府県が未入力です。'
+                  *ngIf="(!f.city.value&&(f.city.dirty || f.city.touched))">
+                </p-message>
+              </div> -->
+            </div>
+          </div>
+          <div class="row-data" style="margin-top: 10px">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14 text1">市区町村丁目・番地</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <div style="width: 100%;">
+                <input formControlName="street" style="margin-top: 5px;" class="w-100 center h-35" type="text"
+                  size="400" pInputText>
+                <div *ngIf="f.street.errors" style="margin-top: 5px; display: inline-block">
+                  <p-message severity="error" text={{MESSAGE.streetMaxLength}}
+                    *ngIf="f.street.value.length>400&&(createMyPageGroup.controls['street'].dirty || createMyPageGroup.controls['street'].touched)">
+                  </p-message>
+                  <!-- <p-message severity="error" text='市区町村丁目・番地が未入力です。'
+                    *ngIf="(!f.street.value&&(f.street.dirty || f.street.touched))">
+                  </p-message> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-data" style="margin-top: 10px">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14 text1">建物名</div>
+              <!-- <div class="text2" style="background-color: #33804a !important">任意</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <div style="width: 100%;">
+                <input formControlName="apartment" class="w-100 center h-35" style="margin-top: 5px;" type="text"
+                  size="200" pInputText>
+                <div *ngIf="f.apartment.errors" style="margin-top: 10px">
+                  <p-message severity="error" text={{MESSAGE.apartmentMaxLength}}
+                    *ngIf="f.apartment.value.length>200&&(createMyPageGroup.controls['apartment'].dirty || createMyPageGroup.controls['apartment'].touched)">
+                  </p-message><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">電話番号</div>
+          <!-- <div class="text2">必須</div> -->
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; align-items: center;">
+          <div class="w-50-res" style="padding: 20px; min-width: 200px; float: left;">
+            <input formControlName="phone" class="w-100 center h-35" placeholder="0900000000" type="text" size="50"
+              pInputText>
+            <div *ngIf="f.phone.invalid">
+              <div style="margin-top: 5px">
+                <!-- <p-message style="margin-top: 10px;" severity="error" text="電話番号が未入力です。"
+                  *ngIf="!f.phone.value &&(f.phone.dirty || f.phone.touched)">
+                </p-message> -->
+                <p-message style="margin-top: 10px;" severity="error" text="電話番号に誤りがあります。"
+                  *ngIf="f.phone.value && f.phone.value.length<50 && f.phone.errors &&(f.phone.dirty || f.phone.touched)">
+                </p-message>
+                <p-message severity="error" text={{MESSAGE.phoneMaxLength}}
+                  *ngIf="f.phone.value.length>50&&(createMyPageGroup.controls['phone'].dirty || createMyPageGroup.controls['phone'].touched)">
+                </p-message>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">メール通知</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: inline-block">
+          <!-- <div style="width: 100%;padding: 20px">
+            <span>
+              <input type="radio" id="ok" name="mailF" value="1" formControlName="mailF">
+              <label for="ok">同意する</label>
+            </span>
+            <span style="margin-left: 20px">
+              <input type="radio" id="cancel" name="mailF" formControlName="mailF" value="0">
+              <label for="cancel">同意しない</label>
+            </span>
+          </div> -->
+          <div style="width: 100%; padding: 20px 20px 20px 20px">
+            <div class="w-80-res">
+              <p-checkbox [(ngModel)]="mailF" [ngModelOptions]="{standalone: true}" binary="true" styleClass="override"
+                label="ご登録いただいたメールアドレス宛に保険クリニックからのお知らせを通知する。	"></p-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-data border-bottom-row " style="border-bottom: none">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">利用規約</div>
+        </div>
+        <div class="w-65 fl-left text-left" style=" padding: 20px">
+          <div style="width: 100%; padding-bottom: 20px">
+            <span>
+              <input type="radio" id="ok" name="accept" value="1" formControlName="accept">
+              <label for="ok">同意する</label>
+            </span>
+            <span style="margin-left: 20px">
+              <input type="radio" id="cancel" name="accept" formControlName="accept" value="0">
+              <label for="cancel">同意しない</label>
+            </span>
+          </div>
+          <div style="width: 100%">
+            <div
+              style=" width: 100%; height: 100px; overflow-y: scroll;border-radius: 5px; border: 1px solid #dfdcda;padding: 5px;">
+              【個人情報の取り扱いについて】<br>
+              当サイトに掲載されている各募集代理店が、お客様から取得した個人情報は(このwebサイトから取得した個人情報を含む)各募集代理店のプライバシーポリシーに従い、お取り扱いさせていただくことになりますのでご留意くださいますようお願いいたします。
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let error of listErrors">
+        <p-message severity="error" text={{error.errMessage}}></p-message>
+      </div>
+    </form>
+    <div *ngIf="!confirm && !success" class="center w-100 text-left margin-bot-10"
+      style="display: inline-block; margin-bottom: 50px">
+      <!-- <button class="back-btn fl-left h-35 w-20" pButton type="button" label="前のページに戻る" style="margin-right: 10%; font-weight: bold"></button> -->
+      <div style="display: flex">
+        <button class=" color-orange-btn fl-left h-50 w-50-res"
+          [disabled]="createMyPageGroup.invalid || createMyPageGroup.controls.accept.value==='0'"
+          (click)="confirmInfo()" pButton type="button" label="入力内容を確認する"
+          style="font-weight: bold;margin: auto"></button>
+
+      </div>
+    </div>
+
+    <div class="form-create-new-page" *ngIf="confirm && !success">
+      <h2 class="sp text-center" style="margin-top:0;margin-bottom:10px;">内容確認</h2>
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">ご利用（ご希望）の店舗</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left display-flex-pc">
+          <div class="w-50-res">
+            <label class="fs-14">{{favoriteLabel}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">メールアドレス（ログインID）</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left display-flex-pc">
+          <div class="w-50-res" style="float: left;">
+            <label class="fs-14 ">{{f.email.value}}</label>
+          </div>
+          <div class="w-50-res padding-left-20-res" style="float: left; color: #ff6400">
+            ご登録いただいたメールアドレス宛に保険クリニックからのお知らせをお送りいたします。
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">氏名</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; padding: 20px">
+          <div style="width: 100%">
+            <label class="fs-14 ">{{f.nameLast.value}}  {{f.nameFirst.value}} </label>
+          </div>
+          <!-- <br> -->
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">ふりがな</div>
+          <!-- <div class="text2">必須</div> -->
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; padding: 20px">
+          <div style="width: 100%">
+            <label class="fs-14 ">{{f.nameKanaLast.value}}  {{f.nameKanaFirst.value}} </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">生年月日</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; padding: 20px">
+          <div style="width: 100%">
+            <label class="fs-14">{{date}}</label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">性別</div>
+          <div class="text2">必須</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; padding: 20px">
+          <div style="width: 100%">
+            <label class="fs-14">{{genderLabel}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row pc">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold">住所</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: inline-block;padding: 20px">
+          <div style="width: 100%; display: inline-block">
+            <div class="w-35 fl-left">
+              <div class="fs-14  text1">郵便番号</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <label class="fs-14 "
+                *ngIf="f.zipcode1.value && f.zipcode2.value">〒{{f.zipcode1.value}}-{{f.zipcode2.value}}</label>
+            </div>
+          </div>
+          <div class="row-data" style="margin-top: 10px">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14  text1">都道府県</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+              <div class="w-50-res" style="margin-top: 5px;">
+                <label class="fs-14">{{f.city.value}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row-data" style="margin-top: 10px">
+            <div class="w-35 fl-left" style="display: flex; align-items: self-start">
+              <div class="fs-14 text1">市区町村丁目・番地</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <div style="width: 100%; overflow-x: overlay; word-wrap: break-word">
+                <label class="fs-14 ">{{f.street.value}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row-data" style="margin-top: 10px">
+            <div class="w-35 fl-left" style="display: flex; align-items: self-start">
+              <div class="fs-14 text1">建物名</div>
+              <!-- <div class="text2" style="background-color: #33804a !important">任意</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <div style="width: 100%; overflow-x: overlay; word-wrap: break-word">
+                <label class="fs-14">{{f.apartment.value}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row sp">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold">住所</div>
+        </div>
+        <div class="w-65 fl-left text-left group_address" style="display: inline-block;">
+          <div style="width: 100%; display: inline-block"
+            style="display: grid; border-bottom: 1px dotted #ebe4e1;padding: 20px 20px 10px 20px">
+            <div class="w-35 fl-left">
+              <div class="fs-14 text1">郵便番号</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <label class="fs-14">〒 {{f.zipcode1.value}}-{{f.zipcode2.value}}</label>
+            </div>
+          </div>
+          <div class="row-data" style="border-bottom: 1px dotted #ebe4e1;padding: 10px 20px 10px 20px">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14  text1">都道府県</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+              <div class="w-50-res" style="margin-top: 5px;">
+                <label class="fs-14">{{f.city.value}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row-data" style="border-bottom: 1px dotted #ebe4e1;padding: 10px 20px 10px 20px">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14 text1">市区町村丁目・番地</div>
+              <!-- <div class="text2">必須</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <div style="width: 100%;">
+                <label class="fs-14">{{f.street.value}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row-data" style="padding: 10px 20px 20px 20px">
+            <div class="w-35 fl-left" style="display: flex; align-items: center">
+              <div class="fs-14 text1">建物名</div>
+              <!-- <div class="text2" style="background-color: #33804a !important">任意</div> -->
+            </div>
+            <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+              <div style="width: 100%;">
+                <label class="fs-14 ">{{f.apartment.value}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">電話番号</div>
+          <!-- <div class="text2">必須</div> -->
+        </div>
+        <div class="w-65 fl-left text-left" style="display: flex; align-items: center;">
+          <div class="w-50-res" style="padding: 20px; min-width: 200px; float: left;">
+            <label class="fs-14">{{f.phone.value}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-data border-bottom-row">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">メール通知</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: inline-block">
+          <div style="width: 100%;padding: 20px">
+            <label *ngIf="mailF" class="fs-14 ">通知する</label>
+            <label *ngIf="!mailF" class="fs-14 ">通知しない</label>
+          </div>
+        </div>
+      </div>
+      <div class="row-data">
+        <div class="w-35 fl-left text-left div-text">
+          <div class="fs-14 font-bold text1">利用規約</div>
+        </div>
+        <div class="w-65 fl-left text-left" style="display: inline-block">
+          <div style="width: 100%;padding: 20px">
+            <label *ngIf="f.accept.value==='1'" class="fs-14 ">同意する</label>
+            <label *ngIf="f.accept.value==='0'" class="fs-14 ">同意しない</label>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let error of listErrors">
+        <p-message severity="error" text={{error.errMessage}}></p-message>
+      </div>
+    </div>
+    <div class="show_pc center w-100 text-left margin-bot-10 h-35 group-btn-footer" style="display:inline-block"
+      *ngIf="confirm && !success">
+      <button class="back-btn arrow_green fl-left h-35" (click)="back()" pButton type="button" label="前のページに戻る"
+        style="margin-right: 10%;">
+      </button>
+      <button class="color-orange-btn fl-left h-50 w-50-res margin-top-sp"
+        [disabled]="createMyPageGroup.invalid || favoriteInvalid" (click)="submitForm()" pButton type="button"
+        label="入力内容を確認する" style="font-weight: bold;margin: auto">
+      </button>
+    </div>
+
+    <div class="sp center w-100 text-left margin-bot-10 h-35 group-btn-footer" style="display:inline-block"
+      *ngIf="confirm && !success">
+      <button class="color-orange-btn fl-left h-50 w-50-res" [disabled]="createMyPageGroup.invalid || favoriteInvalid"
+        (click)="submitForm()" pButton type="button" label="入力内容を送信する" style="font-weight: bold;margin: auto">
+      </button>
+
+      <button class="back-btn arrow_green fl-left margin-top-sp" (click)="back()"
+        style="margin-bottom: 30px; width: 50%;" pButton type="button" label="前のページに戻る">
+      </button>
+    </div>
+
+    <div class="short_desc" *ngIf="confirm  && !success">
+      <div class="box">
+        <div class="item item-2-12 text-center v-top icon-desc" style="padding-right: 5px;"><img
+            src="assets/image/icon-desc.png" alt=""></div>
+        <div class="item item-10-12 v-top fs-14">
+          弊社は、個人情報を適切に取り扱う企業に付与される『プライバシーマーク（Pマーク）』を2010年に取得しております。<br />ご入力いただいた個人情報（氏名、住所、電話番号、e-mailアドレス等）は、【個人情報の取り扱いについて】に記載されたサービスの提供以外の目的で使用することは一切ございません。<br />なお、ご入力いただいた内容は、SSL技術により暗号化された状態で送信されます。
+        </div>
+      </div>
+    </div>
+
+    <div class="form-create-new-page step-success" *ngIf="success && !confirm">
+      <h2 class="sp text-center">登録完了</h2>
+      <h3 class="item">マイページのご登録が完了しました</h3>
+      <div class="ico-duck show_pc text-center itm">
+        <img src="assets/image/ico-duck-pc.png" alt="">
+      </div>
+      <div class="sp ico-duck text-center itm">
+        <img src="assets/image/ico-duck-sp.png" alt="">
+      </div>
+      <div class="itm thanks-message">
+        ご登録ありがとうございます。<br>ご入力いただいたメールアドレスに、仮パスワードをお送りいたしました。ご確認ください。
+      </div>
+      <br>
+      <button class="back-btn arrow_green itm" pButton type="button" (click)="goToLogin()" label="ログイン画面へ戻る"></button>
+    </div>
+  </div>
+
+  <app-loading [loading]="loading"></app-loading>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+
+</section>

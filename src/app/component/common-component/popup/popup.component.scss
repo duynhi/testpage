@@ -1,0 +1,50 @@
+body .ui-dialog .ui-dialog-titlebar {
+    background-color: #fff;
+    text-align: center;
+    border:none;
+}
+
+body .ui-dialog .ui-dialog-content {
+    border: none !important;
+    padding: 0.1em 1em !important;
+}
+
+body .ui-dialog .ui-dialog-footer {
+    border: none !important;
+}
+
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon {
+    position: absolute !important;
+    right: 1em !important; 
+}
+
+body .ui-dialog {
+    min-width: 40% !important;
+    max-width: 40% !important;
+}
+
+body .add-other{
+    div[role="dialog"]{
+        top: 30% !important;
+    }
+}
+
+@media (max-width: 767px){
+    body .ui-dialog {
+        min-width: 80% !important;
+        max-width: 80% !important;
+    }
+}
+
+@media screen and (max-width: 640px) { 
+    body .ui-dialog {
+        margin: auto 10%;
+        min-width: 80% !important;
+        max-width: 80% !important;
+    }
+
+    body .ui-dialog.ui-confirmdialog{
+        margin: auto !important;
+    }
+
+}

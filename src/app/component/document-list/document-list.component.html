@@ -1,0 +1,85 @@
+<!--ConsultationDocumentList-->
+<section id="ConsultationDocumentList">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper padding3">
+      <h2 class="fs-25">マイページ</h2>
+      <h2 class="fs-20" style="padding-bottom: 10px; margin: 0px">ご相談時の資料</h2>
+      <div style="width: 100%; margin: auto; margin-bottom: 20px;">
+          <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+          <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+        </div>
+      <div class="fs-14" style="padding-bottom: 20px; border-bottom: 2px dotted #b8b3b0 ;">
+        <p>ご相談いただきありがとうございました。</p>
+        <p>ご相談いただいた際にご説明した資料をPDFでダウンロード可能です（ご相談日より1年間閲覧可能です）。</p>
+      </div>
+      <div class="scroll-content sp">
+        <div infiniteScroll
+        [infiniteScrollDistance]="0"
+        [infiniteScrollUpDistance]="0"
+        [infiniteScrollThrottle]="0"
+        (scrolled)="getListPdf()"
+        (scrolledUp)="onScrollUp()"  *ngIf="listPdf.length > 0">
+          <div class="box">
+            <div class="row fs-12" style="display: flex" *ngFor="let item of listPdf">
+              <div class="item item-10-12">
+                <div class="item item-12-12 v-top">{{item.visitDate}}ご相談時</div>
+                <div class="item item-12-12 v-top">{{item.hihoFamilyNo}} 様<br/><span class="color-green">・</span>{{item.fileType}}</div>
+              </div>
+              <div class="item item-2-12"><img src="assets/image/pdf.png" width="50px" (click)="downloadPdf(item.pdfFileNo)" style="cursor: pointer"></div>
+            </div>
+          </div>
+          <div class="box text-center clearfix" *ngIf="showLoading">
+            <div class="item loading text-center item-6-12">
+              <img src="assets/image/Spinner-1s-200px.gif" width="200px">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-content pc" >
+          <div infiniteScroll
+          [infiniteScrollDistance]="0"
+          [infiniteScrollUpDistance]="0"
+          [infiniteScrollThrottle]="0"
+          (scrolled)="getListPdf()"
+          (scrolledUp)="onScrollUp()" *ngIf="listPdf.length > 0">
+            <div class="box" style="display: inline-block; width: 100%;">
+              <div class="row fs-12 item-6-12"
+                style="height: 95px; display: flex; float: left;" *ngFor="let item of listPdf, let i = index">
+                <div [className]="i%2===0 ? 'item-12-12 borderRight' : 'item-12-12'" style="display: flex; float: left; padding: 10px">
+                  <div class="item item-10-12" >
+                    
+                    <div class="item item-12-12 v-top">
+                          {{item.visitDate}} ご相談時
+                    </div>
+                    <div class="item item-12-12 v-top" style="margin-top: 10px">
+                        <div class="item item-6-12">
+                            {{item.hihoFamilyNo}} 様
+                        </div>
+                        <div class="item item-6-12" style="padding-left: 10px">
+                            <span class="color-green">・</span>{{item.fileType}}
+                        </div>
+                      </div>
+                  </div>
+                  <div class="item item-2-12">
+                    <img src="assets/image/pdf.png" style="cursor: pointer" width="50px" *ngIf="item.fileType==='既契約分析シート'" (click)="downloadPdf(item.pdfFileNo)">
+                    <img src="assets/image/pdf2.png" style="cursor: pointer" width="50px" *ngIf="item.fileType!=='既契約分析シート'" (click)="downloadPdf(item.pdfFileNo)">
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="listPdf.length > 0 && listPdf.length % 2 === 1" class="row fs-12 item-6-12" style="height: 95px; display: flex; float: left; border-bottom: 2px dotted #b8b3b0 ;">
+
+              </div>
+            </div>
+            <div class="box text-center clearfix" *ngIf="showLoading">
+              <div class="item loading text-center item-6-12">
+                <img src="assets/image/Spinner-1s-200px.gif" width="200px">
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+  </div>
+</section>

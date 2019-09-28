@@ -1,0 +1,151 @@
+<!--AgencyList-->
+<section id="AgencyList">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper" *ngIf="showAgencyList">
+      <h1 class="fs-25 padding3">マイページ</h1>
+      <h2 class="fs-20 padding3">代理店一覧</h2>
+      <div class="padding3" style="width: 100%; margin: auto; margin-bottom: 20px; display: flex">
+        <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+        <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+      </div>
+      <div class="content fs-14 padding3">
+        <div class="box form-input">
+          <div class="blk" >
+            <h3 class="item w-30 fl-left" style="font-size: 16px; margin: 0px">担当保険クリニック</h3>
+            <div class="child w-65 fl-left">
+              <div *ngIf="tantoClinicInfo" class="list-item padding-r-50-res">
+                <div class="item-12-12 row">
+                  <div style="cursor: pointer;" (click)="showTantoClinic('show')" class="item item-3-12 v-middle text-center font-bold col-label">店舗</div>
+                  <div style="cursor: pointer;" (click)="showTantoClinic('show')" class="item item-9-12 v-middle col-body">{{tantoClinicInfo.shopName}}</div>
+                </div>
+                <div class="item-12-12 row">
+                  <div class="item item-3-12 v-middle text-center font-bold col-label">T E L</div>
+                  <div class="item item-9-12 v-middle col-body">{{tantoClinicInfo.phone}}</div>
+                </div>
+                <div class="item-12-12 row">
+                  <div class="item item-3-12 v-middle text-center font-bold col-label">住所</div>
+                  <div class="item item-9-12 v-middle col-body"><span>{{tantoClinicInfo.address}}</span></div>
+                </div>
+                <div class="item-12-12 row">
+                  <div class="item item-3-12 v-middle text-center font-bold col-label">営業時間</div>
+                  <div class="item item-9-12 v-middle col-body">{{tantoClinicInfo.businessHours}}</div>
+                </div>
+                <div class="item-12-12 row">
+                  <div class="item item-3-12 v-middle text-center font-bold col-label">定休日</div>
+                  <div class="item item-9-12 v-middle col-body">{{tantoClinicInfo.regularHoliday}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="child w-10 fl-left"></div>
+          </div>
+
+          <div class="blk item-12-12 pc_border" style="display: inline-block;">
+            <h3 class="item w-30 fl-left" style="margin: 0px">その他連絡先</h3>
+            <div class="child w-65 fl-right list-item padding-r-50-res" *ngFor="let contract of listContract, let i = index">
+              <div class="item item-12-12">
+                <div class="item-12-12 row">
+                  <div (click)="goDetailContract(contract.agentNo)" style="cursor: pointer;" class="item item-3-12 v-middle font-bold text-center col-label">連絡先</div>
+                  <div (click)="goDetailContract(contract.agentNo)" style="cursor: pointer;" class="item item-8-12 v-middle col-body">
+                    {{contract.agentName}}
+                  </div>
+                  <div (click)="deleteContract(contract.agentNo)" style="cursor: pointer;" class="item item-1-12 v-middle text-right">
+                    <img src="assets/image/trash.png" style="padding-top: 4px;color: #d6d1ce; width: 30px;">
+                  </div>
+                </div>
+                <div class="item-12-12 row">
+                  <div class="item item-3-12 v-middle text-center font-bold col-label">担当者</div>
+                  <div class="item item-9-12 v-middle col-body">{{contract.tantoName}}</div>
+                </div>
+                <div class="item-12-12 row">
+                  <div class="item item-3-12 v-middle text-center font-bold col-label">T E L</div>
+                    <div class="item item-9-12 v-middle col-body contract-tel"><a href="tel:{{contract.phone}}">{{contract.phone}}</a></div>
+                  </div>
+                  <div class="item-12-12 row">
+                    <div class="item item-3-12 v-middle text-center font-bold col-label">U R L</div>
+                    <div class="item item-9-12 v-middle col-body contract-url"><a href="{{contract.url}}">{{contract.url}}</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="child w-10 fl-left"></div>
+            </div>
+
+            <div class="add-more box item-12-12"  >
+              <div style="margin: auto; text-align: center; display: flex; align-items: center; padding: 10px; " >
+                <div style="margin: auto;display: flex; align-items: center">
+                  <img (click)="goDetailContract(0)" src="assets/image/plus.png" style="cursor: pointer; height: 20px; margin-right: 10px">
+                  <span (click)="goDetailContract(0)" class="link-hover" style="cursor: pointer; font-size: 16px">連絡先の追加</span></div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="wrapper padding3 tanto-clinic" *ngIf="showTantoF">
+      <h2 class="fs-25">マイページ</h2>
+      <h2 class="fs-20" style="padding-bottom: 10px; margin: 0px">担当保険クリニック情報</h2>
+      <div style="width: 100%; margin: auto; margin-bottom: 20px;">
+        <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+        <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+      </div>
+
+      <div class="content fs-14">
+        <div class="blk">
+          <h2>{{tantoClinicInfo.shopName}}（本店）</h2>
+        </div>
+        <div class="blk">
+          <div class="box">
+            <div class="item item-12-12">
+              <div class="item item-1-12 v-middle"><img src="assets/image/ico-st-cd.png"></div>
+              <div class="item item-3-12 v-middle"><strong>住所</strong></div>
+              <div class="item item-8-12 v-middle">{{tantoClinicInfo.address}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="blk">
+          <div class="box">
+            <div class="item item-12-12">
+              <div class="item item-1-12 v-middle"><img src="assets/image/ico-st-phone.png"></div>
+              <div class="item item-3-12 v-middle"><strong>店舗連絡先</strong></div>
+              <div class="item item-8-12 v-middle contact"><span class="free">電話料無料</span><strong class="fs-14">{{tantoClinicInfo.phone}}</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="blk">
+          <div class="box">
+            <div class="item item-12-12">
+              <div class="item item-1-12 v-middle"><img src="assets/image/ico_holiday_sp.png"></div>
+              <div class="item item-3-12 v-middle"><strong>定休日</strong></div>
+              <div class="item item-8-12 v-middle">{{tantoClinicInfo.regularHoliday}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="blk">
+          <div class="box">
+            <div class="item item-12-12">
+              <div class="item item-1-12 v-middle"><img src="assets/image/ico_clock_SP.png"></div>
+              <div class="item item-3-12 v-middle"><strong>営業時間</strong></div>
+              <div class="item item-8-12 v-middle">{{tantoClinicInfo.businessHours}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box btn-group">
+        <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" style="cursor: pointer;" (click)="showTantoClinic('hide')" pButton type="button" label="前のページに戻る"></button>
+        </div>
+      </div>
+    </div>
+
+    <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+    <p-confirmDialog #agent header="削除確認" icon="pi pi-exclamation-triangle">
+      <p-footer>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" label="いいえ"
+          (click)="agent.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="はい" (click)="agent.accept()"></button>
+      </p-footer>
+    </p-confirmDialog>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

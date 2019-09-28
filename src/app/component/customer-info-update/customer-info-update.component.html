@@ -1,0 +1,312 @@
+<!--CustomerInfoUpdate-->
+<section id="CustomerInfoUpdate-one">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper">
+
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">ご本人の設定</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+
+      <div class="content padding3" [formGroup]="infoMainGroup" *ngIf="infoMainGroup">
+        <div class="box form-input">
+
+          <div class="row name">
+            <div class="item col-head" style="border-top: none;">氏名<span class="error">必須</span></div>
+            <div class="item col-body">
+              <div class="item item-12-12">
+                <div class="item item-1-12 text-left col-label">姓</div>
+                <div class="item item-4-12">
+                  <input formControlName="nameLast" class="w-100 h-35" autocomplete="off" type="text" pInputText>
+                  <div *ngIf="f.nameLast.errors" style="margin-top:10px;">
+                    <p-message severity="error" text={{MESSAGE.lastNameRequire}}
+                      *ngIf="!f.nameLast.value&&(infoMainGroup.controls['nameLast'].dirty || infoMainGroup.controls['nameLast'].touched)">
+                    </p-message>
+                    <p-message severity="error" text={{MESSAGE.lastNameMaxLength50}}
+                      *ngIf="(f.nameLast.value && f.nameLast.value.length>50)&&(infoMainGroup.controls['nameLast'].dirty || infoMainGroup.controls['nameLast'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+
+                <div class="item item-1-12 text-center col-label">名</div>
+
+                <div class="item item-4-12">
+
+                  <input formControlName="nameFirst" class="w-100 h-35" autocomplete="off" type="text" pInputText>
+                  <div *ngIf="f.nameFirst.errors" style="margin-top:10px;">
+                    <p-message severity="error" text={{MESSAGE.firstNameRequire}}
+                      *ngIf="!f.nameFirst.value&&(infoMainGroup.controls['nameFirst'].dirty || infoMainGroup.controls['nameFirst'].touched)">
+                    </p-message>
+                    <p-message severity="error" text={{MESSAGE.firstNameMaxLength50}}
+                      *ngIf="(f.nameFirst.value && f.nameFirst.value.length>50)&&(infoMainGroup.controls['nameFirst'].dirty || infoMainGroup.controls['nameFirst'].touched)">
+                    </p-message>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row name">
+            <div class="item col-head">ふりがな</div>
+            <div class="item col-body">
+              <div class="item item-12-12">
+                <div class="item item-1-12 text-left col-label">せい</div>
+                <div class="item item-4-12">
+                  <input class="w-100 h-35" formControlName="nameKanaLast" autocomplete="off" type="text" pInputText>
+                  <div *ngIf="f.nameKanaLast.errors" style="margin-top:10px;">
+                    <!-- <p-message severity="error" text={{MESSAGE.lastNameKanaRequire}}
+                        *ngIf="(!f.nameKanaLast.value)&&(infoMainGroup.controls['nameKanaLast'].dirty || infoMainGroup.controls['nameKanaLast'].touched )&&(f.nameKanaLast.errors)">
+                      </p-message> -->
+                    <p-message severity="error" text={{MESSAGE.lastNameKanaFormatIncorrect}}
+                      *ngIf="(f.nameKanaLast.value && f.nameKanaLast.value.length<=50 && f.nameKanaLast.invalid)&&(infoMainGroup.controls['nameKanaLast'].dirty || infoMainGroup.controls['nameKanaLast'].touched)&&(f.nameKanaLast.errors)">
+                    </p-message>
+                    <p-message severity="error" text="ふりがな(せい)は50字以内で入力してください。"
+                      *ngIf="(f.nameKanaLast.value.length>50)&&(infoMainGroup.controls['nameKanaLast'].dirty || infoMainGroup.controls['nameKanaLast'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+
+                <div class="item item-1-12 text-center col-label">めい</div>
+
+                <div class="item item-4-12">
+                  <input class="w-100 h-35" formControlName="nameKanaFirst" autocomplete="off" type="text" pInputText>
+
+                  <div *ngIf="f.nameKanaFirst.errors" style="margin-top:10px;">
+                    <!-- <p-message severity="error" text={{MESSAGE.firstNameKanaRequire}}
+                        *ngIf="(!f.nameKanaFirst.value)&&(infoMainGroup.controls['nameKanaFirst'].dirty || infoMainGroup.controls['nameKanaFirst'].touched )&&(f.nameKanaFirst.errors)">
+                      </p-message> -->
+                    <p-message severity="error" text={{MESSAGE.firstNameKanaFormatIncorrect}}
+                      *ngIf="(f.nameKanaFirst.value && f.nameKanaFirst.value.length<=50 && f.nameKanaFirst.invalid)&&(infoMainGroup.controls['nameKanaFirst'].dirty || infoMainGroup.controls['nameKanaFirst'].touched)&&(f.nameKanaFirst.errors)">
+                    </p-message>
+                    <p-message severity="error" text=ふりがな(めい)は50字以内で入力してください。
+                      *ngIf="(f.nameKanaFirst.value.length>50)&&(infoMainGroup.controls['nameKanaFirst'].dirty || infoMainGroup.controls['nameKanaFirst'].touched)">
+                    </p-message>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row birthday">
+            <div class="item col-head v-middle">生年月日<span class="error">必須</span></div>
+            <div class="item col-body text-center">
+              <div class="item item-3-12">
+                <p-dropdown [options]="years" (onChange)="changeYear()" formControlName="year" styleClass="w-time">
+                </p-dropdown>
+                <div *ngIf="f.year.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='年が未入力です。'
+                    *ngIf="!f.year.value&&(infoMainGroup.controls['year'].dirty || infoMainGroup.controls['year'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="item item-1-12 text-center col-label">年</div>
+
+              <div class="item item-2-12">
+                <p-dropdown [options]="months" (onChange)="changeMonth()" formControlName="month"
+                  styleClass="dropdown-w-100 h-35 w-time"></p-dropdown>
+                <div *ngIf=" f.month.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='月が未入力です。'
+                    *ngIf="!f.month.value&&(infoMainGroup.controls['month'].dirty || infoMainGroup.controls['month'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="item item-1-12 text-center col-label">月</div>
+
+              <div class="item item-2-12">
+                <p-dropdown [options]="days" formControlName="day" styleClass="dropdown-w-100 h-35 w-time"></p-dropdown>
+                <div *ngIf="f.day.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='日が未入力です。'
+                    *ngIf="!f.day.value&&(infoMainGroup.controls['day'].dirty || infoMainGroup.controls['day'].touched)">
+                  </p-message>
+                </div>
+              </div>
+              <div class="item item-1-12 text-center col-label">日</div>
+            </div>
+          </div>
+
+          <div class="row gender">
+            <div class="item col-head">性別<span class="error">必須</span></div>
+            <div class="item col-body">
+              <div class="item item-4-12">
+                <button [className]="dataMain.sex==='M' ? 'gender-selected' : 'gender-btn'" (click)="chooseGender('M')"
+                  pButton type="button" label="男性"> </button>
+              </div>
+
+              <div class="item item-4-12">
+                <button [className]="dataMain.sex==='F' ? 'gender-selected' : 'gender-btn'" (click)="chooseGender('F')"
+                  pButton type="button" label="女性"> </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="item col-head v-top" style="padding-top: 17px;">住所</div>
+            <div class="item col-body address-info">
+              <div class="row zip">
+                <div class="item item-4-12 v-top col-label">郵便番号</div>
+                <div class="item item-2-12 v-top text-center col-label"></div>
+                <div class="item item-6-12 v-top add-content" style="padding-bottom: 0px">
+                  <div class="item-4-12 v-top" style="float: left">
+                    <input class="w-100 h-35" formControlName="zipcode1" maxlength="3" autocomplete="off" type="text"
+                      pInputText>
+                    <div style="margin-top: 5px;">
+                      <!-- <p-message severity="error" text='郵便番号が未入力です。'
+                        *ngIf="(!f.zipcode1.value&&(f.zipcode1.dirty || f.zipcode1.touched))">
+                      </p-message> -->
+                      <p-message severity="error" text='半角数字ではありません。'
+                        *ngIf="(f.zipcode1.value&&f.zipcode1.errors&&(f.zipcode1.dirty || f.zipcode1.touched))">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div class=" item-2-12 text-center v-top" style="float: left">-</div>
+                  <div class=" item-4-12 v-top" style="float: left">
+                    <input class="w-100 h-35" formControlName="zipcode2" maxlength="4" autocomplete="off" type="text"
+                      pInputText>
+                    <div style="margin-top: 5px; ">
+                      <!-- <p-message severity="error" text='郵便番号が未入力です。'
+                        *ngIf="(!f.zipcode2.value&&(f.zipcode2.dirty || f.zipcode2.touched))">
+                      </p-message> -->
+                      <p-message severity="error" text='半角数字ではありません。'
+                        *ngIf="(f.zipcode2.value&&f.zipcode2.errors&&(f.zipcode2.dirty || f.zipcode2.touched))">
+                      </p-message>
+                    </div>
+                  </div>
+                  <p class="auto-fill" (click)="yuubinbango()"
+                    style="font-size: 14px; display: inline-block; text-decoration: underline;">郵便番号から住所を自動入力</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="item item-4-12 v-top col-label">都道府県</div>
+                <div class="item item-2-12 v-top text-center col-label"></div>
+                <div class="item item-6-12 v-top">
+                  <p-dropdown [options]="cities" formControlName="city" styleClass="dropdown-w-100"></p-dropdown>
+                  <div style="margin-top: 5px;">
+                    <!-- <p-message severity="error" text='都道府県が未入力です。'
+                      *ngIf="(!f.city.value&&(f.city.dirty || f.city.touched))">
+                    </p-message> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="item item-4-12 v-top col-label">市区町村丁目・番地</div>
+                <div class="item item-2-12 v-top text-center col-label"></div>
+                <div class="item item-6-12 v-top">
+                  <div class="wrap">
+                    <input formControlName="street" class="w-100 h-35" autocomplete="off" type="text" pInputText>
+                  </div>
+                  <div *ngIf="f.street.errors">
+                    <div class="item item-12-12" style="width: 100%;">
+                      <!-- <p-message severity="error" text="市区町村丁目・番地が未入力です。"
+                        *ngIf="!f.street.value&&(infoMainGroup.controls['street'].dirty || infoMainGroup.controls['street'].touched)">
+                      </p-message> -->
+                      <p-message severity="error" text={{MESSAGE.streetMaxLength}}
+                        *ngIf="f.street.value.length>400&&(infoMainGroup.controls['street'].dirty || infoMainGroup.controls['street'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="item item-4-12 v-top col-label">建物名</div>
+                <div class="item item-2-12 v-top text-center col-label"></div>
+                <div class="item item-6-12 v-top">
+                  <div class="wrap">
+                    <input class="w-100 h-35" formControlName="apartment" autocomplete="off" type="text" pInputText>
+                  </div>
+                  <div *ngIf="f.apartment.errors" style="margin-top: 10px;">
+                    <div class="item item-12-12" style="width: 100%;">
+                      <p-message severity="error" text={{MESSAGE.apartmentMaxLength}}
+                        *ngIf="f.apartment.value.length>200&&(infoMainGroup.controls['apartment'].dirty || infoMainGroup.controls['apartment'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row phone">
+            <div class="item col-head">電話番号</div>
+            <div class="item col-body">
+              <div class="item item-7-12">
+                <input class="w-100 h-35" formControlName="phone" autocomplete="off" type="text" pInputText>
+              </div>
+              <div class="item item-12-12 text-left" style="width: 100%; padding-top: 0px" *ngIf="f.phone.errors">
+                <p-message severity="error" text="電話番号が未入力です。"
+                  *ngIf="!f.phone.value&&(f.phone.dirty || f.phone.touched)">
+                </p-message>
+                <p-message severity="error" text={{MESSAGE.phoneMaxLength}}
+                  *ngIf="f.phone.value.length>50&&(infoMainGroup.controls['phone'].dirty || infoMainGroup.controls['phone'].touched)">
+                </p-message>
+                <p-message severity="error" text="電話番号に誤りがあります。"
+                  *ngIf="f.phone.value && f.phone.value.length<50 && f.phone.errors &&(f.phone.dirty || f.phone.touched)">
+                </p-message>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row mail-setting">
+            <div class="item col-head v-middle">メール設定</div>
+            <div class="item col-body v-middle">
+              <div class="item item-10-12">
+                <p-checkbox styleClass="override" [ngModelOptions]="{standalone: true}" [(ngModel)]="checked"
+                  binary="true" name="groupname" label="ご登録いただいたメールアドレス宛に保険クリニックからのお知らせを通知する。"></p-checkbox>
+              </div>
+            </div>
+          </div> -->
+          <!-- 
+          <div class="row policy-h">
+            <div class="item col-head v-middle">利用規約</div>
+            <div class="item col-body">
+              <div class="item item-11-12">
+                <textarea class="policy">【個人情報の取り扱いについて】
+当サイトに掲載されている各募集代理店が、お客様から取得した個人情報は(このwebサイトから取得した個人情報を含む)各募集代理店のプライバシーポリシーに従い、お取り扱いさせていただくことになりますのでご留意くださいますようお願いいたします。
+                </textarea>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="box btn-group sp">
+          <div class="item item-12-12 text-left">
+            <button class="btn-orange w-100" style="padding: 10px" [disabled]="infoMainGroup.invalid" pButton
+              (click)="saveMain()" type="button">
+              <!-- <span class="fs-12">利用規約に同意して</span><br /> -->
+              <span class="fs-16">登録</span>
+            </button>
+          </div>
+          <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)='back()' pButton
+              type="button" label="前のページに戻る"></button>
+          </div>
+        </div>
+
+        <div class="box btn-group pc">
+          <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)='back()' pButton
+              type="button" label="前のページに戻る"></button>
+          </div>
+          <div class="item item-6-12 text-left">
+            <button class="btn-orange w-100" style="padding: 10px" [disabled]="infoMainGroup.invalid" pButton
+              (click)="saveMain()" type="button">
+              <!-- <span class="fs-12">利用規約に同意して</span><br /> -->
+              <span class="fs-16">登録</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

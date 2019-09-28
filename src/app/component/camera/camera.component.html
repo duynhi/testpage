@@ -1,0 +1,41 @@
+<section id="CameraCaputre">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper" style="padding: 0px 3%">
+        <h1 class="padding3 fs-25">マイページ</h1>
+      <!-- <hr class="horizonal-line"> -->
+      <div class="title text-center arrow_box">
+        <strong style="margin: auto">画像補正中です</strong>
+      </div>
+      <p style="text-align: center; padding-bottom: 20px">しばらくお待ち下さい</p>
+      <!-- <div *ngIf="!isMobile && !isTablet"> -->
+        <div class="preview box text-center clearfix">
+            <div id="my_camera" class="computer"></div>
+        </div>
+        <div style="text-align: center; margin: 20px">
+          <button class="btn btn-orange" (click)="take_snapshot()">Snap</button>
+        </div>
+        <div style="background-color: #fff0e0; text-align: center; max-width: 500px; margin: auto; margin-bottom: 20px; padding: 10px; position: relative;">
+          <strong style="margin: auto">キャンペーン情報</strong>
+          <img src="assets/image/icon-text-cam.png" style="position: absolute; width: 45px; right: 10px;">
+          <div style="width: 100%; padding: 10px 20px; background-color: #fff; margin-top: 20px; margin-bottom: 10px">
+            <strong>
+              〈 テレビCM放送中 〉<br>
+              素敵なプレゼントがもらえる！ <br>
+              放送記念キャンペーン実施中
+            </strong>
+            
+          </div>
+          <span style="margin: auto; margin-top: 10px">詳しくは…リンク先付けない？</span>
+        </div>
+      <!-- </div> -->
+      <!-- <input *ngIf="isMobile || isTablet" id="fileinput" (change)='handleClick($event)' type="file" accept="image/*" capture="camera" /> -->
+      <!-- <p-fileUpload  *ngIf="isMobile || isTablet" (onUpload)="onBasicUpload($event)" mode="basic" accept="image/*" capture="camera"></p-fileUpload> -->
+      <!-- <hr class="horizonal-line"> -->
+    </div>
+  </div>
+  <app-loading [loading]="loading"></app-loading>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+</section>
+

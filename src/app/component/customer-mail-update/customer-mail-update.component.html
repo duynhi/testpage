@@ -1,0 +1,45 @@
+<!--MailUpdate-->
+<section id="MailUpdate">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">メールアドレス（ID）変更</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+
+      <div class="content padding3" [formGroup]="mailGroup" *ngIf="mailGroup">
+        <div class="box form-input text-center">
+          <div class="row">
+            <div class="item item-6-12 text-left">変更後のメールアドレス（ID）</div>
+          </div>
+          <div class="row">
+            <div class="item item-6-12">
+                <input class="w-100 h-35" formControlName="newMail" autocomplete="off" type="text" pInputText>
+                <div class="text-left" style="margin-top: 10px;" *ngIf="f.newMail.errors">
+                  <p-message severity="error" text='メールアドレス（ID）が未入力です。' *ngIf="!mailGroup.controls['newMail'].value&&(mailGroup.controls['newMail'].dirty || mailGroup.controls['newMail'].touched)"></p-message>
+                  <p-message severity="error" text='メールアドレス（ID）に誤りがあります。' *ngIf="mailGroup.controls['newMail'].value && f.newMail.errors.pattern"></p-message>
+                  <p-message severity="error" text='メールアドレス（ID）は255字以内で入力してください。' *ngIf="mailGroup.controls['newMail'].value && f.newMail.errors.maxlength"></p-message>
+                </div>
+            </div>
+          </div>
+
+          <div class="row btn-group">
+            <div class="item item-6-12">
+                <button class="btn-orange h-35" style="min-width: 200px" pButton type="button" (click)="updateMail()" [disabled]="mailGroup.invalid"
+                label="メールアドレス（ID）変更"></button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-loading [loading]="loading"></app-loading>
+    <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

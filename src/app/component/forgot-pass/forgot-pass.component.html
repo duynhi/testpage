@@ -1,0 +1,59 @@
+<section id="forgot-pass">
+  <app-header></app-header>
+  <div class="padding-sp">
+    <div class="title">
+        <h2 class="fs-25">マイページログイン</h2>
+    </div>
+    <form class="form-forgot" [formGroup]="forgotPassGroup" *ngIf="!pickPass">
+        <h3 class="fs-20">仮パスワード発行</h3>
+        <div class="center w-50 text-left margin-bot-10">
+            <label class="fs-14 text">ID (メールアドレス)</label>
+        </div>
+        <span class="ui-float-label center w-50">
+            <input [ngClass]="helper.displayCssError(forgotPassGroup,'emailForgot')" autocomplete="off" formControlName="emailForgot" id="email-forget" class="w-100 center h-35" type="text" size="15" pInputText> 
+        </span>
+        <div *ngIf="f.emailForgot.errors" style="margin-top: 5px;">
+          <p-message severity="error" text={{MESSAGE.idRequire}} *ngIf="!forgotPassGroup.controls.emailForgot.value&&(forgotPassGroup.controls['emailForgot'].dirty || forgotPassGroup.controls['emailForgot'].touched)"></p-message>
+          <p-message severity="error" text={{MESSAGE.forgotPassEmailInvalid}} *ngIf="f.emailForgot.errors.email"></p-message>
+        </div>
+        <div *ngIf="registF===0">
+          <p-message severity="error" text={{MESSAGE.notRegistEmail}}></p-message>
+        </div>
+        <div *ngFor="let error of listErrors">
+          <p-message severity="error" text={{error.errMessage}}></p-message>
+        </div>
+        <div class="text-left-sp" style="padding: 20px 20px 20px 20px;">
+          <span class="center fs-14 text" >ご入力いただいたメールアドレスに、仮パスワードをお送りいたします。</span>
+        </div>
+        <button class=" h-35 color-orange-btn" 
+                [disabled]="forgotPassGroup.invalid"
+                pButton 
+                type="button" 
+                (click)="sendPass()"
+                label="パスワード再発行">
+        </button>
+      </form>
+      
+
+    <div class="form-forgot" *ngIf="pickPass">
+      <h3 class="fs-20">仮パスワード発行</h3>
+      <div class="text-left-sp" style="padding: 20px; padding-top: 0px;">
+        <span class="center fs-14 text">ご入力いただいたメールアドレスに、仮パスワードをお送りいたしました。メールをご確認ください。</span>
+      </div>
+      <button class=" color-orange-btn" 
+              pButton type="button" 
+              (click)="goToLogin()"
+              label="ログイン画面へ戻る">
+      </button>
+      <br>
+      <br>
+      <span style="cursor: pointer">
+      <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon><span class="text fs-12">  当社からのメールが届かない場合</span>
+      </span>
+    </div>
+  </div>
+  <app-loading [loading]="loading"></app-loading>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+
+</section>

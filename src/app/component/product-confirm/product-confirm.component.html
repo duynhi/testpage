@@ -1,0 +1,264 @@
+<!--ProductInfoConfirm-->
+<section id="ProductInfoConfirm">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper" *ngIf="dataProduct">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">ご契約内容</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+        <div class="content padding3">
+          <div class="box form-input">
+            <div class="row name">
+              <div class="item col-head">被保険者（保障の対象となる方）</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.hihoFamilyName}} <span>さま</span></div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head">契約者</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.keiyakuFamilyName}} <span *ngIf="dataProduct.keiyakuFamilyName">さま</span></div></div>
+              </div>
+            </div>
+  
+            <div class="row name">
+              <div class="item col-head">保険会社名<span class="error">必須</span></div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{companyName}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head">保障（補償）の目的<span class="error">必須</span></div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{categoryValue}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head">保険種類（商品名）<span class="error">必須</span></div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.productName}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head">保険証券番号</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.policyNo}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head">契約状況<span class="error">必須</span></div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{statusValue}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head" *ngIf="!isShowDate">契約日</div>
+              <div class="item col-head" *ngIf="isShowDate">契約始期日</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.contractDate}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name" *ngIf="isShowDate">
+              <div class="item col-head" >保険終期日</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.hokenEndDate}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name" *ngIf="!isShowDate">
+              <div class="item col-head">保険期間</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.hkikan}} {{hkikhanFValue}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name" *ngIf="!isShowDate">
+              <div class="item col-head">保険料払込期間</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.pkikan}} {{pkikanFValue}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head">保険料払込方法</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{haraikataValue}}</div></div>
+              </div>
+            </div>
+
+            <div class="row name">
+              <div class="item col-head">保険料</div>
+              <div class="item col-body">
+                <div class="item item-12-12"><div class="item item-6-12">{{dataProduct.hokenP}}&nbsp;{{curencyValue}}</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="box image-add" style="display: flex">
+            <div class="next-button item item-1-12" *ngIf="dataProduct.keiyakuFileList.length > 3" style="float: left;display: flex;align-items: center;cursor: pointer;" (click)="owlGuide.prev()"><i class="pi pi-angle-double-left"></i></div>
+            <div class="slideshow item-10-12" style="float: left">
+              <div class="item item-10-12 v-middle">
+                <owl-carousel-o [options]="slideOption" #owlGuide>
+                  <ng-template carouselSlide *ngFor="let file of dataProduct.keiyakuFileList, let i = index">
+                    <div class="pdf-item" style="border: 1px solid #c8c8c8; margin: 5px; border-radius: 5px;">
+                      <div class="image-content" style="position: relative;">
+                        <div class="delete-icon" (click)="deleteFile(i)" style="position: absolute; right: 5px; top:5px;">
+                            <i class="pi pi-trash fs-25"></i>
+                        </div>
+                        <img class="pdf-img" style="max-width: 80px; width: 100%; margin: auto" src="assets/image/pdf_icon.png" alt="" title="">
+                      </div>
+                      <div class="contract-name fs-14 text-center" style="padding-bottom: 10px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="text-overflow: ellipsis; ">{{ file.fileName }}</span></div>
+                    </div>
+                  </ng-template>
+                </owl-carousel-o>
+              </div>
+              <div class="item item-2-12 v-middle">
+                <div class="pdf-item">
+                  <div class="pdf-img plus-icon" (click)="addFile()" style="text-align: center; display: flex; cursor: pointer;">
+                      <i class="pi pi-plus-circle fs-25" style="color: #33804A"></i>追加
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="next-button item item-1-12" *ngIf="dataProduct.keiyakuFileList.length > 3" style="float: left; display: flex;align-items: center;cursor: pointer;" (click)="owlGuide.next()"><i class="pi pi-angle-double-right"></i></div>
+          </div> -->
+
+        <!--page title-->
+        <h2 class="fs-20">加入店舗/代理店などの登録</h2>
+        <div class="page-title-line-bt" style="width: 100%;">
+          <div class="l-orange"></div>
+          <div class="l-gray"></div>
+        </div>
+        <!--./page title-->
+        <div class="box form-input">
+          <div class="row name">
+            <div class="item col-head">店舗名／代理店名</div>
+            <div class="item col-body">
+              <div class="item item-12-12"><div class="item item-6-12" ><span *ngIf="dataProduct.AgentInfo">{{dataProduct.AgentInfo.agentName}}</span></div></div>
+            </div>
+          </div>
+          
+          <div class="row name">
+            <div class="item col-head">電話番号</div>
+            <div class="item col-body">
+              <div class="item item-12-12"><div class="item item-6-12" ><a href="tel:{{dataProduct.AgentInfo.phone}}" *ngIf="dataProduct.AgentInfo">{{dataProduct.AgentInfo.phone}}</a></div></div>
+            </div>
+          </div>
+
+          <div class="row name">
+            <div class="item col-head">担当者名</div>
+            <div class="item col-body">
+              <div class="item item-12-12"><div class="item item-6-12" ><span *ngIf="dataProduct.AgentInfo">{{dataProduct.AgentInfo.tantoName}}</span></div></div>
+            </div>
+          </div>
+
+          <div class="row name">
+            <div class="item col-head">URL</div>
+            <div class="item col-body">
+              <div class="item item-12-12">
+                <div class="item item-6-12">
+                  <a *ngIf="dataProduct.AgentInfo"  href={{dataProduct.AgentInfo.url}} ><span>{{dataProduct.AgentInfo.url}}</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box image-add" style="display: flex;box-shadow: 0px 0px 8px #c8c8c8; margin: 30px 0;overflow: hidden; border-radius: 10px; padding: 10px">
+          <div class="next-button item item-1-12" *ngIf="dataProduct.keiyakuFileList.length > 3" style="float: left;display: flex;align-items: center;cursor: pointer;" (click)="owlGuide.prev()">
+            <div style="width: 100%; text-align:center"><i class="pi pi-angle-double-left"></i></div>
+          </div>
+          <div class="slideshow item-10-12" style="float: left">
+            <div class="item item-10-12 v-middle">
+              <owl-carousel-o [options]="slideOption" #owlGuide>
+                <ng-template carouselSlide *ngFor="let file of dataProduct.keiyakuFileList, let i = index">
+                  <div class="pdf-item" style="border: 1px solid #c8c8c8; margin: 5px; border-radius: 5px;">
+                    <div class="image-content" style="position: relative;">
+                      <div class="delete-icon" (click)="deleteFile(i)" style="cursor: pointer;position: absolute; right: 5px; top:5px;">
+                          <i class="pi pi-trash fs-25"></i>
+                      </div>
+                      <img class="pdf-img" (click)="getFile(i, file.fileName)" *ngIf="file.fileName.includes('.pdf')" style="cursor: pointer;max-width: 80px; width: 100%; margin: auto" src="assets/image/pdf_icon.png" alt="" title="">
+                      <img class="pdf-img" (click)="getFile(i, file.fileName)" 
+                      *ngIf="file.fileName.includes('.jpg') || file.fileName.includes('.jpeg') || file.fileName.includes('.JPG') || file.fileName.includes('.JPEG')" 
+                      style="cursor: pointer;max-width: 80px; width: 100%; margin: auto" src="assets/image/img.png" alt="" title="">
+                    </div>
+                    <div class="contract-name fs-14 text-center" style="padding-bottom: 10px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="text-overflow: ellipsis; ">{{ file.fileName }}</span></div>
+                  </div>
+                </ng-template>
+              </owl-carousel-o>
+            </div>
+            <div class="item item-2-12 v-middle">
+              <div class="pdf-item">
+                <div class="pdf-img " (click)="addFile()" style="text-align: center; display: flex; ">
+                    <div class="plus-icon" style="margin:auto; display: flex;cursor: pointer;"><i class="pi pi-plus-circle fs-25" style="color: #33804A;"></i>追加</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="next-button item item-1-12" *ngIf="dataProduct.keiyakuFileList.length > 3" style="float: left; display: flex;align-items: center;cursor: pointer;" (click)="owlGuide.next()">
+            <div style="width: 100%; text-align:center"><i class="pi pi-angle-double-right"></i></div>
+          </div>
+        </div>
+
+        <!-- <div class="box form-input">
+          <div class="row name">
+            <div class="item col-head">利用規約</div>
+            <div class="item col-body">
+              <div class="item item-12-12"><div class="item item-6-12">同意する</div></div>
+            </div>
+          </div>
+        </div> -->
+
+      <div class="box btn-group sp">
+        <div class="item item-12-12 text-left">
+          <button class="btn-orange w-100" pButton (click)="edit()" type="button">            
+            <span class="fs-16">編集する</span>
+          </button>
+        </div>
+        <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)="backToStartCam('back')" pButton type="button" label="前のページに戻る"></button>
+        </div>
+      </div>
+
+      <div class="box btn-group pc">
+        <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)="backToStartCam('back')" pButton type="button" label="前のページに戻る"></button>
+        </div>
+        <div class="item item-6-12 text-left">
+          <button class="btn-orange w-100" pButton (click)="edit()" type="button">
+            <span class="fs-16">編集する</span>
+          </button>
+        </div>
+      </div>
+
+      </div>
+        <!-- <div class="box">
+          <div class="item item-5-12"><button class="btn-gray h-35 w-100" (click)="backToStartCam('back')"  pButton type="button" label="戻る"></button></div>
+          <div class="item item-2-12"></div>
+          <div class="item item-5-12"><button class="btn-orange h-35 w-100" (click)="edit()" pButton type="button"
+            label="変更"></button></div>
+        </div> -->
+    </div>
+  <input id="inputFile" (change)='handleClickAddFile($event)' type="file" accept="image/jpeg, image/jpg, application/pdf" capture style="display: none">
+  <p-confirmDialog #cd header="削除確認" icon="pi pi-exclamation-triangle">
+    <p-footer>
+      <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" label="キャンセル" (click)="cd.reject()"></button>
+      <button type="button" pButton icon="pi pi-check" label="はい" (click)="cd.accept()"></button>
+  </p-footer>
+  </p-confirmDialog>
+  <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+  <!-- <a [href]="fileUrl" download="file.txt">DownloadFile</a> -->
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+  </div>
+</section>

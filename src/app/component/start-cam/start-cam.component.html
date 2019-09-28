@@ -1,0 +1,71 @@
+<!--CameraStart-->
+<section id="CameraStart">
+  <div class="container">
+    <app-header></app-header>
+    <div [className]="hadImage ? 'none padding3' : 'display wrapper padding3'">
+      <h2 class="fs-25">マイページ</h2>
+      <div class="arrow_box" style="height: 45px; max-width: 500px; margin: auto;">
+        <div style="margin: auto;font-weight: bold;">保険証券をカメラ撮影します</div>
+      </div>
+      <div class="content" style="margin-top: 40px">
+        <div class="box guid">
+          <div class="item item-12-12">
+            <div class="item item-4-12"><img width="100%" src="assets/image/contract_true.png" title="" alt="" /></div>
+            <div class="item item-8-12" style="padding-left: 20px">
+              <h3 style="color:#ff6400 ">【1契約単位】</h3>
+              <p>保険証券の保険内容登録は、１契約単位になりますので、ご注意ください。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box guid">
+          <div class="item item-12-12">
+            <div class="item item-4-12"><img width="100%" src="assets/image/contract_fail.png" title="" alt="" /></div>
+            <div class="item item-8-12" style="padding-left: 20px">
+              <p>保険証券全体が枠内に入るように撮影してください。</p>
+            </div>
+          </div>
+        </div>
+        <div class="box combo" style="display: flex; align-items: center;" [formGroup]="cameraForm">
+          <div class="item item-4-12">保険会社</div>
+          <div class="ui-float-label item item-8-12">
+            <p-dropdown [options]="companys" (onChange)="changeCompany()"  formControlName="company" styleClass="dropdown-w-100" laceholder="">
+            </p-dropdown>
+            <!-- <p-message severity="error" text="保険会社が未入力です。"
+                  *ngIf="!f.company.value&&(f.company.dirty || f.company.touched)"></p-message> -->
+          </div>
+        </div>
+        <div *ngIf="!f.company.invalid">
+          <div class="box text-center capture" style="width: 100%; margin-top: 20px">
+            <p-button (click)="goToCamera()" style="width: 100%; max-width: 500px; margin: auto" icon="pi pi-arrow-right"
+              iconPos="right" label="撮影する"></p-button>
+            <input *ngIf="isMobile || isTablet" id="fileinput" (change)='handleClick($event)' type="file" accept="image/*"
+              style="display:none" capture="camera" />
+          </div>
+          <div class="box text-center non-capture">
+            <div class="item item-12-12 text-center"><a (click)="goToProduct()" style="cursor: pointer" class="text-link under-below">撮影せずに手入力する</a></div>
+          </div>
+        </div>
+        <div *ngIf="f.company.invalid">
+            <div class="box text-center capture none-point" style="width: 100%; margin-top: 20px">
+                <p-button style="width: 100%; max-width: 500px; margin: auto; cursor: no-drop" icon="pi pi-arrow-right"
+                  iconPos="right" label="撮影する"></p-button>
+                <input *ngIf="isMobile || isTablet" id="fileinput" (change)='handleClick($event)' type="file" accept="image/*"
+                  style="display:none" capture="camera" />
+              </div>
+              <div class="box text-center non-capture" >
+                <div class="item item-12-12 text-center"><span class="text-link under-below" style="cursor: no-drop;">撮影せずに手入力する</span></div>
+              </div>
+        </div>
+      </div>
+    </div>
+    <div [className]="hadImage ? 'display' : 'none'" style="margin: auto; text-align: center">
+      <img src={{lastData}} style="max-width: 300px">
+    </div>
+    <div id="my_camera" class="computer" style="display: none"></div>
+    <p-toast [style]="{marginTop: '100px'}" position="top-center" key="aa"></p-toast>
+  </div>
+  <app-loading [loading]="loading"></app-loading>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+</section>

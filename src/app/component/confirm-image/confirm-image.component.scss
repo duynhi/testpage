@@ -1,0 +1,82 @@
+@import '../../../assets/_mixin.scss';
+/*CameraImageConfirm*/
+   #CameraImageConfirm{
+    .btn{
+        margin-bottom: 1rem;
+    }
+    .contract-face{
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+.display {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+.w-100 {
+    width: 100%;
+    margin: auto;
+}
+
+@media screen and (min-width: 1000px) {
+    .w-100 {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+.arrow_box {
+    margin: auto;
+    max-width: 500px;
+	position: relative;
+	background: #fff;
+    border: 3px solid #ebe5e1;
+    background-color: #fff !important; 
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px !important;
+    margin-top: 20px !important;
+}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #fff;
+	border-width: 12px;
+	margin-left: -12px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #ebe5e1;
+	border-width: 17px;
+	margin-left: -17px;
+}
+
+.saisatsuei{
+    width: 190px;
+    align-items: center;
+    display: flex;
+    box-shadow: 0px 0px 8px #c8c8c8;
+    margin-left: 4.1%;
+}
+.saisatsuei-label{
+    margin-left: 10px;
+}
+.remove-bold{
+    font-weight: normal;
+}

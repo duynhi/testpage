@@ -1,0 +1,52 @@
+<!--NotificationList-->
+<section id="ConsultationDocumentList">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">お知らせ</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <h3 class="padding3 fs-16 sub-title">直近１年間のお知らせ情報を表示します</h3>
+      <!--./page title-->
+      
+      <div class="news">
+        <div class="scroll-content padding3">
+          <div infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollDisabled]="showLoading" [infiniteScrollUpDistance]="0" [infiniteScrollThrottle]="500"
+            (scrolled)="getListMessage()">
+            <div class="box news">
+              <div class="new-item" *ngFor="let message of listMessage, let i = index">
+                <div class="date item-4-12">{{message.sendDate}}</div>
+                <div class="title item-8-12">
+                  <div class="disp-table">
+                    <div class="row-table">
+                      <div class="cell-table">
+                        <img src="assets/image/arrow-right-green.png" class="arrow-right">
+                      </div>
+                      <div class="cell-table">
+                        <a class="text-link ellipse-text" style="-webkit-box-orient: vertical; cursor: pointer; text-decoration: underline;" new-item alt=""
+                          (click)="showDialog(i)" title={{message.messageTitle}}>{{message.messageTitle}}
+                        </a>
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div class="box text-center clearfix" *ngIf="showLoading">
+              <div class="item loading text-center item-6-12">
+                <img src="assets/image/Spinner-1s-200px.gif" width="200px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-popup (valueChange)='changeDataAfterAdd($event)' [(display)]="display" [data]="data" [width]='dataWidth'></app-popup>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

@@ -1,0 +1,283 @@
+@import '../../../assets/_mixin.scss';
+
+/deep/ #AgencyInput .btn-orange.ui-button .ui-button-text{
+    display: none !important;
+}
+#AgencyInput{
+    .form-input{
+        @include box-shadow(0px, 0px, 8px, #c8c8c8);
+        @media screen and(max-width:768px) {
+            @include box-shadow(0px, 0px, 4px, #c8c8c8);
+        }
+        margin: 30px 0;
+        border-radius: 10px;
+        display: table;
+        width: 100%;
+        .row{
+            display: table-row;
+            margin-bottom: 0 !important;
+            &:first-child{
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            &:last-child{
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                .col-body{
+                    border-bottom: none !important;
+                }
+            }
+            &.birthday{
+                .col-body{
+                    text-align: left;
+                }
+            }
+            .item{
+                display: table-cell;
+                &.col-head{
+                    background: #fbf7f4;
+                    height: 60px;
+                    min-width: 222px;
+                    text-align: left;
+                    vertical-align: middle;
+                    width: 20%;
+                    font-weight: bold;
+                    border-right: 1px #c8c8c8 solid;
+                    border-top: 1px #c8c8c8 solid;
+                    padding: 0 10px;
+                    span.error{
+                        text-align: right;
+                        background: #FF6400;
+                        color: #FFFFFF;
+                        font-size: 12px;
+                        padding: 3px 10px;
+                        @include rounded(3em);
+                        float: right;
+                        font-weight: normal;
+                    }
+                }
+                &.col-body{
+                    padding-left: 10px;
+                    width: 70%;
+                    border-bottom: 1px #c8c8c8 solid;
+                    .item{
+                        display: inline-block;
+                        padding: 10px 0;
+                        vertical-align: top;
+                        &.col-label{
+                            margin-top: 5px;
+                        }
+                    }
+                    .policy{
+                        width: 100%;
+                        height: 70px;
+                        @include rounded(0.5em);
+                    }
+                    .auto-fill{
+                        color:#33804A;
+                        cursor: pointer;
+                    }
+                    &.address-info{
+                        padding-bottom: 10px;
+                        span.error{
+                            text-align: right;
+                            background: #FF6400;
+                            color: #FFFFFF;
+                            font-size: 12px;
+                            padding: 0 6px;
+                            @include rounded(3em);
+                            float: right;
+                            font-weight: normal;
+                            margin-right: 10px;
+                            &.green{
+                                background: #33804A;
+                            }
+                        }
+                        .col-label{
+                            margin-top:7px;
+                        }
+                        .zip{
+                            .col-label{
+                                margin-top:17px;
+                               
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .btn-group{
+        margin-bottom: 30px;
+        .btn-gray{
+            width: 80%;
+            height: 30px;
+            @include rounded(0.2em);
+            @include box-shadow(0px, 0px, 8px, #c8c8c8);
+            border:none;
+            outline: none;
+        }
+        .btn-orange{
+            width: 100%;
+            font-weight: bold;
+            padding: 20px 0;
+            @include rounded(0.2em);
+            @include box-shadow(0px, 0px, 8px, #c8c8c8);
+            border:none;
+            outline: none;
+        }
+    }
+
+    .gender-btn {
+        background-color: #fff; 
+        color: #333333; 
+        border: 1px solid #a6a6a6;
+        border-radius: 3px;
+        width: 80%;
+        height: 35px;
+    }
+    .gender-selected {
+        background-color: #fe6300; 
+        color: #fff; 
+        border-radius: 3px;
+        border: 1px solid #fe6300;
+        width: 80%;
+        height: 35px;
+    }
+}
+
+@media (max-width: 767px){
+    #AgencyInput .form-input{
+        display: block;
+        .row{
+            display: block !important;
+            .item{
+                &.col-head{
+                    display: inline-block;
+                    height: initial;
+                    padding:15px 10px;
+                    width: 100% !important;
+                    border-right: none !important;
+                    border-bottom: 1px #c8c8c8 solid;
+                }
+                &.col-body{
+                    display: inline-block;
+                    width: 100%;
+                    padding: 0 10px;
+                    border-bottom: none;
+                    .item.item-5-12{
+                        width: 100%;
+                    }
+                } 
+            }
+            &.birthday{
+                .item{
+                    text-align: center;
+                    &.item-2-12{
+                        width: 25%;
+                    }
+                    &.col-body {
+                        text-align: left;
+                        .item {
+                            &:nth-of-type(2){
+                                width: 65%;
+                                text-align: left;
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            &.name{
+                .item{
+                    &.item-4-12{
+                        width: 33%;
+                    }
+                    &.item-1-12{
+                        width: 16.66666667%;
+                    }
+                }
+            }
+            &.gender{
+                text-align: center;
+                .item{
+                    &.item-4-12{
+                        width: 100%;
+                    }
+                }
+                .gender-btn, .gender-selected{
+                    width: 100% !important;
+                }
+            }
+            &.phone{
+                .item{
+                    &.item-7-12{
+                        width: 100%;
+                    }
+                }
+            }
+            &.mail-setting{
+                .item{
+                    &.item-10-12{
+                        width: 100%;
+                    }
+                }
+            }
+            &.policy-h{
+                .item{
+                    &.item-11-12{
+                        width: 100%;
+                    }
+                }
+            }
+            .address-info{
+                .row{
+                    .item{
+                        &:nth-of-type(1),&:nth-of-type(2){
+                            width: 50%;
+                            padding:0;
+                        }
+                    }
+                    .add-content{
+                        width: 100%;
+                        .item{
+                            &.item-3-12{
+                                width: 25%;
+                                padding:0;
+                            }
+                            &.item-2-12{
+                                width: 16.66666667%;
+                            }
+                        }
+                    }
+                    &:nth-of-type(2),&:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5) {
+                        .item{
+                            &:nth-of-type(3){
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+                span.error{
+                    padding: 2px 15px !important;
+                }
+            }
+        }
+    }
+    .btn-group{
+        .arrow_green{
+            margin-top: 15px;
+        }
+        .item-4-12{
+            width: 75%;
+        }
+    }
+}
+@media (max-width: 768px){
+    .btn-group{
+        .arrow_green{
+            margin-top: 15px;
+        }
+    }
+}

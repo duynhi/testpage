@@ -1,0 +1,335 @@
+@import '../../../assets/mixin.scss';
+
+/deep/ #InsuranceProcedureConfirm .btn-orange.ui-button .ui-button-text{
+    display: none !important;
+}
+
+#InsuranceProcedureConfirm{
+    .content{
+        .steps{
+            text-align: center;
+            margin: 20px 0;
+            .dotted-line{
+                height: 10px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                bottom: 12px;
+                padding: 0 20px;
+                background-image: url('../../../assets/image/dotted.png');
+                background-repeat: repeat-x;
+                background-position: center;
+                background-size: 17px;
+                z-index: -1;
+            }
+            .content{
+                height: 85px;
+                .step{
+                    height: 100%;
+                    position: relative;
+                    color: #666666;
+                    &.active{
+                        color: #000000;
+                        font-weight: bold;
+                        &::after{
+                            border: 2px #ff6400 solid;
+                        }
+                    }
+                    &.inactive{
+                        &::after{
+                            border: 2px #d1ccc9 solid;
+                        }
+                    }
+                    &::after{
+                        display: block;
+                        position: absolute;
+                        bottom: 5px;
+                        width: 20px;
+                        height: 20px;
+                        content: " ";
+                        border: 2px #ffa366 solid;
+                        left: 0;
+                        right: 0;
+                        margin-left: auto; 
+                        margin-right: auto; 
+                        background: #FFFFFF;
+                        @include rounded(1em);
+                    }
+                }
+            }
+        }
+        .box.block{
+            .step-arrow{
+                text-align: right;
+                background: #FF6400;
+                color: #FFFFFF;
+                font-size: 12px;
+                padding: 3px 15px;
+                @include rounded(3em);
+                font-weight: normal;
+                margin-right: 10px;
+                display: inline-block;
+                vertical-align: text-top;
+            }
+        }
+        .form-input{
+            @include box-shadow(0px, 0px, 8px, #c8c8c8);
+            @media screen and(max-width:768px) {
+                @include box-shadow(0px, 0px, 4px, #c8c8c8);
+            }
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            display: table;
+            width: 100%;
+            .row{
+                display: table-row;
+                &:first-child{
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                }
+                &:last-child{
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    .col-body{
+                        border-bottom: none !important;
+                    }
+                }
+                &.birthday{
+                    .col-body{
+                        text-align: left;
+                    }
+                }
+                .item{
+                    display: table-cell;
+                    &.col-head{
+                        background: #fbf7f4;
+                        height: 60px;
+                        min-width: 222px;
+                        text-align: left;
+                        vertical-align: middle;
+                        width: 30%;
+                        font-weight: bold;
+                        border-right: 1px #c8c8c8 solid;
+                        border-top: 1px #c8c8c8 solid;
+                        padding: 10px 10px;
+                        span.error{
+                            text-align: right;
+                            background: #FF6400;
+                            color: #FFFFFF;
+                            font-size: 12px;
+                            padding: 3px 15px;
+                            @include rounded(3em);
+                            float: right;
+                            font-weight: normal;
+                        }
+                    }
+                    &.col-body{
+                        padding-left: 10px;
+                        width: 70%;
+                        border-bottom: 1px #c8c8c8 solid;
+                        p{
+                            line-height: 2em;
+                        }
+                        .item{
+                            display: inline-block;
+                            padding: 10px 0;
+                            vertical-align: top;
+                            &.col-label{
+                                margin-top: 5px;
+                            }
+                        }
+                        .policy{
+                            width: 100%;
+                            height: 70px;
+                            @include rounded(0.5em);
+                        }
+                        .auto-fill{
+                            color:#33804A;
+                            cursor: pointer;
+                        }
+                        &.address-info{
+                            padding-bottom: 10px;
+                            span.error{
+                                text-align: right;
+                                background: #FF6400;
+                                color: #FFFFFF;
+                                font-size: 12px;
+                                padding: 0 6px;
+                                @include rounded(3em);
+                                float: right;
+                                font-weight: normal;
+                                margin-right: 10px;
+                                &.green{
+                                    background: #33804A;
+                                }
+                            }
+                            .col-label{
+                                margin-top:7px;
+                            }
+                            .zip{
+                                .col-label{
+                                    margin-top:17px;
+                                   
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .btn-group{
+        margin-bottom: 30px;
+        .btn-gray{
+            width: 80%;
+            height: 30px;
+            @include rounded(0.2em);
+            @include box-shadow(0px, 0px, 8px, #c8c8c8);
+            border:none;
+            outline: none;
+        }
+        .btn-orange{
+            width: 100%;
+            font-weight: bold;
+            padding: 5px 0;
+            @include rounded(0.2em);
+            @include box-shadow(0px, 0px, 8px, #c8c8c8);
+            border:none;
+            outline: none;
+        }
+    }
+
+    .address-info{
+        padding-bottom: 10px;
+        span.error{
+            text-align: right;
+            background: #FF6400;
+            color: #FFFFFF;
+            font-size: 12px;
+            padding: 0 6px;
+            @include rounded(3em);
+            float: right;
+            font-weight: normal;
+            margin-right: 10px;
+            &.green{
+                background: #33804A;
+            }
+        }
+        .item.item-12-12{
+            padding: 5px 0 !important;
+        }
+    }
+}
+
+@media (max-width: 767px){
+    #InsuranceProcedureConfirm .form-input{
+        display: block !important;
+        margin: 20px 0 !important;
+        .row{
+            display: initial !important;
+            .item{
+                &.col-head{
+                    display: inline-block !important;
+                    height: initial !important;
+                    padding:15px 10px !important;
+                    width: 100% !important;
+                    border-right: none !important;
+                    border-bottom: 1px #c8c8c8 solid;
+                }
+                &.col-body{
+                    display: inline-block !important;
+                    width: 100% !important;
+                    padding: 0 10px;
+                    border-bottom: none !important;
+                } 
+            }
+            &.name{
+                .item{
+                    &.item-4-12{
+                        width: 33%;
+                    }
+                    &.item-1-12{
+                        width: 16.66666667%;
+                    }
+                }
+            }
+        }
+    }
+    .btn-group{
+        .arrow_green{
+            margin-top: 15px;
+        }
+        .item-4-12{
+            width: 75%;
+        }
+    }
+
+    .dotted-line{
+        width: 75.333333%;
+    }
+
+    .address-info{
+        .item.item-12-12{
+            border-bottom: 1px #c8c8c8 solid;
+            .item-3-12, .item-1-12{
+                width: 50% !important;
+                padding-bottom: 0 !important;
+            }
+            .item-8-12{
+                width: 100%;
+            }
+            .item-1-12{
+                text-align: right;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .btn-group{
+        .arrow_green{
+            margin-top: 15px;
+        }
+    }
+}
+  
+@media (min-width: 481px) and (max-width: 767px) {
+
+//CSS
+.steps{
+    .content{
+        width: 100%;
+        .step{
+            width: 20%;
+        }
+    }
+    span.heading{
+        font-size: 12px;
+    }
+}
+}
+
+/* 
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+//CSS
+.steps{
+    .content{
+        width: 100%;
+        .step{
+            width: 19.666667%;
+        }
+    }
+    span.heading{
+        font-size: 11px;
+    }
+}
+
+}

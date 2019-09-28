@@ -1,0 +1,221 @@
+@import '../../../assets/_mixin.scss';
+/*AgencyList*/
+#AgencyList{
+    .padding-r-50-res {
+        padding-right: 50px;
+    }
+    .box{
+        .row{
+            h3{
+                margin:0;
+            }
+            .child{
+                padding: 0.5rem 0;
+            }
+
+            .trash{
+                .pi-trash{
+                    color: #FFF;
+                    background: red;
+                }
+            }
+        }
+    }
+    .add-more{
+        .pi-plus-circle{
+            color: #33804a;
+            
+        }
+    }
+}
+
+.w-30 {
+    width: 200px;
+}
+
+.w-65 {
+    width: calc(100% - 200px);
+}
+
+.wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+.pc_border {
+    padding-top: 25px;
+    border-top: 2px dotted #ebe5e1;
+}
+
+.list-item{
+    margin-bottom: 25px;
+    .row{
+        &:first-child{
+            border-top: 1px solid #ebe5e1;
+        }
+        border-bottom: 1px solid #ebe5e1;
+        display: flex;
+        margin-bottom: 0 !important;
+    }
+}
+.col-label, .col-body{
+    padding: 10px 0;
+}
+.col-label{
+    background-color: #faf7f5;
+}
+.col-body{
+    padding-left: 10px;
+}
+.tanto-clinic{
+    .content{
+        .blk{
+            border-bottom: 1px #B8B3B0 dotted;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 20px;
+            &:first-child{
+                padding-top:0;
+            }
+            h2{
+                margin:0;
+            }
+            .item.item-1-12{
+                width: 3.333333% !important;
+                img{
+                    width: 25px;
+                }
+            }
+            .free{
+                background: #FFE1BF;
+                padding: 10px 20px;
+                margin-right: 10px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.box.form-input{
+    margin-bottom: 30px;
+}
+
+.btn-group{
+    margin-bottom: 30px;
+    margin-top:30px;
+    .btn-gray{
+        width: 80%;
+        height: 30px;
+        @include rounded(0.2em);
+        @include box-shadow(0px, 0px, 8px, #c8c8c8);
+        border:none;
+        outline: none;
+    }
+    .btn-orange{
+        width: 100%;
+        font-weight: bold;
+        padding: 5px 0;
+        @include rounded(0.2em);
+        @include box-shadow(0px, 0px, 8px, #c8c8c8);
+        border:none;
+        outline: none;
+    }
+}
+
+@media screen and (max-width: 768px) { 
+    .padding-r-50-res {
+        padding-right: 0px !important;
+    }
+    .wrapper {
+        width: 100%;
+    }
+    .w-30 {
+        width: 100%;
+    }
+
+    .pc_border {
+        padding-top: 0px !important;
+        border-top: none !important;
+    }
+
+    .w-65 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .tanto-clinic{
+        .content{
+            .blk{
+                padding-left: 10px;
+                &:first-child{
+                    padding-top:0;
+                    padding-left: 0 !important;
+                }
+                .item.item-1-12{
+                    width: 8.33333333% !important;
+                    img{
+                        width: 20px;
+                        margin-top:1px;
+                    }
+                }
+                .item.item-8-12{
+                    display: block;
+                    width: 100% !important;
+                    &.contact{
+                        margin-top: 4px;
+                        strong.fs-14{
+                            color: #2E9940;
+                            border-bottom: 1px #2E9940 solid;
+                        }
+                    }
+                }
+                .free{
+                    background: #FFE1BF;
+                    padding: 3px 10px;
+                    margin-right: 10px;
+                    font-weight: bold;
+                }
+            }
+        }
+        .btn-group{
+            margin-bottom: 30px;
+            margin-top:10px;
+        }
+    }
+
+    .btn-group{
+        .arrow_green{
+            margin-top: 15px;
+        }
+        .item-4-12{
+            width: 75%;
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .btn-group{
+        .arrow_green{
+            margin-top: 15px;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+    .tanto-clinic{
+        .content{
+            .blk{
+                .item.item-1-12{
+                    width: 5% !important;
+                }
+            }
+        }
+    }
+    
+}
+
+.contract-url, .contract-tel{
+    word-break: break-all;
+}

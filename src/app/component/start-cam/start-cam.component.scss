@@ -1,0 +1,119 @@
+@import '../../../assets/_mixin.scss';
+
+/*Style for mobile, tablet*/
+.display {
+    display: block;
+}
+.none {
+    display: none;
+}
+
+#CameraStart{
+    .ui-button {
+        width: 100%; 
+        color: #333333 !important; 
+        background-color: #fff !important; 
+        height: 45px;
+        border-color: #e5e3e1 !important;
+        @include box-shadow(1px,1px,0.5px, rgba(235,235,235,1));
+    }
+    .ui-message {
+        margin-top: 10px;
+    }
+    .none-point {
+        .ui-button {
+            cursor: no-drop;
+        }
+    }
+    .ui-button-icon-right {
+        color: #33804a;
+        font-size: 1.25em;
+    }
+    .ui-button-text { 
+        font-weight: bold;
+    }
+}
+@media screen and (max-width: 768px) {
+    /*CameraStart*/
+    #CameraStart{
+        .btn-capture{
+            background: #fff;
+            color: #333333;
+            font-weight: bold;
+            padding: 0.5rem 0 0.5rem;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+    }
+    
+ 
+}
+
+.btn-capture{
+    background: #fff;
+    color: #333333;
+    font-weight: bold;
+    padding: 0.5rem 0 0.5rem;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.box.guid{
+    margin-bottom: 20px;
+    &:nth-of-type(1){
+        border-bottom: 1px dotted #b8b3b0;
+        padding-bottom: 20px;
+    }
+    .item{
+        vertical-align: top;
+    }
+}
+.box.combo, .box.capture, .box.non-capture{
+    margin-bottom: 1.5rem;
+    
+}
+.box.combo {
+    padding: 20px;
+    background-color: #faf7f5;
+    max-width: 500px;
+    margin: auto;
+    
+}
+.arrow_box {
+	position: relative;
+	background: #fff;
+    border: 3px solid #ebe5e1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    @include rounded(0.3em);
+}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #fff;
+	border-width: 12px;
+	margin-left: -12px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #ebe5e1;
+	border-width: 17px;
+	margin-left: -17px;
+}
+

@@ -1,0 +1,925 @@
+<!--ProductInforUpdate-->
+<section id="ProductInforUpdate">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">ご契約内容登録</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+
+      <div class="content padding3" [formGroup]="productForm">
+        <div class="box box-step ">
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text">
+              <div class="fs-16 font-bold text1">
+                被保険者（保障の対象となる方）
+              </div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">{{hihoFamilyName}}　さま</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">
+                契約者
+              </div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <p-dropdown [options]="familyList" (onChange)="addKeiyakuSha()" formControlName="nameBook"
+                    styleClass="dropdown-w-100" laceholder=""></p-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険会社名</div>
+              <div class="text2">必須</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <p-dropdown [options]="companyList" (onChange)="filterProduct()" formControlName="company"
+                    styleClass="dropdown-w-100" laceholder="">
+                  </p-dropdown>
+
+
+                  <div *ngIf="!f.company.value&&(f.company.dirty || f.company.touched)"
+                    style="margin-top: 10px; width: 100%;">
+                    <p-message severity="error" text={{MESSAGE.companyRequire}}
+                      *ngIf="!f.company.value&&(f.company.dirty || f.company.touched)"></p-message><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保障（補償）の目的</div>
+              <div class="text2">必須</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <p-dropdown [options]="categoryList" (onChange)="changeCategory()" formControlName="hokenCategoryType"
+                    styleClass="dropdown-w-100" laceholder="">
+                  </p-dropdown>
+
+                  <div style="margin-top: 10px; width: 100%;"
+                    *ngIf="!f.hokenCategoryType.value&&(f.hokenCategoryType.dirty || f.hokenCategoryType.touched)">
+                    <p-message severity="error" text={{MESSAGE.hokenBunruiRequire}}
+                      *ngIf="!f.hokenCategoryType.value&&(f.hokenCategoryType.dirty || f.hokenCategoryType.touched)">
+                    </p-message><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険種類（商品名)</div>
+              <div class="text2">必須</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <p-dropdown [options]="productsList" (onChange)="addProduct()" formControlName="hokenName"
+                    styleClass="dropdown-w-100" laceholder=""></p-dropdown>
+
+                  <div style="margin-top: 10px; width: 100%;"
+                    *ngIf="!f.hokenName.value&&(f.hokenName.dirty || f.hokenName.touched)">
+                    <p-message severity="error" text={{MESSAGE.hokenNameRequire}}
+                      *ngIf="!f.hokenName.value&&(f.hokenName.dirty || f.hokenName.touched)"></p-message><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険証券番号</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <input class="w-100 h-35" formControlName="stockNumber" autocomplete="off" type="text" pInputText>
+
+                  <div style="margin-top: 10px; width: 100%;"
+                    *ngIf="f.stockNumber.value&& f.stockNumber.value.length> 50 &&(f.stockNumber.dirty || f.stockNumber.touched)">
+                    <p-message severity="error" text="保険証券番号は50字以内で入力してください。">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="item item-8-12" style="padding-top: 0px"
+                *ngIf="!f.stockNumber.value&&(f.stockNumber.dirty || f.stockNumber.touched)">
+                <p-message severity="error" text="保険証券番号が未入力です。">
+                </p-message>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">契約状況</div>
+              <div class="text2">必須</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <p-dropdown [options]="statusList" formControlName="statusBook" styleClass="dropdown-w-100"
+                    laceholder="">
+                  </p-dropdown>
+
+                  <div style="margin-top: 10px; width: 100%;"
+                    *ngIf="(!f.statusBook.value)&&(f.statusBook.dirty || f.statusBook.touched)">
+                    <p-message severity="error" text={{MESSAGE.statusRequire}}
+                      *ngIf="!f.statusBook.value&&(f.statusBook.dirty || f.statusBook.touched)"></p-message><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row" *ngIf="!isShowDate">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">契約日</div>
+            </div>
+            <div class="w-70 fl-left text-left" style="display: flex">
+              <div style="width: 100%">
+                <div style="padding: 10px; width: 40%; float: left;">
+                  <div class="w-time">
+                    <p-dropdown [options]="yearsDate" (onChange)="changeYearDate()" formControlName="yearDate"
+                      styleClass="w-time" placeholder=""></p-dropdown>
+                    <div *ngIf="f.yearDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='年が未入力です。'
+                        *ngIf="!f.yearDate.value&&(createMyPageGroup.controls['yearDate'].dirty || createMyPageGroup.controls['yearDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div style="width: 20px; float: left; padding-top: 5px; text-align: right">年</div>
+                </div>
+                <div class="date_warrper">
+                  <div class="w-time">
+                    <p-dropdown [options]="monthsDate" (onChange)="changeMonthDate()" formControlName="monthDate"
+                      styleClass="dropdown-w-100 h-35 w-time" placeholder=""></p-dropdown>
+                    <div *ngIf=" f.monthDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='月が未入力です。'
+                        *ngIf="!f.monthDate.value&&(createMyPageGroup.controls['monthDate'].dirty || createMyPageGroup.controls['monthDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div class="date_label">月</div>
+                </div>
+                <div class="date_warrper">
+                  <div class="w-time">
+                    <p-dropdown [options]="daysDate" formControlName="dayDate" styleClass="dropdown-w-100 h-35 w-time"
+                      placeholder=""></p-dropdown>
+                    <div *ngIf="f.dayDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='日が未入力です。'
+                        *ngIf="!f.dayDate.value&&(createMyPageGroup.controls['dayDate'].dirty || createMyPageGroup.controls['dayDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div class="date_label">日</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-data border-bottom-row" *ngIf="!isShowDate">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険期間</div>
+            </div>
+            <div class="w-70 fl-left text-left" style=" padding: 10px">
+              <div style="width: 100%">
+                <div class="w-33-res">
+                  <input class="w-100 h-35" pKeyFilter="num" (keyup)="validate110('hokenkikan')"
+                    formControlName="hokenkikan1" autocomplete="off" type="text" pInputText>
+                </div>
+                <div class="item item-1-12 text-center"></div>
+                <div class="w-33-res">
+                  <p-dropdown [options]="kikanFList" (onChange)="changeKikanF('hokenkikan')" styleClass="dropdown-w-100"
+                    formControlName="hokenkikan2" laceholder=""></p-dropdown>
+                </div>
+                <div style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text="保険期間は110以下で入力してください。" *ngIf="isValid110Hoken">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-data border-bottom-row" *ngIf="!isShowDate">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険料払込期間</div>
+            </div>
+            <div class="w-70 fl-left text-left" style=" padding: 10px">
+              <div style="width: 100%">
+                <div class="w-33-res">
+                  <input class="w-100 h-35" pKeyFilter="num" (keyup)="validate110('haraiKikan')"
+                    formControlName="haraiKikan1" autocomplete="off" type="text" pInputText>
+                </div>
+                <div class="item item-1-12 text-center"></div>
+                <div class="w-33-res">
+                  <p-dropdown [options]="kikanFList" (onChange)="changeKikanF('haraiKikan')"
+                    formControlName="haraiKikan2" styleClass="dropdown-w-100"></p-dropdown>
+                </div>
+                <div style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text="保険料払込期間は110以下で入力してください。" *ngIf="isValid110Harai">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row" *ngIf="isShowDate">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">契約始期日</div>
+            </div>
+            <div class="w-70 fl-left text-left" style="display: flex">
+              <div style="width: 100%">
+                <div style="padding: 10px; width: 40%; float: left;">
+                  <div class="w-time">
+                    <p-dropdown [options]="yearsStartDate" (onChange)="changeYearStartDate()"
+                      formControlName="yearStartDate" styleClass="w-time" placeholder=""></p-dropdown>
+                    <div *ngIf="f.yearStartDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='年が未入力です。'
+                        *ngIf="!f.yearStartDate.value&&(createMyPageGroup.controls['yearStartDate'].dirty || createMyPageGroup.controls['yearStartDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div style="width: 20px; float: left; padding-top: 5px; text-align: right">年</div>
+                </div>
+                <div class="date_warrper">
+                  <div class="w-time">
+                    <p-dropdown [options]="monthsStartDate" (onChange)="changeMonthStartDate()"
+                      formControlName="monthStartDate" styleClass="dropdown-w-100 h-35 w-time" placeholder="">
+                    </p-dropdown>
+                    <div *ngIf=" f.monthStartDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='月が未入力です。'
+                        *ngIf="!f.monthStartDate.value&&(createMyPageGroup.controls['monthStartDate'].dirty || createMyPageGroup.controls['monthStartDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div class="date_label">月</div>
+                </div>
+                <div class="date_warrper">
+                  <div class="w-time">
+                    <p-dropdown [options]="daysStartDate" formControlName="dayStartDate"
+                      styleClass="dropdown-w-100 h-35 w-time" placeholder=""></p-dropdown>
+                    <div *ngIf="f.dayStartDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='日が未入力です。'
+                        *ngIf="!f.dayStartDate.value&&(createMyPageGroup.controls['dayStartDate'].dirty || createMyPageGroup.controls['dayStartDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div class="date_label">日</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row" *ngIf="isShowDate">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険終期日</div>
+            </div>
+            <div class="w-70 fl-left text-left" style="display: flex">
+              <div style="width: 100%">
+                <div style="padding: 10px; width: 40%; float: left;">
+                  <div class="w-time">
+                    <p-dropdown [options]="yearsEndDate" (onChange)="changeYearEndDate()" formControlName="yearEndDate"
+                      styleClass="w-time" placeholder=""></p-dropdown>
+                    <div *ngIf="f.yearEndDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='年が未入力です。'
+                        *ngIf="!f.yearEndDate.value&&(createMyPageGroup.controls['yearEndDate'].dirty || createMyPageGroup.controls['yearEndDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div style="width: 20px; float: left; padding-top: 5px; text-align: right">年</div>
+                </div>
+                <div class="date_warrper">
+                  <div class="w-time">
+                    <p-dropdown [options]="monthsEndDate" (onChange)="changeMonthEndDate()"
+                      formControlName="monthEndDate" styleClass="dropdown-w-100 h-35 w-time" placeholder="">
+                    </p-dropdown>
+                    <div *ngIf=" f.monthEndDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='月が未入力です。'
+                        *ngIf="!f.monthEndDate.value&&(createMyPageGroup.controls['monthEndDate'].dirty || createMyPageGroup.controls['monthEndDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div class="date_label">月</div>
+                </div>
+                <div class="date_warrper">
+                  <div class="w-time">
+                    <p-dropdown [options]="daysEndDate" formControlName="dayEndDate"
+                      styleClass="dropdown-w-100 h-35 w-time" placeholder=""></p-dropdown>
+                    <div *ngIf="f.dayEndDate.invalid" style="margin-top: 10px; width: 100%;">
+                      <p-message severity="error" text='日が未入力です。'
+                        *ngIf="!f.dayEndDate.value&&(createMyPageGroup.controls['dayEndDate'].dirty || createMyPageGroup.controls['dayEndDate'].touched)">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div class="date_label">日</div>
+                </div>
+              </div>
+              <div class="item item-12-12 text-left">※払込満了時に契約状況を自動的に変更する</div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険料払込方法</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <p-dropdown [options]="haraikataList" formControlName="haraikata" styleClass="dropdown-w-100">
+                  </p-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">保険料</div>
+            </div>
+            <div class="w-70 fl-left text-left" style=" padding: 10px">
+              <div style="width: 100%">
+                <div class="w-33-res">
+                  <input class="w-100 h-35" pKeyFilter="num" (keyup)="changeCurrency()" formControlName="currency1"
+                    autocomplete="off" type="text" pInputText>
+                </div>
+
+
+                <div class="item item-1-12 text-center"></div>
+                <div class="w-33-res">
+                  <p-dropdown [options]="currencyList" formControlName="currency2" (onChange)="changeCurrency()"
+                    styleClass="dropdown-w-100" laceholder=""></p-dropdown>
+                </div>
+                <div style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='保険料は整数でご入力ください。' *ngIf="isErrorHokenP">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row yaku">
+            <div class="item col-head" style="border-bottom: none;border-bottom-left-radius: 10px;"></div>
+            <div class="item col-body v-middle">
+              <div class="box group" *ngFor="let shukeiyaku of listShukeiyaku, let i = index">
+                <div class="item item-12-12">
+                  <div class="item item-1-12 text-center v-middle" style="cursor: pointer"
+                    (click)="deleteShuleiyaku(i)">
+                    <i class="pi pi-minus-circle"></i></div>
+                  <div class="item item-9-12 v-middle" style="cursor: pointer" (click)="updateShuKeiyaku(i)">
+                    {{shukeiyaku.hoshoName}}</div>
+                  <div class="item item-2-12 text-center v-middle" style="cursor: pointer"
+                    (click)="updateShuKeiyaku(i)">
+                    <i style="cursor: pointer" class="pi pi-bars fs-25"></i></div>
+                </div>
+              </div>
+              <div class="item item-12-12">
+                <img style="cursor: pointer" (click)="chooseShukeiyaku()" class="link-hover"
+                  src="assets/image/plus.png">&nbsp;<span style="cursor: pointer" (click)="chooseShukeiyaku()"
+                  class="link-hover">項目の追加</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row yaku">
+            <div class="item col-head" style="border-bottom: none;border-bottom-left-radius: 10px;"></div>
+            <div class="item col-body v-middle">
+              <!--child group-->
+              <div class="add_toku_popup" *ngFor="let tokuyaku of listTokuyaku, let i = index"
+                style="margin-bottom: 10px;margin-top: 20px;margin-right: 20px;">
+                <p-panel [toggleable]="true">
+                  <p-header>
+                    <div style="display: inline-flex; align-items: center; ">
+                      <i class="pi pi-minus-circle" style="font-size: 25px; color: red; cursor: pointer;"
+                        (click)="deleteTokuyaku(i)"></i>
+                      <span style="cursor: pointer" (click)="editNameTokuyaku(i)">{{tokuyaku.tokuyakuName}}</span>
+                    </div>
+                  </p-header>
+                  <div class="box group">
+                    <div class="item item-12-12" *ngFor="let hosho of listTokuyaku[i].hoshoList, let i2 = index">
+                      <div class="item item-1-12 text-center v-middle" style="cursor: pointer"
+                        (click)="deleteHoshoOfTokuyaku(i,i2)"><i class="pi pi-minus-circle"></i></div>
+                      <div class="item item-9-12 v-middle" style="cursor: pointer"
+                        (click)="updateHoshoOfTokuyaku(i,i2)">
+                        {{hosho.hoshoName}}
+                      </div>
+                      <div class="item item-2-12 text-center v-middle" (click)="updateHoshoOfTokuyaku(i,i2)"><i
+                          style="cursor: pointer" class="pi pi-bars fs-25"></i></div>
+                    </div>
+                    <div class="add-more" style="cursor: pointer" (click)="chooseNewHoshoOfTokuyaku(i)">
+                      <div class="item item-1-12 text-center v-middle"><i class="pi pi-plus-circle"
+                          style="vertical-align: text-bottom"></i></div>
+                      <div class="item item-10-12 v-middle link-hover" style="font-size: 15px">項目追加</div>
+                    </div>
+                  </div>
+                </p-panel>
+              </div>
+              <!--child group-->
+              <div class="item item-12-12">
+                <img style="cursor: pointer" (click)="chooseTokuyaku()" src="assets/image/plus.png">&nbsp;<span
+                  style="cursor: pointer" (click)="chooseTokuyaku()" class="link-hover">特約の追加</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!--page title-->
+        <h2 class="fs-20">加入店舗/代理店などの登録</h2>
+        <div class="page-title-line-bt" style="width: 100%;">
+          <div class="l-orange"></div>
+          <div class="l-gray"></div>
+        </div>
+        <!--./page title-->
+        <div class="box box-step" [formGroup]="agentForm">
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">店舗名/代理店名</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <p-dropdown [options]="agentList" (onChange)="checkAddNewAgent()" formControlName="agent"
+                    styleClass="dropdown-w-100" laceholder=""></p-dropdown>
+                </div>
+                <!-- <div class="item item-8-12" style="padding-top: 0px"
+                  *ngIf="!agentForm.controls.agent.value&&(agentForm.controls.agent.dirty || agentForm.controls.agent.touched)">
+                  <p-message severity="error" text={{MESSAGE.categoryRequire}}
+                    *ngIf="!agentForm.controls.agent.value&&(agentForm.controls.agent.dirty || agentForm.controls.agent.touched)">
+                  </p-message><br> -->
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">連絡先名</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <input formControlName="nameAgent" class="w-100 h-35" autocomplete="off" type="text" pInputText>
+
+                  <div style="margin-top: 10px; width: 100%;" *ngIf="agentForm.controls.nameAgent.invalid">
+                    <p-message severity="error" text="連絡先名は50字以内で入力してください。"
+                      style="display: inherit;margin-bottom: 10px;"
+                      *ngIf="agentForm.controls.nameAgent.value&& agentForm.controls.nameAgent.value.length> 50 &&(agentForm.controls.nameAgent.dirty || agentForm.controls.nameAgent.touched)">
+                    </p-message>
+                    <p-message severity="error" text="連絡先名が未入力です。" style="display: inherit; margin-bottom: 10px;"
+                      *ngIf="!agentForm.controls.nameAgent.value&&(agentForm.controls.nameAgent.dirty || agentForm.controls.nameAgent.touched)">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">電話番号</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <div style="padding: 0px"><input formControlName="phoneAgent" class="w-100 h-35" autocomplete="off"
+                      type="text" pInputText>
+                    <p-message severity="error" text="電話番号は50字以内で入力してください。" style="display: inherit; margin-top: 10px;"
+                      *ngIf="agentForm.controls.phoneAgent.value&& agentForm.controls.phoneAgent.value.length> 50 &&(agentForm.controls.phoneAgent.dirty || agentForm.controls.phoneAgent.touched)">
+                    </p-message><br>
+                    <p-message severity="error" text="電話番号に誤りがあります。" style="display: inherit; margin-top: 10px;"
+                      *ngIf="agentForm.controls.phoneAgent.value.length<50 && agentForm.controls.phoneAgent.errors &&(agentForm.controls.phoneAgent.dirty || agentForm.controls.phoneAgent.touched)">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1">担当者名</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div class="w-50-res fl-left">
+                  <input formControlName="nameTanto" class="w-100 h-35" autocomplete="off" type="text" pInputText>
+                  <p-message severity="error" text="担当者名は50字以内で入力してください。" style="display: inherit; margin-top: 10px;"
+                    *ngIf="agentForm.controls.nameTanto.value&& agentForm.controls.nameTanto.value.length> 50 &&(agentForm.controls.nameTanto.dirty || agentForm.controls.nameTanto.touched)">
+                  </p-message><br>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row-data border-bottom-row">
+            <div class="w-25 fl-left text-left div-text frm-clinic">
+              <div class="fs-16 font-bold text1" style="border-bottom-left-radius: 10px;">URL</div>
+            </div>
+            <div class="w-70 fl-left text-left display-flex-pc">
+              <div class="w-100 fl-left">
+                <div style="padding-top: 0px"><input formControlName="URL" class="w-100 h-35" autocomplete="off"
+                    type="text" pInputText>
+
+                  <p-message severity="error" text="URLは50字以内で入力してください。" style="display: inherit;"
+                    *ngIf="agentForm.controls.URL.value&& agentForm.controls.URL.value.length> 50 &&(agentForm.controls.URL.dirty || agentForm.controls.URL.touched)">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="box form-input" *ngIf="this.id === 0">
+            <div class="row name">
+              <div class="item col-head">利用規約</div>
+              <div class="item col-body">
+                <div class="item item-12-12">
+                  <span>
+                    <input type="radio" id="ok" name="acceptF" (click)="accept(productForm.controls.acceptF.value)" value="1" formControlName="acceptF">
+                    <label for="ok">同意する</label>
+                  </span>
+                  <span style="margin-left: 20px">
+                    <input type="radio" id="cancel" name="acceptF" (click)="accept(productForm.controls.acceptF.value)" formControlName="acceptF" value="0">
+                    <label for="cancel">同意しない</label>
+                  </span>
+                </div>
+                <div class="item item-12-12">
+                    <div class="item item-11-12">
+                      <textarea class="policy">【個人情報の取り扱いについて】
+当サイトに掲載されている各募集代理店が、お客様から取得した取得した取得した取得した取得した取得した取得した取得した取得した取得した取得した取得した取得した取得した取得した
+                      </textarea>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div> -->
+
+        <div class="box btn-group">
+          <div class="arrow_green item item-3-12 v-top"></div>
+          <div class="item item-5-12 text-left">
+
+            <button class="btn-orange w-100" style="padding: 10px"
+              [disabled]="agentForm.invalid || productForm.invalid || isValid110Hoken || isValid110Harai || isErrorHokenP"
+              pButton (click)="saveProduct()" type="button">
+              <!-- <span class="fs-12">利用規約に同意して</span><br /> -->
+              <span class="fs-16">登録</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <app-popup (valueChange)='changeDataAfterAdd($event)' [(display)]="display" [data]="data"></app-popup>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>
+
+<p-dialog header="保障追加" [(visible)]="displayHoshoList" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div class="item-popup" *ngFor="let hosho of listHosho" style="cursor: pointer" (click)="addShukeiyaku(hosho)">
+    {{hosho.hoshoName}}
+  </div>
+</p-dialog>
+
+<p-dialog header="保障追加" [(visible)]="displayAddShukeiyaku" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">項目名<span class="error">*</span></div>
+    <div class="w-60 fl-left">
+      <input class="w-100 h-35" style="margin-bottom:10px;" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('hoshoName')" [(ngModel)]="hoshoName" autocomplete="off" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="項目名は40字以内で入力してください。"
+        *ngIf="hoshoName.length>50">
+      </p-message>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="項目名が未入力です。"
+        *ngIf="isErrorHoshoName && hoshoName.length===0">
+      </p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">内容</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;" (keyup)="keyupPopup('hoshoValue')"
+        [(ngModel)]="hoshoValue" autocomplete="off" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="内容は200字以内で入力してください。"
+        *ngIf="hoshoValue.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">コメント</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;" (keyup)="keyupPopup('comment')"
+        [(ngModel)]="comment" autocomplete="off" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="コメントは200字以内で入力してください。"
+        *ngIf="comment.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="saveNewHosho()"
+      [disabled]="isErrorHoshoName || hoshoName.length===0 || hoshoName.length>50 || hoshoValue.length > 200 || comment.length > 200"
+      pButton type="button" label="保存" class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="displayAddShukeiyaku=false" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="保障追加" [(visible)]="displayUpdateShukeiyaku" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">項目名<span class="error">*</span></div>
+    <div class="w-60 fl-left">
+      <input class="w-100 h-35" style="margin-bottom:10px;" (keyup)="keyupPopup('hoshoName')" [(ngModel)]="hoshoName"
+        autocomplete="off" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="項目名は40字以内で入力してください。"
+        *ngIf="hoshoName.length>50">
+      </p-message>
+      <p-message style="margin-top: 10px;" severity="error" text="項目名が未入力です。"
+        *ngIf="isErrorHoshoName && hoshoName.length===0">
+      </p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">内容</div>
+    <div class="w-60 fl-left"><input style="margin-bottom:10px;" class="w-100 h-35" (keyup)="keyupPopup('hoshoValue')"
+        [(ngModel)]="hoshoValue" autocomplete="off" type="text" pInputText>
+      <p-message style="margin-top: 10px; margin-bottom: 10px;" severity="error" text="内容は200字以内で入力してください。"
+        *ngIf="hoshoValue.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">コメント</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" (keyup)="keyupPopup('comment')" [(ngModel)]="comment"
+        autocomplete="off" type="text" pInputText>
+      <p-message style="margin-top: 10px; margin-bottom: 10px;" severity="error" text="コメントは200字以内で入力してください。"
+        *ngIf="comment.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="saveUpdateHosho()"
+      [disabled]="isErrorHoshoName || hoshoName.length===0 || hoshoName.length>50 || hoshoValue.length > 200 || comment.length > 200"
+      pButton type="button" label="保存" class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="displayUpdateShukeiyaku=false" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+
+
+<p-dialog header="特約追加" [(visible)]="displayTokuyakuList" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div class="item-popup" *ngFor="let tokuyaku of listTokuyakuHosho" (click)="chooseTokuyakuHosho(tokuyaku)">
+    {{tokuyaku.tokuyakuName}}
+  </div>
+</p-dialog>
+
+<p-dialog header="保障追加" [(visible)]="displayTokuyakuHoshoList" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div class="item-popup" *ngFor="let hosho of listHosho" style="cursor: pointer" (click)="addTokuyakuHosho(hosho)">
+    {{hosho.hoshoName}}
+  </div>
+</p-dialog>
+
+<p-dialog header="特約追加" [(visible)]="displayAddTokuyaku" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">特約<span class="error">*</span></div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom: 10px;"
+        (keyup)="keyupPopup('tokuyakuName')" [(ngModel)]="tokuyakuName" autocomplete="off" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="特約が未入力です。"
+        *ngIf="isErrorTokuyakuName && tokuyakuName.length === 0">
+      </p-message>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="特約は40字以内で入力してください。"
+        *ngIf="tokuyakuName.length > 40">
+      </p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">項目名<span class="error">*</span></div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoName')" [(ngModel)]="tokuyakuHoshoName" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="項目名は50字以内で入力してください。"
+        *ngIf="tokuyakuHoshoName.length > 50"></p-message>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="項目名が未入力です。"
+        *ngIf="isErrorTokuyakuHoshoName && tokuyakuHoshoName.length === 0"></p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">内容</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoValue')" [(ngModel)]="tokuyakuHoshoValue" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="内容は200字以内で入力してください。"
+        *ngIf="tokuyakuHoshoValue.length > 50"></p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">コメント</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoComment')" [(ngModel)]="tokuyakuHoshoComment" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="コメントは200字以内で入力してください。"
+        *ngIf="tokuyakuHoshoComment.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="saveNewTokuyaku()"
+      [disabled]="isErrorTokuyakuName || tokuyakuName.length>40 || tokuyakuName.length === 0 || isErrorTokuyakuHoshoName || tokuyakuHoshoName.length===0 || tokuyakuHoshoName.length>50 || tokuyakuHoshoValue.length > 200 || tokuyakuHoshoComment.length > 200"
+      pButton type="button" label="保存" class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="displayAddTokuyaku=false" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+
+<p-dialog header="保障追加" [(visible)]="displayTokuyakuHoshoListAdd" [blockScroll]="true" [modal]="true"
+  [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div class="item-popup" *ngFor="let hosho of listHosho" (click)="mapNewHoshoOfTokuyaku(hosho)">
+    {{hosho.hoshoName}}
+  </div>
+</p-dialog>
+
+<p-dialog header="特約追加" [(visible)]="displayMapNewHoshoOfTokuyaku" [blockScroll]="true" [modal]="true"
+  [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">項目名<span class="error">*</span></div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" (keyup)="keyupPopup('tokuyakuHoshoName')"
+        [(ngModel)]="tokuyakuHoshoName" autocomplete="off" style="margin-bottom:10px;" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="項目名が未入力です。"
+        *ngIf="isErrorTokuyakuHoshoName && tokuyakuHoshoName.length === 0"></p-message>
+      <p-message style="margin-top: 10px;" severity="error" text="項目名は50字以内で入力してください。"
+        *ngIf="tokuyakuHoshoName.length > 50"></p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">内容</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoValue')" [(ngModel)]="tokuyakuHoshoValue" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="内容は200字以内で入力してください。"
+        *ngIf="tokuyakuHoshoValue.length > 200"></p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">コメント</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoComment')" [(ngModel)]="tokuyakuHoshoComment" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="コメントは200字以内で入力してください。"
+        *ngIf="tokuyakuHoshoComment.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="addNewHoshoToTokuyaku()" pButton type="button" label="保存"
+      [disabled]="isErrorTokuyakuHoshoName || tokuyakuHoshoName.length===0 || tokuyakuHoshoName.length>50 || tokuyakuHoshoValue.length > 200 || tokuyakuHoshoComment.length > 200"
+      class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="displayMapNewHoshoOfTokuyaku=false" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="特約追加" [(visible)]="displayUpdateHoshoOfTokuyaku" [blockScroll]="true" [modal]="true"
+  [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">項目名<span class="error">*</span></div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoName')" [(ngModel)]="tokuyakuHoshoName" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="項目名が未入力です。"
+        *ngIf="isErrorTokuyakuHoshoName && tokuyakuHoshoName.length === 0"></p-message>
+      <p-message style="margin-top: 10px;" severity="error" text="項目名は50字以内で入力してください。"
+        *ngIf="tokuyakuHoshoName.length > 50"></p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">内容</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoValue')" [(ngModel)]="tokuyakuHoshoValue" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="内容は200字以内で入力してください。"
+        *ngIf="tokuyakuHoshoValue.length > 200"></p-message>
+    </div>
+  </div>
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">コメント</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" style="margin-bottom:10px;"
+        (keyup)="keyupPopup('tokuyakuHoshoComment')" [(ngModel)]="tokuyakuHoshoComment" autocomplete="off" type="text"
+        pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="コメントは200字以内で入力してください。"
+        *ngIf="tokuyakuHoshoComment.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="saveUpdateHoshoToTokuyaku()" pButton type="button" label="保存"
+      [disabled]="isErrorTokuyakuHoshoName || tokuyakuHoshoName.length===0 || tokuyakuHoshoName.length>50 || tokuyakuHoshoValue.length > 200 || tokuyakuHoshoComment.length > 200"
+      class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="displayUpdateHoshoOfTokuyaku=false" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="特約追加" [(visible)]="displayEditTokuyakuName" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block;">
+    <div class="w-40 fl-left h-35">特約<span class="error">*</span></div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" (keyup)="keyupPopup('tokuyakuNameEdit')"
+        [(ngModel)]="tokuyakuNameEdit" autocomplete="off" style="margin-bottom:10px;" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="特約は40字以内で入力してください。"
+        *ngIf="tokuyakuNameEdit.length > 40">
+      </p-message>
+      <p-message style="margin-top: 10px;" severity="error" text="特約は40字以内で入力してください。"
+        *ngIf="isErrorTokuyakuNameEdit && tokuyakuNameEdit.length===0">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="saveUpdateTokuyakuName()" pButton type="button" label="保存"
+      [disabled]="isErrorTokuyakuNameEdit || tokuyakuNameEdit.length===0 || tokuyakuNameEdit.length>40"
+      class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="displayEditTokuyakuName=false" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+
+<p-dialog header="" [(visible)]="displayAddHokenName" [blockScroll]="true" [modal]="true" [responsive]="false"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block; padding-top: 20px">
+    <div class="w-40 fl-left h-35">保険種類（商品名）</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" [(ngModel)]="newHokenName" autocomplete="off"
+        style="margin-bottom:10px;" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="保険種類（商品名）は400字以内で入力してください。"
+        *ngIf="newHokenName.length > 400">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="addNewHokenName()" pButton type="button" label="保存"
+      [disabled]="!newHokenName || newHokenName.length>400" class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="backNewHokenName()" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+
+<p-dialog header="" [(visible)]="displayAddFamilyName" [blockScroll]="true" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+  <div style="width: 100%;display: inline-block; padding-top: 20px">
+    <div class="w-40 fl-left h-35">契約者</div>
+    <div class="w-60 fl-left"><input class="w-100 h-35" [(ngModel)]="newFamilyName" autocomplete="off"
+        style="margin-bottom:10px;" type="text" pInputText>
+      <p-message style="margin-top: 10px;margin-bottom: 10px;" severity="error" text="契約者は200字以内で入力してください。"
+        *ngIf="newFamilyName.length > 200">
+      </p-message>
+    </div>
+  </div>
+  <p-footer>
+    <button (click)="addNewFamilyName()" pButton type="button" label="保存"
+      [disabled]="!newFamilyName || newFamilyName.length>200" class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" (click)="backNewFamilyName()" label="閉じる"
+      class="ui-button-raised ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-confirmDialog #keiyaku header="削除確認" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" label="キャンセル"
+      (click)="keiyaku.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="はい" (click)="keiyaku.accept()"></button>
+  </p-footer>
+
+  <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>

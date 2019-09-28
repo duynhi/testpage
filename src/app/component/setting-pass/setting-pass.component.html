@@ -1,0 +1,72 @@
+<section id="setting-pass">
+    <app-header></app-header>
+    <div class="padding-sp">
+    
+        <div class="title">
+            <h2 class="fs-25">マイページログイン</h2>
+        </div>
+        <form class="form-setting-pass" [formGroup]="settingPassGroup" *ngIf="!changePass">
+            <h3 style="margin-bottom: 30px">パスワード変更</h3>
+            <br>
+            <div class="center w-50 text-left margin-bot-10">
+                    <label class="fs-14">現在のパスワード</label>
+            </div>
+            <span class="ui-float-label center w-50">
+                <input [ngClass]="helper.displayCssError(settingPassGroup,'oldPass')" autocomplete="off" formControlName="oldPass" id="pass-temp" class="w-100 center h-35" type="password" size="15" pInputText> 
+            </span>
+            <br>
+            <div class="center w-50 text-left margin-bot-10">
+                    <label class="fs-14">新しいパスワード</label>
+            </div>
+            <span class="ui-float-label center w-50 ">
+                <input [ngClass]="helper.displayCssError(settingPassGroup,'newPass')" (keyup)=comparePass() autocomplete="off" formControlName="newPass" id="pass-new" class="w-100 center h-35" type="password" size="15" pInputText > 
+            </span>
+            <br>
+            <div class="center w-50 text-left margin-bot-10">
+                <label class="fs-14">新しいパスワード確認</label>
+            </div>
+            <span class="ui-float-label center w-50 ">
+                <input [ngClass]="helper.displayCssError(settingPassGroup,'newPassConfirm')" (keyup)=comparePass() autocomplete="off" formControlName="newPassConfirm" id="pass-confirm" class="w-100 center h-35" type="password" size="15" pInputText > 
+            </span>
+            
+            <br>
+            <p-checkbox styleClass="override" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}" binary="true" class="fs-12" name="group1" label="ご登録いただいたメールアドレス宛に保険クリニックからのお知らせを通知する" ></p-checkbox>
+            <br>
+            <br>
+            <button class=" color-orange-btn" [disabled]="settingPassGroup.invalid || showMessage" (click)="changePassword()" pButton type="button" label="パスワード変更"></button>
+            <div *ngIf="settingPassGroup.invalid" style="margin-top:10px">
+                <div *ngIf="!settingPassGroup.controls.oldPass.value&&(settingPassGroup.controls['oldPass'].dirty || settingPassGroup.controls['oldPass'].touched)">
+                    <p-message severity="error" text={{MESSAGE.tempPassRequire}} ></p-message>
+                </div>
+                <div style="margin-top:5px" *ngIf="!settingPassGroup.controls.newPass.value&&(settingPassGroup.controls['newPass'].dirty || settingPassGroup.controls['newPass'].touched)">
+                    <p-message severity="error" text={{MESSAGE.newPassRequire}} ></p-message>
+                </div>
+                <div style="margin-top:5px" *ngIf="settingPassGroup.controls.newPass.errors&&settingPassGroup.controls.newPass.errors.pattern&&(settingPassGroup.controls['newPass'].dirty || settingPassGroup.controls['newPass'].touched)">
+                    <p-message severity="error" text={{MESSAGE.newPassPolicy}} ></p-message>
+                </div>
+                <div style="margin-top:5px" *ngIf="!settingPassGroup.controls.newPassConfirm.value&&(settingPassGroup.controls['newPassConfirm'].dirty || settingPassGroup.controls['newPassConfirm'].touched)">
+                    <p-message severity="error" text={{MESSAGE.confirmPassRequire}} ></p-message>
+                </div>
+                <div style="margin-top:5px" *ngIf="settingPassGroup.controls.newPass.errors&&settingPassGroup.controls.newPass.errors.PassEqualEmail&&(settingPassGroup.controls['newPass'].dirty || settingPassGroup.controls['newPass'].touched)">
+                    <p-message severity="error" text={{MESSAGE.newPassEqualUser}} ></p-message>
+                </div>
+            </div>
+            <div *ngFor="let error of listErrors">
+                <p-message severity="error" text={{error.errMessage}}></p-message>
+            </div>
+            <div style="margin-top:5px" *ngIf="showMessage">
+                <p-message severity="error" text={{MESSAGE.passNotMatch}} ></p-message>
+            </div>
+        </form>
+        <div class="form-setting-pass" *ngIf="changePass">
+            <h3 style="margin-bottom: 20px">パスワード変更</h3>
+            <p class="text-left-sp" style="line-height: 1.5">パスワードを変更いたしました。トップ画面に戻ります。</p>
+            <br>
+            <button class="color-orange-btn" (click)="goToLogin()" pButton type="button" label="ホーム画面へ戻る"></button>
+        </div>
+    </div>
+    <app-loading [loading]="loading"></app-loading>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+
+</section>

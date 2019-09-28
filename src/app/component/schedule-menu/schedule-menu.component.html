@@ -1,0 +1,82 @@
+<section id="ReservationGuide">
+  <div class="container">
+      <app-header></app-header>
+      <div class="wrapper">
+          <h1 class="padding3 fs-25" >マイページ</h1>
+          <h2 class="padding3 fs-20" >ご予約</h2>
+          <div style="width: 94%; margin: auto; margin-top: 10px;">
+            <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+            <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+          </div>
+          <div class="content padding3 sp" style="padding-top: 20px">
+              <div class="box">
+                <div class="banner-content">
+                  <p class="text-left" style="margin-bottom: 15px;"><strong>担当店舗でWeb予約する</strong></p>
+                  <div class="blk-inline">
+                    <span class="clinic-name">{{name}}</span>
+                    <img src="assets/image/btn_01.png" width="100%">
+                  </div>
+                </div>
+              </div>
+
+              <div class="box" >
+                <div class="banner-content">
+                  <!-- <p class="text-left" style="margin-bottom: 15px;"><strong>担当店舗以外で予約する</strong></p> -->
+                  <!-- <img style="cursor: pointer" (click)="goToPageHoken()" src="assets/image/btn_02.png" width="100%"> -->
+                  <a href="tel:{{tantoClinicInfo[0].phone}}" *ngIf="tantoClinicInfo[0].phone.length > 0;else notCall">
+                    <img src="assets/image/btn_03.png" width="100%">
+                  </a>
+                  <ng-template #notCall>
+                    <img src="assets/image/btn_03.png" width="100%">
+                  </ng-template>
+                </div>
+              </div>
+              <!-- <div style="margin: auto; text-align: center; padding-bottom: 15px">
+                  <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                  <span class="text-link">ご自宅訪問予約を希望の方</span>
+              </div> -->
+          </div>
+          <div class="content padding3 pc" style="padding-top: 20px">
+              <div class="box">
+                <div class="banner-content">
+                  <p class="text-left" style="margin-bottom: 15px;"><strong>担当店舗でWeb予約する</strong></p>
+                  <div style="width: 100%; padding: 0 10% 0 10%">
+                    <div class="blk-inline">
+                      <span class="clinic-name">{{name}}</span>
+                      <img style="cursor: pointer" src="assets/image/btn_01.png" width="47%">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div style="border-bottom: 2px dotted #B8B3B0"></div> -->
+              <div class="box" style="padding-top: 20px">
+                <div class="banner-content">
+                  <!-- <p class="text-left" style="margin-bottom: 15px;"><strong>担当店舗以外で予約する</strong></p> -->
+                  <div style="width: 100%; padding: 0 10% 0 10%; display: inline-block; ">
+                    <!-- <div style="width: 47%; float: left; ">
+                      <img style="cursor: pointer" (click)="goToPageHoken()" src="assets/image/btn_02.png" width="100%">
+                    </div> -->
+                    <!-- <div style="width: 6%; float: left; height: 10px;"></div> -->
+                    <div style="width: 47%; float: left;">
+                        <a  href="tel:{{tantoClinicInfo[0].phone}}" *ngIf="tantoClinicInfo[0].phone.length > 0;else notCall2">
+                          <img src="assets/image/btnSchedule.JPG" width="100%">
+                        </a>
+                        <ng-template #notCall2>
+                          <img src="assets/image/btnSchedule.JPG" width="100%">
+                        </ng-template>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <!-- <div style="margin: auto; text-align: center; padding-bottom: 55px">
+                  <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon>&nbsp;
+                  <span class="text-link">ご自宅訪問予約を希望の方</span>
+              </div> -->
+          </div>
+      </div>
+  </div>
+  <app-loading [loading]="loading"></app-loading>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+</section>

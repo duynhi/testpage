@@ -1,0 +1,26 @@
+    
+    /*ConsultationDocumentList*/
+    #ConsultationDocumentList{
+        .box{
+            .row{
+                border-bottom: 2px dotted #b8b3b0 ;
+                padding: 0.5rem 0;
+            }
+        }
+    }
+
+    .scroll-content {
+        height: 100%;
+        margin-bottom: 50px
+        // width: 80%;
+        // margin: auto;
+        // overflow-y: scroll;
+    }
+
+    .search-results {
+        height: 100%;
+    }
+
+    .borderRight {
+        border-right: 1px dotted #b8b3b0;
+    }

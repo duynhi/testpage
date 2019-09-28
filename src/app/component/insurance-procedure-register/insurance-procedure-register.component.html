@@ -1,0 +1,1152 @@
+<!--InsuranceProcedureRegister-->
+<section id="InsuranceProcedureRegister">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper padding3" [formGroup]="insuranceGroup" *ngIf="insuranceGroup && !confirm && !success">
+      <h1 class="">マイページ</h1>
+      <h2 class="fs-20 ">保険契約に関する手続き</h2>
+      <div style="width: 100%; margin: auto; margin-top: 10px; margin-bottom: 20px; height: 1px;">
+        <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+        <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+      </div>
+      <div style="margin-top: 20px; font-size: 13px">
+        <span>こちらは、</span><span style="color: #ff6400">保険クリニックでお申し込みされたご契約のお手続きフォームです。</span><br>
+        <span style="color: #ff6400">他の代理店や保険会社でお申し込みされたご契約はお手続きできませんのでご注意ください。</span><br>
+        ※お急ぎの場合は担当店舗へお電話ください。
+      </div>
+      <div class="step">
+        <div class="item-12-12 fs-step">
+          <div class="w-20 fl-left" style="text-align: center">
+            <p><strong>Step 1</strong></p>
+            <p><strong>手続内容</strong></p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 2</p>
+            <p>変更内容</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 3</p>
+            <p>連絡先</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 4</p>
+            <p>確認</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 5</p>
+            <p>受付完了</p>
+          </div>
+        </div>
+        <div *ngIf="!confirm && !success" class="item-12-12"
+          style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ; ">
+          <div class="w-80" style="height: 16px; border-bottom: 3px dotted #d0ccc9; margin: auto"></div>
+          <div class='orange'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px;left: calc(10% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(30% - 15px); margin-left: auto; margin-right: auto;  background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(50% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(70% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(90% - 15px); background-color: #fff">
+          </div>
+        </div>
+      </div>
+      <div class="box progress-bar" style="display: flex; align-items: center">
+        <span class="step-text" style="height: 21px">STEP1</span>
+        <strong class="fs-20"> &nbsp;ご希望のお手続きについて</strong>
+      </div>
+      <div class="box-step">
+        <div class="row-data border-bottom-row " style="border-bottom: none">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご希望のお手続きをお選びください。<br>（複数選択できます）</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100">
+              <div class="w-33-res fl-left">
+                <button pButton type="button" style="font-size: 13px !important"
+                  [className]="collapsedAddress ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                  (click)="changeStatusAddress()" label="住所の変更"></button>
+              </div>
+              <!-- <div class="pc fl-left" style="width:3%; height: 10px"></div> -->
+              <div class="w-33-res fl-left">
+                <button pButton type="button" style="font-size: 13px !important"
+                  [className]="collapsedPhone ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                  (click)="changeStatusPhone()" label="電話番号の変更"></button>
+              </div>
+              <div class="w-33-res fl-left">
+                <button [className]="collapsedNameDest ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                  (click)="changeStatusNameDest()" style="font-size: 13px !important" pButton type="button"
+                  label="名義変更"></button>
+              </div>
+              <!-- <div class="pc fl-left" style="width:3%; height: 10px"></div> -->
+              <div class="w-33-res fl-left">
+                <button [className]="collapsedName ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                  (click)="changeStatusName()" style="font-size: 13px !important" pButton type="button"
+                  label="受取人の変更"></button>
+              </div>
+              <div class="w-33-res fl-left">
+                <button [className]="collapsedPayType ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                  (click)="changeStatusPayType()" style="font-size: 13px !important" pButton type="button"
+                  label="保険料支払方法の変更"></button>
+              </div>
+              <!-- <div class="pc fl-left" style="width:3%; height: 10px"></div> -->
+
+              <!-- <div class="pc fl-left" style="width:3%; height: 10px"></div> -->
+              <!-- <div class="w-33-res fl-left">
+                <button [className]="collapsedOther ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                  (click)="changeStatusOther()" style="font-size: 13px !important" pButton type="button"
+                  label="その他のお手続き"></button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="item-12-12 fs-step">
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 1</p>
+            <p>手続内容</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center">
+            <p><strong>Step 2</strong></p>
+            <p><strong>変更内容</strong></p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 3</p>
+            <p>連絡先</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 4</p>
+            <p>確認</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 5</p>
+            <p>受付完了</p>
+          </div>
+        </div>
+        <div *ngIf="!confirm && !success" class="item-12-12"
+          style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ; ">
+          <div class="w-80" style="height: 16px; border-bottom: 3px dotted #d0ccc9; margin: auto"></div>
+          <div class='orange2'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px;left: calc(10% - 15px); background-color: #fff">
+          </div>
+          <div class='orange'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(30% - 15px); margin-left: auto; margin-right: auto;  background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(50% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(70% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(90% - 15px); background-color: #fff">
+          </div>
+        </div>
+      </div>
+      <div class="box progress-bar" style="display: flex; align-items: center">
+        <span class="step-text" style="height: 21px">STEP2</span>
+        <strong class="fs-20"> &nbsp; ご変更内容について</strong>
+      </div>
+      <div class="box-step">
+        <div class="row-data border-bottom-row " *ngIf="collapsedAddress || collapsedPhone">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">変更になる（なった）日をご入力ください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: flex">
+            <div style="width: 100%">
+              <div style="padding: 20px; width: 40%; float: left;">
+                <div class="w-time">
+                  <p-dropdown [options]="years" (onChange)="changeYear()" formControlName="year" styleClass="w-time"
+                    placeholder=""></p-dropdown>
+                  <div *ngIf="f.year.invalid" style="margin-top: 10px; width: 100%;">
+                    <p-message severity="error" text='年が未入力です。'
+                      *ngIf="!f.year.value&&(insuranceGroup.controls['year'].dirty || insuranceGroup.controls['year'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+                <div style="width: 20px; float: left; padding-top: 5px; text-align: right">年</div>
+              </div>
+              <div class="date_warrper">
+                <div class="w-time">
+                  <p-dropdown [options]="months" (onChange)="changeMonth()" formControlName="month"
+                    styleClass="dropdown-w-100 h-35 w-time" placeholder=""></p-dropdown>
+                  <div *ngIf=" f.month.invalid" style="margin-top: 10px; width: 100%;">
+                    <p-message severity="error" text='月が未入力です。'
+                      *ngIf="!f.month.value&&(insuranceGroup.controls['month'].dirty || insuranceGroup.controls['month'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+                <div class="date_label">月</div>
+              </div>
+              <div class="date_warrper">
+                <div class="w-time">
+                  <p-dropdown [options]="days" formControlName="day" styleClass="dropdown-w-100 h-35 w-time"
+                    placeholder=""></p-dropdown>
+                  <div *ngIf="f.day.invalid" style="margin-top: 10px; width: 100%;">
+                    <p-message severity="error" text='日が未入力です。'
+                      *ngIf="!f.day.value&&(insuranceGroup.controls['day'].dirty || insuranceGroup.controls['day'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+                <div class="date_label">日</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='row-data border-bottom-row' *ngIf="collapsedAddress">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold">新しい住所をご入力ください。</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: inline-block;padding: 20px">
+            <div style="width: 100%; display: inline-block">
+              <div class="w-35 fl-left">
+                <div class="fs-14 text1">郵便番号</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div class="margin-top-5-res" style="width: 100%">
+                  <div style="width: 40%; float: left;">
+                    <div style="width: 100%;">
+                      <input formControlName="newZip1" maxlength="3" class="center h-35"
+                        style="width: 100% !important; float: left;" type="text" size="3" pInputText>
+                    </div>
+                    <div *ngIf="f.newZip1.errors" style="margin-top: 5px; display: inline-block">
+                      <p-message severity="error" text='半角数字ではありません。'
+                        *ngIf="(f.newZip1.value&&f.newZip1.errors&&(f.newZip1.dirty || f.newZip1.touched))">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div style="width: 10%; text-align: center; float:left"><span style="line-height: 35px">-</span></div>
+                  <div style="width: 40%; float: left;">
+                    <div style="width: 100%">
+                      <input formControlName="newZip2" maxlength="4" class="center h-35"
+                        style="width: 100% !important; float: left;" type="text" size="4" pInputText>
+                    </div>
+                    <div *ngIf="f.newZip2.errors" style="margin-top: 5px; display: inline-block">
+                      <p-message severity="error" text='半角数字ではありません。'
+                        *ngIf="(f.newZip2.value&&f.newZip2.errors&&(f.newZip2.dirty || f.newZip2.touched))">
+                      </p-message>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="border-bottom:none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 font-bold text1"></div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+                <div class="w-100-res margin-top-5-res">
+                  <p (click)="yuubinbango()" class="auto-fill"
+                    style="text-decoration: underline;cursor: pointer; display: inline-block; font-size: 14px; color: #4e9162; text-decoration-color: #4e9162;">
+                    郵便番号から住所を自動入力 </p>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom:none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">都道府県</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+                <div class="w-100-res margin-top-5-res">
+                  <p-dropdown [options]="cities" formControlName="newAddressPref"></p-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom:none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">市区町村 丁目・番地</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;">
+                  <input formControlName="newAddressTown" class="w-100 center h-35 margin-top-5-res" type="text"
+                    size="400" pInputText>
+                  <div *ngIf="f.newAddressTown.errors" style="margin-top: 10px">
+                    <p-message severity="error" text="{{MESSAGE.streetMaxLength}}"
+                      *ngIf="f.newAddressTown.value.length>400&&(insuranceGroup.controls['newAddressTown'].dirty || insuranceGroup.controls['newAddressTown'].touched)">
+                    </p-message><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom:none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">建物名</div>
+                <!-- <div class="text2" style="background-color: #33804a !important">任意</div> -->
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;">
+                  <input formControlName="newAddressBldg" class="w-100 center h-35 margin-top-5-res" type="text"
+                    size="200" pInputText>
+                  <div *ngIf="f.newAddressBldg.errors" style="margin-top: 10px">
+                    <p-message severity="error" text="{{MESSAGE.apartmentMaxLength}}"
+                      *ngIf="f.newAddressBldg.value.length>200&&(insuranceGroup.controls['newAddressBldg'].dirty || insuranceGroup.controls['newAddressBldg'].touched)">
+                    </p-message><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row" *ngIf="collapsedAddress || collapsedPhone">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">新しい電話番号をご入力ください。</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: flex; align-items: center;">
+            <div class="w-50-res" style="padding: 20px; min-width: 200px; float: left; padding-right: 20px !important">
+              <input formControlName="newPhone" class="w-100 center h-35" placeholder="0900000000" type="text" size="50"
+                pInputText>
+              <div *ngIf="f.newPhone.invalid" style="margin-top: 10px;">
+                <div class="margin-top-5-res">
+                  <p-message style="margin-top: 10px;" severity="error" text="電話番号に誤りがあります。"
+                    *ngIf="f.newPhone.value.length<50 && f.newPhone.errors &&(f.newPhone.dirty || f.newPhone.touched)">
+                  </p-message>
+                  <p-message severity="error" text={{MESSAGE.phoneMaxLength}}
+                    *ngIf="f.newPhone.value.length>50&&(insuranceGroup.controls['newPhone'].dirty || insuranceGroup.controls['newPhone'].touched)">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご契約者をお選びください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100" *ngIf="listStatusKeiyakuFamily.length === familyList.length">
+              <div class="w-33-res fl-left" *ngFor="let family of familyList, let i = index">
+                <div class="item item-12-12 list-name-family">
+                  <!-- [style.margin-top.px]="i === 0 || i === 1 || i ==2 ? '0' : '1'" -->
+                  <button
+                    [className]="statusColorFamily[i].status ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                    (click)="changeColourFamily(i, family.familyNo)" #familyID pButton type="button"
+                    [disabled]="checkKeiyakuFamilyStatus(family.familyNo)" label="{{family.firstName}} さま"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1"><span>ご契約をお選びください。（複数選択可）</span><br>
+              <p style="color: #ff6400; margin-top: 10px">※1つ以上ご選択ください</p>
+            </div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left">
+            <div class="w-100 keiyaku-container">
+              <div class="w-50-res keiyaku-item" style="cursor: pointer"
+                *ngFor="let keiyaku of keiyakuList, let i = index">
+
+                <div style="height: calc(100% - 20px);"
+                  [className]="statusColorKeiyaku.length > 0 &&statusColorKeiyaku[i].status ? 'keiyaku-wrapper family-insurance-detail item-12-12 box-step' : 'family-insurance-detail item-12-12 box-step'"
+                  (click)="changeColour(i, keiyaku.keiyakuNo)" #product>
+
+                  <div class="item-1-12 v-top" *ngIf="statusColorKeiyaku.length > 0 && !statusColorKeiyaku[i].status">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='1'" src="assets/image/icon-heart.png" width="100%"
+                      style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='4'" src="assets/image/icon-car.png" width="100%"
+                      style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='2'" src="assets/image/icon-medical.png" width="100%"
+                      style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='5'" src="assets/image/icon-house.png" width="100%"
+                      style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='3'" src="assets/image/icon-pig.png" width="100%"
+                      style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='6'" src="assets/image/icon-vali.png" width="100%"
+                      style="max-width: 25px">
+                  </div>
+                  <div class="item-1-12 v-top" *ngIf="statusColorKeiyaku.length > 0 && statusColorKeiyaku[i].status">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='1'" src="assets/image/icon-heart-white.png"
+                      width="100%" style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='4'" src="assets/image/icon-car-white.png"
+                      width="100%" style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='2'" src="assets/image/icon-medical-white.png"
+                      width="100%" style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='5'" src="assets/image/icon-house-white.png"
+                      width="100%" style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='3'" src="assets/image/icon-pig-white.png"
+                      width="100%" style="max-width: 25px">
+                    <img *ngIf="keiyaku.hoshoCategoryF==='6'" src="assets/image/icon-vali-white.png"
+                      width="100%" style="max-width: 25px">
+                  </div>
+                  <div class="detail fs-14 item-7-12 payment_info v-top" style="float: left; display: flex">
+                    <div *ngIf="statusColorKeiyaku.length > 0 && !statusColorKeiyaku[i].status"><span
+                        class="color-orange">・</span></div>
+                    <div *ngIf="statusColorKeiyaku.length > 0 && statusColorKeiyaku[i].status"><span
+                        style="color: #fff">・</span></div>
+                    <div class="parent" style="padding: 0px 3px; text-align: left">
+                      <strong>{{keiyaku.companyCd}}</strong>
+                      <p>{{keiyaku.productName}}</p>
+                      <p *ngIf="keiyaku.currencyF === '円'">
+                        保険料：{{keiyaku.hokenP}}{{keiyaku.currencyF}}/{{keiyaku.haraikata}}</p>
+                    </div>
+                  </div>
+                  <div class="item-4-12 v-top" style="display: grid">
+                    <div class="item-12-12">
+                      <div
+                        [className]="statusColorKeiyaku.length > 0 &&statusColorKeiyaku[i].status ? 'keiyaku-pay-type choose-keiyaku status item-12-12' : 'keiyaku-pay-type status item-12-12'">
+                        <div
+                          [className]="statusColorKeiyaku.length > 0 && statusColorKeiyaku[i].status ? 'text-up-choose' : 'text-up'">
+                          <strong>契約中</strong>
+                        </div>
+                        <div
+                          [className]="statusColorKeiyaku.length > 0 && statusColorKeiyaku[i].status ? 'text-down-choose' : 'text-down'">
+                          {{keiyaku.status}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="step">
+        <div class="item-12-12 fs-step">
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 1</p>
+            <p>手続内容</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 2</p>
+            <p>変更内容</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center">
+            <p><strong>Step 3</strong></p>
+            <p><strong>連絡先</strong></p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 4</p>
+            <p>確認</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 5</p>
+            <p>受付完了</p>
+          </div>
+        </div>
+        <div *ngIf="!confirm && !success" class="item-12-12"
+          style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ; ">
+          <div class="w-80" style="height: 16px; border-bottom: 3px dotted #d0ccc9; margin: auto"></div>
+          <div class='orange2'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px;left: calc(10% - 15px); background-color: #fff">
+          </div>
+          <div class='orange2'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(30% - 15px); margin-left: auto; margin-right: auto;  background-color: #fff">
+          </div>
+          <div class='orange'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(50% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(70% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(90% - 15px); background-color: #fff">
+          </div>
+        </div>
+      </div>
+      <div class="box progress-bar" style="display: flex; align-items: center">
+        <span class="step-text" style="height: 21px">STEP3</span>
+        <strong class="fs-20"> &nbsp; 本件のご連絡先について</strong>
+      </div>
+      <div class="box-step">
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご入力者をお選びください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc" style="display: block">
+            <div class="w-100">
+              <div class="w-33-res fl-left" *ngFor="let family of familyList, let i = index">
+                <div class="item item-12-12 list-name-family">
+                  <button
+                    [className]="desPerson === family.familyNo ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                    (click)="changeDesPerson(family.familyNo)" #familyID pButton type="button"
+                    label="{{family.firstName}} さま"></button>
+                </div>
+              </div>
+              <div class="w-33-res fl-left">
+                <div class="item item-12-12">
+                  <button [className]="desPerson === -1 ? 'btn-selected h-35 w-100' : 'h-35 w-100 notSelected-btn'"
+                    (click)="changeDesPerson(-1)" #familyID pButton type="button" label="その他"></button>
+                </div>
+              </div>
+            </div>
+            <div class="w-100" *ngIf="desPerson === -1" style="padding-top: 20px; display: inline-flex;">
+              <div class="w-50-res" style="min-width: 200px; float: left;">
+                <input formControlName="familyInput" class="w-100 center h-35" type="text" size="50" pInputText>
+                <div>
+                  <div style="margin-top: 5px">
+                    <p-message style="margin-top: 10px;" severity="error" text="ご入力者が未入力です。"
+                      *ngIf="!f.familyInput.value&&(f.familyInput.dirty || f.familyInput.touched)">
+                    </p-message>
+                    <p-message style="margin-top: 10px;" severity="error" text="ご入力者は50字以内で入力してください。"
+                      *ngIf="f.familyInput.value && f.familyInput.value.length > 50 &&(f.familyInput.dirty || f.familyInput.touched)">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご契約者さまとの関係をお選びください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100 fl-left">
+              <div class="w-50-res fl-left">
+                <p-dropdown [options]="relations" (onChange)="changeRelation()" formControlName="relation"
+                  placeholder="">
+                </p-dropdown>
+                <div *ngIf=" f.relation.invalid" style="margin-top: 10px; width: 100%;">
+                  <p-message severity="error" text='関係が未入力です。'
+                    *ngIf="!f.relation.value&&(insuranceGroup.controls['relation'].dirty || insuranceGroup.controls['relation'].touched)">
+                  </p-message>
+                </div>
+                <!-- <div style="margin-top: 10px; max-width: 200px; border-radius: 5px">
+                  <input formControlName="relationOther" class="center h-35" placeholder="例） 長女、長男など"
+                    style="width: 100%; float: left;" type="text" size="3" pInputText>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row " *ngIf="collapsedName || collapsedPayType || collapsedNameDest">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">書類送付先はどちらですか？</div>
+            <!-- <div class="text2">必須</div> -->
+          </div>
+          <div class="w-65 fl-left text-left" style="padding: 20px">
+            <div class="row">
+              <div class="w-33-res">
+                <div class="item item-12-12">
+                  <button [className]="!chooseDestination ? 'w-100 h-35 btn-selected' : 'w-100 h-35 notSelected-btn'"
+                    pButton type="button" (click)="chooseShowDestination(false)" label="契約者住所"></button>
+                </div>
+              </div>
+              <div class="w-33-res">
+                <div class="item item-12-12">
+                  <button [className]="chooseDestination ? 'w-100 h-35 btn-selected' : 'w-100 h-35 notSelected-btn'"
+                    pButton type="button" (click)="chooseShowDestination(true)" label="その他"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row " *ngIf="chooseDestination">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold">送付先住所をご入力ください。</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: inline-block;padding: 20px">
+            <div style="width: 100%; display: block">
+              <div class="w-35 fl-left">
+                <div class="fs-14 text1">郵便番号</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div class="margin-top-5-res" style="width: 100%">
+                  <div style="width: 40%; float: left;">
+                    <div style="width: 100%;">
+                      <input formControlName="destZip1" maxlength="3" class="center h-35 margin-bot-10"
+                        style="width: 100% !important; float: left;" type="text" size="3" pInputText>
+                    </div>
+                    <div *ngIf="!f.destZip1.value" style="margin-top: 5px;">
+                      <p-message severity="error" text='郵便番号が未入力です。'
+                        *ngIf="(!f.destZip1.value&&(f.destZip1.dirty || f.destZip1.touched))">
+                      </p-message>
+                    </div>
+                    <div *ngIf="f.destZip1.errors " style="margin-top: 5px;">
+                      <p-message severity="error" text='半角数字ではありません。'
+                        *ngIf="(f.destZip1.value&&f.destZip1.errors&& (f.destZip1.dirty || f.destZip1.touched))">
+                      </p-message>
+                    </div>
+                  </div>
+                  <div style="width: 10%; text-align: center; float:left"><span style="line-height: 35px">-</span></div>
+                  <div style="width: 40%; float: left;">
+                    <div style="width: 100%;">
+                      <input formControlName="destZip2" maxlength="4" class="center h-35 margin-bot-10"
+                        style="width: 100% !important; float: left;" type="text" size="4" pInputText>
+                    </div>
+                    <div *ngIf="!f.destZip2.value" style="margin-top: 5px;">
+                      <p-message severity="error" text='郵便番号が未入力です。'
+                        *ngIf="(!f.destZip2.value&&(f.destZip2.dirty || f.destZip2.touched))">
+                      </p-message>
+                    </div>
+                    <div *ngIf="f.destZip2.errors" style="margin-top: 5px;">
+                      <p-message severity="error" text='半角数字ではありません。'
+                        *ngIf="(f.destZip2.value&&f.destZip2.errors&& (f.destZip2.dirty || f.destZip2.touched))">
+                      </p-message>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="border-bottom:none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 font-bold text1"></div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+                <div class="w-100-res margin-top-5-res">
+                  <p (click)="yuubinbango2()" class="auto-fill"
+                    style="text-decoration: underline;cursor: pointer; display: inline-block; font-size: 14px; color: #4e9162; text-decoration-color: #4e9162;">
+                    郵便番号から住所を自動入力 </p>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">都道府県</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+                <div class="w-100-res margin-top-5-res">
+                  <p-dropdown [options]="cities" formControlName="destAddressPref"></p-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">市区町村 丁目・番地</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;">
+                  <input formControlName="destAddressTown" class="w-100 center h-35 margin-top-5-res" type="text"
+                    size="400" pInputText>
+                  <div style="margin-top: 10px">
+                    <p-message severity="error" text='{{MESSAGE.streetMaxLength}}'
+                      *ngIf="f.destAddressTown.value.length>400&&(insuranceGroup.controls['destAddressTown'].dirty || insuranceGroup.controls['destAddressTown'].touched)">
+                    </p-message>
+                    <p-message severity="error" text='市区町村 丁目・番地が未入力です。'
+                      *ngIf="!f.destAddressTown.value&&(insuranceGroup.controls['destAddressTown'].dirty || insuranceGroup.controls['destAddressTown'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">建物名</div>
+                <!-- <div class="text2" style="background-color: #33804a !important">任意</div> -->
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;">
+                  <input formControlName="destAddressBldg" class="w-100 center h-35 margin-top-5-res" type="text"
+                    size="200" pInputText>
+                  <div style="margin-top: 10px">
+                    <!-- <p-message severity="error" text='建物名が未入力です。'
+                      *ngIf="!f.destAddressBldg.value&&(insuranceGroup.controls['destAddressBldg'].dirty || insuranceGroup.controls['destAddressBldg'].touched)">
+                    </p-message> -->
+                    <p-message severity="error" text='{{MESSAGE.apartmentMaxLength}}'
+                      *ngIf="f.destAddressBldg.value.length>200&&(insuranceGroup.controls['destAddressBldg'].dirty || insuranceGroup.controls['destAddressBldg'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">電話番号はどちらですか？</div>
+          </div>
+          <div class="w-65 fl-left text-left" style=" padding: 20px">
+            <div style="width: 100%">
+              <div class="w-33-res">
+                <button [className]="!chooseDestinationPhone ? 'h-35 w-100 btn-selected' : 'h-35 w-100 notSelected-btn'"
+                  pButton type="button" (click)="chooseShowDestinationPhone(false)" label="契約者電話番号"></button>
+              </div>
+              <div class="w-33-res">
+                <button [className]="chooseDestinationPhone ? 'w-100 h-35 btn-selected' : 'w-100 h-35 notSelected-btn'"
+                  pButton type="button" (click)="chooseShowDestinationPhone(true)" label="その他"></button>
+              </div>
+            </div>
+            <div style="width: 100%">
+              <div *ngIf="chooseDestinationPhone" class="w-50-res"
+                style="padding-top: 20px; min-width: 200px; float: left;">
+                <input formControlName="destPhone" class="w-100 center h-35" style="margin-bottom: 10px"
+                  placeholder="0900000000" type="text" size="50" pInputText>
+                <div>
+                  <div class="margin-top-5-res">
+                    <p-message severity="error" text="電話番号が未入力です。"
+                      *ngIf="!f.destPhone.value&&(f.destPhone.dirty || f.destPhone.touched)">
+                    </p-message>
+                    <p-message severity="error" text="電話番号に誤りがあります。"
+                      *ngIf="f.destPhone.value && f.destPhone.value.length<50 && f.destPhone.errors &&(f.destPhone.dirty || f.destPhone.touched)">
+                    </p-message>
+                    <p-message severity="error" text={{MESSAGE.phoneMaxLength}}
+                      *ngIf="f.destPhone.value.length>50&&(insuranceGroup.controls['destPhone'].dirty || insuranceGroup.controls['destPhone'].touched)">
+                    </p-message>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row-data border-bottom-row " >
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">電話番号</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: flex; align-items: center;">
+            <div class="w-50-res" style="padding: 20px; min-width: 200px; float: left;">
+              <input formControlName="destPhone" class="w-100 center h-35" placeholder="0900000000" type="text"
+                size="50" pInputText>
+              <div *ngIf="f.destPhone.invalid">
+                <div class="margin-top-5-res">
+                  <p-message style="margin-top: 10px;" severity="error" text="電話番号に誤りがあります。"
+                    *ngIf="f.destPhone.value.length<50 && f.destPhone.errors &&(f.destPhone.dirty || f.destPhone.touched)">
+                  </p-message>
+                  <p-message severity="error" text={{MESSAGE.phoneMaxLength}}
+                    *ngIf="f.destPhone.value.length>50&&(insuranceGroup.controls['destPhone'].dirty || insuranceGroup.controls['destPhone'].touched)">
+                  </p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <!-- <div class="box-step">
+        <div class="row-data border-bottom-row " style="border-bottom: none">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">利用規約</div>
+          </div>
+          <div class="w-65 fl-left text-left" style=" padding: 20px">
+            <div style="width: 100%; padding-bottom: 20px">
+              <span>
+                <input type="radio" id="ok" name="accept" value="1" formControlName="accept">
+                <label for="ok">同意する</label>
+              </span>
+              <span style="margin-left: 20px">
+                <input type="radio" id="cancel" name="accept" formControlName="accept" value="0">
+                <label for="cancel">同意しない</label>
+              </span>
+            </div>
+            <div style="width: 100%">
+              <div
+                style=" width: 100%; height: 100px; overflow-y: scroll;border-radius: 5px; border: 1px solid #dfdcda;padding: 5px;">
+                【個人情報の取り扱いについて】<br>
+                当サイトに掲載されている各募集代理店が、お客様から取得した個人情報は(このwebサイトから取得した個人情報を含む)各募集代理店のプライバシーポリシーに従い、お取り扱いさせていただくことになりますのでご留意くださいますようお願いいたします。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="show_pc_btn center w-100 text-left margin-bot-10 group-btn-footer"
+        style="display:inline-block; height: 75px;">
+        <button class="back-btn arrow_green fl-left" (click)="backToSelect('select')" pButton type="button" label=""
+          style="margin-right: 10%; padding: 10px">前のページに戻る
+        </button>
+        <button class="color-orange-btn fl-left w-35-res" pButton type="button"
+          [disabled]="insuranceGroup.invalid || listChooseKeiyakuName.length === 0 || !checkChoooseStatus() || !desPerson"
+          (click)="goToConfirm()"
+          style="font-weight: bold;margin: auto; border-radius: 5px; text-align: center; padding: 20px; color: #fff; box-shadow: 3px 3px 3.5px #c8c8c8;">
+          <span style="font-size: 16px">入力内容を送信する</span>
+        </button>
+      </div>
+
+      <div class="sp_btn center w-100 text-left margin-bot-10 group-btn-footer" style="display:inline-block">
+        <button class="color-orange-btn fl-left w-35-res" pButton type="button"
+          [disabled]="insuranceGroup.invalid || listChooseKeiyakuName.length === 0 || !checkChoooseStatus() || !desPerson"
+          (click)="goToConfirm()"
+          style="font-weight: bold;margin: auto; border-radius: 5px; text-align: center; padding: 20px; color: #fff; box-shadow: 3px 3px 3.5px #c8c8c8;">
+          <span style="font-size: 16px">入力内容を送信する</span>
+        </button>
+        <!-- <span style="font-size: 13px">利用規約に同意して</span> <br>  -->
+        <button class="back-btn arrow_green fl-left margin-top-sp" (click)="backToSelect('select')"
+          style="margin-bottom: 30px; width: 50%;padding: 10px" pButton type="button">前のページに戻る
+        </button>
+      </div>
+
+      <!-- <div class="content">
+        <div class="form-input" style="display: flex">
+          <div class="row" style="width: 30%">
+                <div class="btn btn-gray item-10-12" style="display: flex">
+                  <div class="arrow item item-2-12 text-left">
+                    <i class="pi pi-arrow-left"></i>
+                  </div>
+                  <div class="guid item item-8-12">前のページに戻る</div>
+                </div>
+            </div>
+          <div class="row" style="width: 50%">
+            <div class="box text-center"><button class="btn btn-orange item-10-12" pButton type="button"  (click)="goToConfirm()"
+                  label="入力内容を確認する">利用規約に同意して</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="wrapper padding3" *ngIf="confirm && !success">
+      <h1 class="">マイページ</h1>
+      <h2 class="fs-20 ">保険手続き登録完了</h2>
+      <div style="width: 100%; margin: auto; margin-top: 10px; margin-bottom: 20px;">
+        <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+        <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+      </div>
+      <div class="fs-12">
+        <span>こちらは、</span><span style="color: #ff6400">保険クリニックでお申し込みされたご契約のお手続きフォームです。</span><br>
+        <span style="color: #ff6400">他の代理店や保険会社でお申し込みされたご契約はお手続きできませんのでご注意ください。</span><br>
+        ※お急ぎの場合は担当店舗へお電話ください。
+      </div>
+      <div class="step">
+        <div class="item-12-12 fs-step">
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 1</p>
+            <p>手続内容</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 2</p>
+            <p>変更内容</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 3</p>
+            <p>連絡先</p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center">
+            <p><strong>Step 4</strong></p>
+            <p><strong>確認</strong></p>
+          </div>
+          <div class="w-20 fl-left" style="text-align: center; color: #898989">
+            <p>Step 5</p>
+            <p>受付完了</p>
+          </div>
+        </div>
+        <div class="item-12-12" style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ; ">
+          <div class="w-80" style="height: 16px; border-bottom: 3px dotted #d0ccc9; margin: auto"></div>
+          <div class='orange2'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px;left: calc(10% - 15px); background-color: #fff">
+          </div>
+          <div class='orange2'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(30% - 15px); margin-left: auto; margin-right: auto;  background-color: #fff">
+          </div>
+          <div class='orange2'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(50% - 15px); background-color: #fff">
+          </div>
+          <div class='orange'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(70% - 15px); background-color: #fff">
+          </div>
+          <div class='gray'
+            style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(90% - 15px); background-color: #fff">
+          </div>
+        </div>
+      </div>
+      <div class="box progress-bar" style="display: flex; align-items: center">
+        <span class="step-text" style="height: 21px">STEP1</span>
+        <strong class="fs-20"> &nbsp;ご希望のお手続きについて</strong>
+      </div>
+      <div class="box-step">
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご希望のお手続きをお選びください。<br>（複数選択できます）</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100">
+              <div class="w-100 fl-left">
+                <div class="item item-12-12">
+                  <p *ngIf="collapsedAddress">住所の変更</p>
+                  <p *ngIf="collapsedPhone">電話番号の変更</p>
+                  <p *ngIf="collapsedName">受取人の変更</p>
+                  <p *ngIf="collapsedPayType">保険料支払方法の変更</p>
+                  <p *ngIf="collapsedNameDest">名義変更</p>
+                  <!-- <p *ngIf="collapsedOther">その他のお手続き</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="box progress-bar" style="display: flex; align-items: center">
+        <span class="step-text" style="height: 21px">STEP2</span>
+        <strong class="fs-20"> &nbsp; ご変更内容について</strong>
+      </div>
+      <div class="box-step">
+        <div class="row-data border-bottom-row " *ngIf="collapsedAddress || collapsedPhone">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">変更になる（なった）日をご入力ください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: flex">
+            <div style="width: 100%">
+              <div style="padding: 20px; width: 100%; float: left;">
+                {{f.year.value}}年{{f.month.value}}月{{f.day.value}}日
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row" *ngIf="collapsedAddress">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold">新しい住所をご入力ください。</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: inline-block;padding: 20px">
+            <div style="width: 100%; display: inline-block">
+              <div class="w-35 fl-left">
+                <div class="fs-14 text1">郵便番号</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid"
+                *ngIf="f.newZip1.value && f.newZip2.value">
+                〒{{f.newZip1.value}}-{{f.newZip2.value}}
+                <!-- <div style="width: 100%; font-size: 13px; color: #4e9162; text-decoration: underline;-webkit-text-decoration-color: #4e9162;text-decoration-color: #4e9162;"> 郵便番号から住所を自動入力 </div> -->
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">都道府県</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+                <div class="w-100 margin-top-5-res">
+                  <div>{{f.newAddressPref.value}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">市区町村 丁目・番地</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;" style="word-break: break-all;">
+                  <div style="word-break: break-all;">{{f.newAddressTown.value}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">建物名</div>
+                <!-- <div class="text2" style="background-color: #33804a !important">任意</div> -->
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;">
+                  <div style="word-break: break-all;">{{f.newAddressBldg.value}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row ">
+          <div class="row-data " *ngIf="collapsedAddress || collapsedPhone">
+            <div class="w-35 fl-left text-left div-text">
+              <div class="fs-14 font-bold text1">新しい電話番号をご入力ください。</div>
+            </div>
+            <div class="w-65 fl-left text-left" style="display: flex; align-items: center;">
+              <div class="w-100" style="padding: 20px; min-width: 200px; float: left;">
+                <div>{{f.newPhone.value}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご契約者をお選びください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100">
+              <div class="w-100 fl-left">
+                <div class="item item-12-12">
+                  <div *ngFor="let name of listNameChooseFamily">
+                    {{name}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1"><span>ご契約をお選びください。<br>（複数選択可）</span><br>
+              <p style="color: #ff6400; margin-top: 10px">※1つ以上ご選択ください</p>
+            </div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100">
+              <div *ngFor="let name of listChooseKeiyakuName">
+                {{name}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="box progress-bar" style="display: flex; align-items: center">
+        <span class="step-text" style="height: 21px">STEP3</span>
+        <strong class="fs-20"> &nbsp; 本件のご連絡先について</strong>
+      </div>
+      <div class="box-step">
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご入力者をお選びください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc" style="display: block">
+            {{valueFamilyInput}}
+          </div>
+        </div>
+        <div class="row-data border-bottom-row">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">ご契約者さまとの関係をお選びください。</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100 fl-left">
+              {{relationSelected}}
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row" *ngIf="collapsedName || collapsedPayType || collapsedNameDest">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">書類送付先はどちらですか？</div>
+            <!-- <div class="text2">必須</div> -->
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100 fl-left">
+              <p *ngIf="chooseDestination">その他</p>
+              <p *ngIf="!chooseDestination">契約者住所</p>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row " *ngIf="chooseDestination">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold">送付先住所をご入力ください。</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: inline-block;padding: 20px">
+            <div style="width: 100%; display: inline-block">
+              <div class="w-35 fl-left">
+                <div class="fs-14 text1">郵便番号</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid"
+                *ngIf="f.destZip1.value && f.destZip2.value">
+                <div>〒{{f.destZip1.value}}-{{f.destZip2.value}}</div>
+
+                <!-- <div style="width: 100%; font-size: 13px; color: #4e9162; text-decoration: underline;-webkit-text-decoration-color: #4e9162;text-decoration-color: #4e9162;"> 郵便番号から住所を自動入力 </div> -->
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">都道府県</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style=" display: grid">
+                <div>{{f.destAddressPref.value}}</div>
+
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">市区町村 丁目・番地</div>
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;">
+                  <div>{{f.destAddressTown.value}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row-data" style="margin-top: 10px; border-bottom: none;">
+              <div class="w-35 fl-left" style="display: flex; align-items: center">
+                <div class="fs-14 text1">建物名</div>
+                <!-- <div class="text2" style="background-color: #33804a !important">任意</div> -->
+              </div>
+              <div class="w-65 fl-left padding-left-20-res" style="display: grid">
+                <div style="width: 100%;">
+                  <div>{{f.destAddressBldg.value}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-data border-bottom-row">
+          <div class="w-35 fl-left text-left div-text frm-clinic">
+            <div class="fs-14 font-bold text1">電話番号はどちらですか？</div>
+            <div class="text2">必須</div>
+          </div>
+          <div class="w-65 fl-left text-left display-flex-pc">
+            <div class="w-100 fl-left">
+              <p *ngIf="chooseDestinationPhone">{{f.destPhone.value}}</p>
+              <p *ngIf="!chooseDestinationPhone">契約者電話番号</p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row-data border-bottom-row " *ngIf="chooseDestinationPhone">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">電話番号はどちらですか？</div>
+          </div>
+          <div class="w-65 fl-left text-left padding-left-20-res" style="display: flex; align-items: center;">
+            {{f.destPhone.value}}
+          </div>
+        </div> -->
+      </div>
+      <!-- <div class="box-step">
+        <div class="row-data border-bottom-row ">
+          <div class="w-35 fl-left text-left div-text">
+            <div class="fs-14 font-bold text1">利用規約</div>
+          </div>
+          <div class="w-65 fl-left text-left" style="display: flex; padding: 20px">
+            <div style="width: 100%">
+              <div class="w-80-res"
+                style=" height: 100px; overflow-y: scroll;border-radius: 5px; border: 1px solid #dfdcda;padding: 5px;">
+                【個人情報の取り扱いについて】<br>
+                当サイトに掲載されている各募集代理店が、お客様から取得した個人情報は(このwebサイトから取得した個人情報を含む)各募集代理店のプライバシーポリシーに従い、お取り扱いさせていただくことになりますのでご留意くださいますようお願いいたします。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="show_pc_btn center w-100 text-left margin-bot-10 group-btn-footer"
+        style="display:inline-block; height: 75px;">
+        <button class="back-btn arrow_green fl-left" (click)="backToSelect('choose')" pButton type="button" label=""
+          style="margin-right: 10%;padding: 10px">前のページに戻る
+        </button>
+        <div class="color-orange-btn fl-left w-35-res" (click)="saveInsurance()"
+          style="font-weight: bold;margin: auto; border-radius: 5px; text-align: center; padding: 10px; color: #fff; box-shadow: 3px 3px 3.5px #c8c8c8;">
+          <span style="font-size: 13px">利用規約に同意して</span> <br> <span style="font-size: 16px">入力内容を送信する</span>
+        </div>
+      </div>
+
+      <div class="sp_btn center w-100 text-left margin-bot-10 group-btn-footer" style="display:inline-block">
+        <div class="color-orange-btn fl-left w-35-res" (click)="saveInsurance()"
+          style="font-weight: bold;margin: auto; border-radius: 5px; text-align: center; padding: 10px; color: #fff; box-shadow: 3px 3px 3.5px #c8c8c8;">
+          <span style="font-size: 13px">利用規約に同意して</span> <br> <span style="font-size: 16px">入力内容を送信する</span>
+        </div>
+
+        <button class="back-btn arrow_green fl-left margin-top-sp" (click)="backToSelect('choose')"
+          style="margin-bottom: 30px; width: 50%;padding: 10px" pButton type="button" label="">前のページに戻る
+        </button>
+      </div>
+      <!-- <div class="content">
+      <div class="form-input" style="display: flex">
+        <div class="row" style="width: 30%" (click)="backToEdit()">
+              <div class="btn btn-gray item-10-12" style="display: flex">
+                <div class="arrow item item-2-12 text-left">
+                  <i class="pi pi-arrow-left"></i>
+                </div>
+                <div class="guid item item-8-12">前のページに戻る</div>
+              </div>
+          </div>
+        <div class="row" style="width: 50%">
+          <div class="box text-center"><button class="btn btn-orange item-10-12" pButton type="button" (click)="saveInsurance()"
+                label="入力内容を確認する">利用規約に同意して</button>
+          
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    </div>
+    <!-- </div> -->
+    <app-loading [loading]="loading"></app-loading>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

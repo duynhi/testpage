@@ -1,0 +1,58 @@
+<section id="login">
+    <app-header></app-header>
+    <div class="padding-sp">
+        <div class="title">
+            <h2 class="fs-25">マイページログイン</h2>
+            <p>各種ご契約内容の確認・保全のお手続きなどがご利用いただけます。</p>
+        </div>
+        <div class="form-login" [formGroup]="loginGroup">
+            <h3 style="margin-bottom: 10px">ログイン</h3>
+            <br>
+            <div class="center w-50 text-left margin-bot-10">
+                <label class="fs-14">ID（メールアドレス）</label>
+            </div>
+            <span class="ui-float-label center w-50">
+                <input [ngClass]="helper.displayCssError(loginGroup,'mailAddress')" formControlName="mailAddress" (keydown)=typeEvent($event) autocomplete="off" class="w-100 center h-35" type="text" size="15" pInputText> 
+            </span>
+            <br>
+            <div class="center w-50 text-left margin-bot-10">
+                    <label class="fs-14">パスワード</label>
+            </div>
+            <span class="ui-float-label center w-50 ">
+                <input [ngClass]="helper.displayCssError(loginGroup,'password')" formControlName="password" (keydown)=typeEvent($event) autocomplete="off" class="w-100 center h-35" type="password" size="15" pInputText > 
+            </span>
+            <br>
+            <p-checkbox  [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" binary="true" styleClass="override" label="パスワードを保存する" ></p-checkbox>
+            <br>
+            <div class="text-left-sp" style="margin:20px"><span class="text-link under-below fs-14 color-textlink" style="cursor: pointer" (click)="goToPrivacy()">個人情報取扱規約</span><span class="fs-14">に同意の上、ログインして下さい。</span></div>
+            <button class="color-orange-btn" [disabled]="loginGroup.invalid" (click)="login()" pButton type="button" label="ログイン"></button>
+            <div *ngIf="loginGroup.invalid">
+                <div>
+                    <p-message style="margin-top: 10px;" severity="error" text={{MESSAGE.idRequire}} *ngIf="!loginGroup.controls['mailAddress'].value&&(loginGroup.controls['mailAddress'].dirty || loginGroup.controls['mailAddress'].touched)"></p-message>
+                </div>
+                <div style="margin-top: 10px;">
+                    <p-message severity="error"  text={{MESSAGE.passRequire}} *ngIf="!loginGroup.controls['password'].valid&&(loginGroup.controls['password'].dirty || loginGroup.controls['password'].touched)"></p-message>
+                </div>
+                <div style="margin-top: 10px;">
+                    <p-message severity="error" text={{MESSAGE.emailInvalid}} *ngIf="loginGroup.controls['mailAddress'].value && f.mailAddress.errors"></p-message>
+                </div>
+            </div>
+            <div *ngFor="let error of listErrors">
+                <p-message severity="error" text={{error.errMessage}}></p-message>
+            </div>
+            <div style="width:250px;margin-top: 20px !important; text-align: left; margin: auto;">
+                <span  (click)="forgotPass()">
+                    <fa-icon [icon]="faAngleRight" class="color-green" style="cursor: pointer"></fa-icon><span class="fs-12 color-textlink" style="cursor: pointer">  ID・パスワードをお忘れの方はこちら</span>
+                </span>
+                <br>
+                <span style="cursor: pointer">
+                <fa-icon [icon]="faAngleRight" class="color-green"></fa-icon><span class="fs-12 color-textlink">  当社からのメールが届かない場合</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <app-loading [loading]="loading"></app-loading>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+
+</section>

@@ -1,0 +1,500 @@
+@import '../../../assets/variables.scss';
+
+//Common
+.container{
+    width: 100%;
+    height: 100%;
+
+    .wrapper{
+        padding: 2rem 1rem 0 1rem;
+        .title{
+            margin-bottom: 0.8rem;
+        }
+    }
+}
+
+.box{
+    position: relative;
+    .item{
+        display: inline-block;
+    }
+    .item-1-12{
+        width: 1/12*100%;
+    }
+    .item-12-12{
+        width: (12/12)*100%;
+    }
+    .item-2-12{
+        width: 2/12*100%;
+    }
+    .item-3-12{
+        width: 3/12*100%;
+    }
+    .item-4-12{
+        width: 4/12*100%;
+    }
+    .item-5-12{
+        width: 5/12*100%;
+    }
+    .item-6-12{
+        width: 6/12*100%;
+    }
+    .item-7-12{
+        width: 7/12*100%;
+    }
+    .item-8-12{
+        width: 8/12*100%;
+    }
+    .item-9-12{
+        width: 9/12*100%;
+    }
+    .item-10-12{
+        width: 10/12*100%;
+    }
+    .item-11-12{
+        width: 11/12*100%;
+    }
+}
+
+a.text-link{
+    &:hover{
+      text-decoration: none;  
+    }
+}
+
+a.no-underline{
+    text-decoration: none;
+}
+
+.justify{
+    text-justify: auto;
+}
+
+h2.sub-page-title{
+    background: #fdeadb;
+    margin:0 0;
+}
+
+.v-middle{
+    vertical-align: middle !important;
+}
+
+.v-top{
+    vertical-align: top !important;
+}
+
+.v-bottom{
+    vertical-align: bottom !important;
+}
+
+.error{
+    color: red;
+}
+
+.btn{
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: auto;
+    padding:0.5rem 0.5rem;
+    font-weight: bold;
+    background-color: initial;
+    border:none;
+}
+
+.btn-orange{
+    background:  #fa700b;
+    color: #ffffff;
+    border-color: #fa700b;
+}
+
+.btn-gray{
+    background: #8080801c;
+    color:#000;
+    border-color: #8080801c;
+}
+
+.form-input{
+    .row{
+        margin-bottom: 1rem;
+    }
+}
+/*Top Page*/
+.menu-board{
+    color: #333333;
+    text-align: center;
+    margin-bottom: 1rem;
+
+    .menu-board-icon{
+        margin-bottom: 1rem;
+    }
+    .item{
+        padding-top: 0.3rem;
+        background-color:#fdeadb;
+        margin: 0 0.3rem 0.3rem 0;
+        vertical-align: top;
+        min-height: 200px;
+        &:nth-child(3n+0){
+            margin-right: 0;
+        }
+    }
+    .item-4-12{
+        width: (11/12*(4/12))*100%;
+    }
+}
+
+.news{
+    text-align: left;
+    margin-bottom: 2rem;
+    .date{
+        vertical-align: top;
+        overflow-wrap: break-word;
+    }
+    .date, .title{
+        display: inline-block;
+    }
+    .new-item{
+        border-bottom: 1px #000000 dotted;
+    }
+    h4.head{
+        background: #ffc000;
+        text-align: center;
+        font-weight: bold;
+        line-height: 28pt;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+/*Style for mobile, tablet*/
+@media screen and (max-width: 768px) {
+    .container{
+        .wrapper{
+            padding:1rem 0.5rem 0 0.5rem;
+            margin-bottom: 1rem;
+        }
+    }
+    h2.sub-page-title{
+        padding: 0 0.5rem 0 0.5rem;
+        line-height: 30pt;
+        margin-bottom: 0.8rem;
+    }
+    /*Top page*/
+    #top{
+        .menu-board{
+            .item{
+                min-height: 138.14px;
+            }
+        }
+    }
+
+    /*ReservationGuide*/
+    #ReservationGuide{
+        .box{
+            .banner-content{
+                padding:0 0.5rem 0 0.5rem;
+                margin-bottom: 1.5rem;
+                .btn-register{
+                    padding: 0.5rem 0.5rem 0 0.5rem;
+                    .icon{
+                        background: #FFFFFF;
+                        vertical-align: bottom;
+                    }
+
+                    .guid{
+                        vertical-align: middle;
+                        p{
+                            margin: 0px;
+                            line-height: 22pt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*ReservationList*/
+    #ReservationList{
+        .family-insurance-fee{
+            margin-bottom: 1.5rem;
+        }
+        .box{
+            .family-insurance-detail{
+                border-top: 1px #000000 dotted;
+            }
+            .icon{
+                vertical-align: middle;
+            }
+            .detail{
+                padding-bottom: 0.3rem;
+                p{
+                    line-height: 16pt;
+                }
+            }
+            .payment-status{
+                .status{
+                    text-align: center;
+                    border: 2px pink solid;
+                    margin: 0 auto;
+                    padding: 0.2rem 0.1rem;
+                }   
+            }
+            .trash{
+                vertical-align: top;
+                .pi-trash{
+                    color: #FFF;
+                    background: red;
+                }
+            }
+        }
+
+        .add-more{
+            margin: 1.2rem 0;
+            .pi-plus-circle{
+                color: #27ed22;
+            }
+            .icon{
+                vertical-align: middle;
+            }
+        }
+        /*OWL CAROUSEL SLIDER*/
+        .contract{
+            margin-bottom: 1.5rem;
+            .wrapper{
+                display: inline-flex;
+            }
+            .contract-item{
+                border: 2px #000000 solid;
+                border-right: none;
+                &:hover{
+                    background: #ffc000
+                }
+                .contract-face{
+                    width: 40%;
+                    margin: 0 auto;   
+                }
+            }
+            .next-button{
+                font-size: 1.5rem;
+                text-align: center;
+                border-left: 2px #000000 solid;
+                border-top: 2px #000000 solid;
+                border-bottom: 2px #000000 solid;
+            }
+        }
+    }
+    /*CameraStart*/
+    #CameraStart{
+        .btn-capture{
+            background: #fa700b;
+            color: #FFF;
+            font-weight: bold;
+            padding: 0.5rem 0 0.5rem;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .box.guid{
+            .item{
+                vertical-align: top;
+            }
+        }
+        .box.combo, .box.capture, .box.non-capture{
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    /*CameraCaputre*/
+    #CameraCaputre{
+        .loading{
+            position: absolute;
+            top: 40%;
+            left: 45%;
+           /* bring your own prefixes */
+            transform: translate(-40%, -40%);
+        }
+    }
+
+    /*CameraImageConfirm*/
+    #CameraImageConfirm{
+        .btn{
+            margin-bottom: 1rem;
+        }
+    }
+
+    /*ProductInforUpdate*/
+    #ProductInforUpdate{
+        .product-info, .contact{
+            &.box{
+                .item{
+                    vertical-align: middle;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+        .pi-plus-circle{
+            color: #27ed22;
+        }
+        .add-item{
+            // border-top: 1px #000000 dotted;
+            // border-bottom: 1px #000000 dotted;
+            margin-bottom: 1rem;
+            .root{
+                border-bottom: 1px gray solid;
+                margin-bottom: 0.3rem;
+                .group{
+                    .item{
+                        margin-bottom: 0.2rem;
+                        .pi-minus-circle{
+                            color: red;
+                        }
+                    }
+                }
+                &:last-child{
+                    border-bottom: none;
+                    margin-bottom: none;
+                }
+            }
+        }
+    }
+
+    /*ProductInfoConfirm*/
+    #ProductInfoConfirm{
+        .box{
+            margin-bottom: 1rem;
+            &:nth-child(1){
+                border-top: 1px #000 dotted;
+                border-bottom: 1px #000 dotted;
+                padding: 0.5rem 0;
+            }
+        }
+    }
+    
+    /*ConsultationDocumentList*/
+    #ConsultationDocumentList{
+        .box{
+            .row{
+                border-bottom: 1px #000 dotted;
+                padding: 0.5rem 0;
+                &:first-child{
+                    border-top: 1px #000 dotted;
+                }
+            }
+        }
+    }
+
+    /*CustomerInforSetting*/
+    #CustomerInforSetting{
+        .box{
+            .row{
+                margin-block-start: 1.5rem;
+            }
+        }
+    }
+
+    /*CustomerInforList*/
+    #CustomerInforList{
+        .box{
+            .row{
+                margin-bottom: 1rem;
+                h3{
+                    border-bottom: 1px #000 dotted;
+                    margin:0;
+                }
+                .child{
+                    border-bottom: 1px #000 dotted;
+                    padding: 0.5rem 0;
+                }
+
+                .trash{
+                    .pi-trash{
+                        color: #FFF;
+                        background: red;
+                    }
+                }
+            }
+        }
+        .add-more{
+            margin: 1.2rem 0;
+            .pi-plus-circle{
+                color: #27ed22;
+            }
+        }
+    }
+    /*InsuranceProcedureRegister*/
+    #InsuranceProcedureRegister{
+        h3.sub-page-title{
+            background: #fdeadb;
+            padding: 0 0.5rem 0 0.5rem;
+            line-height: 30pt;
+            border-top: 1px #d1d1d1 solid; 
+            border-bottom: 1px #d1d1d1 solid;
+            margin: 10px 0;
+        }
+        .form-input{
+            button{
+                background: #FFFFFF;
+                border:1px #d1d1d1 solid;
+                -webkit-box-shadow: 0px 3px 2px 0px rgba(209,209,209,1);
+                -moz-box-shadow: 0px 3px 2px 0px rgba(209,209,209,1);
+                box-shadow: 0px 3px 2px 0px rgba(209,209,209,1);
+                color: #000000;
+            }
+            .contracter-add{
+                .btn-green{
+                    background: #27ed22;
+                    color:#FFF;
+                }
+            }
+        }
+        .progress-bar{
+            margin-bottom: 10px;
+            .step{
+                border-radius: 10px;
+                background: #4CAF50;
+                color: #FFF;
+                font-weight: bold;
+                padding:0 10px;
+            }
+        }
+        .process{
+            border:1px #d1d1d1 solid;
+            height: 1px;
+            margin-top:3px;
+            .percentage{
+                height: 1px;
+                background-color: #4CAF50;
+            }
+        }
+        .contract-list{
+            .pay-info{
+                border:1px gray solid;
+                padding: 5px;
+                p{
+                    margin:0;
+                    line-height: 20px;
+                }
+                img{
+                    width: 100%;
+                }
+                .pay-status{
+                    font-size: 12px;
+                    text-align: center;
+                    border:2px pink solid;
+                    padding: 0.2rem 0.1rem;
+                }
+            }
+        }
+
+        .contact-add{
+            .proxy{
+                .content{
+                    border:1px gray solid;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+} 

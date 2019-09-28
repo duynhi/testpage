@@ -1,0 +1,314 @@
+@import '../../../assets/mixin.scss';
+
+/deep/ #InsuranceProcedureConfirm .btn-orange.ui-button .ui-button-text{
+    display: none !important;
+}
+
+#InsuranceProcedureRegisSuccess{
+    .content{
+        .steps{
+            text-align: center;
+            margin: 20px 0;
+            .dotted-line{
+                height: 10px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                bottom: 12px;
+                padding: 0 20px;
+                background-image: url('../../../assets/image/dotted.png');
+                background-repeat: repeat-x;
+                background-position: center;
+                background-size: 17px;
+                z-index: -1;
+            }
+            .content{
+                height: 85px;
+                .step{
+                    height: 100%;
+                    position: relative;
+                    color: #666666;
+                    &.active{
+                        color: #000000;
+                        font-weight: bold;
+                        &::after{
+                            border: 2px #ff6400 solid;
+                        }
+                    }
+                    &.inactive{
+                        &::after{
+                            border: 2px #d1ccc9 solid;
+                        }
+                    }
+                    &::after{
+                        display: block;
+                        position: absolute;
+                        bottom: 5px;
+                        width: 20px;
+                        height: 20px;
+                        content: " ";
+                        border: 2px #ffa366 solid;
+                        left: 0;
+                        right: 0;
+                        margin-left: auto; 
+                        margin-right: auto; 
+                        background: #FFFFFF;
+                        @include rounded(1em);
+                    }
+                }
+            }
+        }
+
+    }
+    .success-noti{
+        @include rounded(0.8em);
+        @include box-shadow(0px, 0px, 8px, #c8c8c8);
+            @include rounded(0.5em);
+            @media screen and(max-width:768px) {
+                @include box-shadow(0px, 0px, 4px, #c8c8c8);
+            }
+        padding-top: 20px;
+        padding-bottom: 35px;
+        margin: 50px 0;
+        .icon-duck{
+            margin-bottom: 40px;
+            margin-top: 30px;
+        }
+    }
+    
+    .clinic-info{
+        .title{
+            color: #FF6400;
+            margin-bottom: 25px;
+        }
+        background: #FAF7F5;
+        padding:  25px 0;
+        .content{
+            width: 80%;
+            margin: 0 auto;
+        }
+        .info-table{
+            display: table;
+            width: 100%;
+            background: #FFFFFF;
+            .table-row{
+                border-bottom: 1px #c8c8c8 dotted;
+                width: 100%;
+                display: inline-flex;
+                padding-left: 20px;
+                &:last-child{
+                    border-bottom: none;
+                }
+                &:nth-child(2){
+                    .cell:nth-of-type(1){
+                        background-image: url('../../../assets/image/ico_calendar_pc.png');
+                        background-position: left center;
+                        background-repeat: no-repeat;
+                        padding-left: 40px;
+                    }
+                }
+                &:nth-child(3){
+                    .cell:nth-of-type(1){
+                        background-image: url('../../../assets/image/ico_phone_pc.png');
+                        background-position: left center;
+                        background-repeat: no-repeat;
+                        padding-left: 40px;
+                    }
+                }
+                &:nth-child(4){
+                    .cell:nth-of-type(1){
+                        background-image: url('../../../assets/image/ico_holiday_pc.png');
+                        background-position: left center;
+                        background-repeat: no-repeat;
+                        padding-left: 40px;
+                    }
+                }
+                &:nth-child(5){
+                    .cell:nth-of-type(1){
+                        background-image: url('../../../assets/image/ico_clock_pc.png');
+                        background-position: left center;
+                        background-repeat: no-repeat;
+                        padding-left: 40px;
+                    }
+                }
+                &.heading{
+                    font-size: 25px;
+                    font-weight: bold;
+                    text-align: left;
+                    border-bottom: 3px #c8c8c8 solid;
+                    width: 100%;
+                }
+                .cell{
+                    display: table-cell;
+                    padding: 20px 0;
+                    &:nth-of-type(1){
+                        width: 20%;
+                    }
+                    &:nth-of-type(2){
+                        width: 80%;
+                    }
+                    .phone-free{
+                        font-weight: bold;
+                        padding:3px;
+                        background: #FFE1BF;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .btn-group{
+        margin: 30px 0;
+        .btn-gray{
+            width: 15%;
+            @include rounded(0.2em);
+            @include box-shadow(0px, 0px, 8px, #c8c8c8);
+            border:none;
+            outline: none;
+        }
+    }
+    .step {
+        max-width: 700px; 
+        margin:auto; 
+        height: 90px; 
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .fs-step {
+        font-size: 14px;
+        height: 60px;
+    }
+    .gray {
+        border: 3px solid #d0ccc9;
+    }
+    .orange {
+        border: 3px solid #fe6300;
+    }
+    .orange2 {
+        border: 3px solid #ffa366;
+    }
+}
+
+@media (max-width: 767px){
+    .dotted-line{
+        width: 75.333333%;
+    }
+
+    #InsuranceProcedureRegisSuccess{
+        .clinic-info{
+            .content{
+                width: 96%;
+            }
+            .info-table .table-row .cell:nth-of-type(1){
+                width: 100%;
+            }
+        }
+
+        .success-noti{
+            padding-top: 15px;
+            padding-bottom: 20px;
+            margin: 25px 0;
+            .icon-duck{
+                margin-bottom: 20px;
+                margin-top: 15px;
+            }
+            .thanks{
+                text-align: left;
+            }
+        }
+
+        .info-table{
+            .table-row{
+                display: inline-block !important;
+                padding-left: 10px !important;
+                padding-top: 10px;
+                padding-bottom: 5px;
+                &.heading{
+                    .cell{
+                        padding-left: 0 !important;
+                    }
+                }
+            }
+            .cell{
+                display: inline-block !important;
+                padding: 0 0 0 30px !important;
+                margin-bottom: 6px;
+                width: 100%;
+                &:nth-of-type(2){
+                    padding-left: 0 !important;
+                    width: 100% !important;
+                }
+                .ud{
+                    color: #2E9940;
+                    border-bottom: 2px #2E9940 solid;
+                }
+            }
+        }
+
+        .btn-group .btn-gray{
+            width: 50%;
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .btn-group{
+        .arrow_green{
+            margin-top: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px){
+    .fs-step {
+        font-size: 12px !important;
+        height: 40px !important;
+    }
+    .step {
+        height: 70px !important;
+    }
+}
+  
+@media (min-width: 481px) and (max-width: 767px) {
+
+//CSS
+.steps{
+    .content{
+        width: 100%;
+        .step{
+            width: 20%;
+        }
+    }
+    span.heading{
+        font-size: 12px;
+    }
+}
+.step{
+    height: 83px !important;
+}
+}
+
+/* 
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+//CSS
+.steps{
+    .content{
+        width: 100%;
+        .step{
+            width: 19.666667%;
+        }
+    }
+    span.heading{
+        font-size: 11px;
+    }
+}
+
+}

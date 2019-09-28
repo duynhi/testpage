@@ -1,0 +1,11 @@
+<div *ngIf="listBreadcrumb">
+  <div [ngClass]="{'showPC fs-12 container-text': breadcrumb === 'PC', 'showSP container-text': breadcrumb === 'SP'}">
+    <div [ngClass]="{'breadcrumb2 text-head': breadcrumb === 'SP', 'breadcrumb1': breadcrumb === 'PC'}">
+        <span style="line-height: 30px">
+        <!-- <span class="text-link" *ngIf="!showLink">無料の保険相談・見直し【保険クリニック】</span> -->
+        <a class="text-link" *ngIf="showLink" href="https://www.hoken-clinic.com/" style="text-decoration: underline;">無料の保険相談・見直し【保険クリニック】</a> 
+        <a class="br-link" *ngFor="let url of listName, let i = index" href={{listBreadcrumb[i]}}><span *ngIf="i>0 || showLink">  >  </span>{{url}}</a></span>
+    </div>
+  </div>
+</div>
+<hr [ngClass]="{'showSP line-white': breadcrumb === 'SP'}" *ngIf="breadcrumb === 'SP'">

@@ -1,0 +1,104 @@
+<!--AgencyInput-->
+<section id="AgencyInput">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper"  [formGroup]="infoContractGroup" *ngIf="infoContractGroup">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">連絡先の設定</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+      <div class="content padding3">
+        <div class="box form-input">
+
+          <div class="row">
+            <div class="item col-head" style="border-top: none;">店舗名/代理店名</div>
+            <div class="item col-body">
+              <div class="item item-5-12">
+                <input class="w-100 h-35" formControlName="agentName" autocomplete="off" type="text" pInputText>
+                <p-message style="margin-top: 10px;display: inline-block;" severity="error" text="店舗名/代理店名は50字以内で入力してください。"
+                *ngIf="infoContractGroup.controls.agentName.value&& infoContractGroup.controls.agentName.value.length> 50 &&(infoContractGroup.controls.agentName.dirty || infoContractGroup.controls.agentName.touched)">
+                </p-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="row gender">
+            <div class="item col-head">電話番号</div>
+            <div class="item col-body">
+              <div class="item item-5-12">
+                <input class="w-100 h-35" formControlName="phone" autocomplete="off" type="text" pInputText>
+
+                <p-message style="margin-top: 10px;display: inline-block;" severity="error" text="電話番号は50字以内で入力してください。"
+                *ngIf="infoContractGroup.controls.phone.value && infoContractGroup.controls.phone.value.length> 50 &&(infoContractGroup.controls.phone.dirty || infoContractGroup.controls.phone.touched)">
+                </p-message><br>
+                <p-message style="margin-top: 10px;display: inline-block;" severity="error" text="電話番号に誤りがあります。"
+                *ngIf="infoContractGroup.controls.phone.value.length < 50 && infoContractGroup.controls.phone.errors &&(infoContractGroup.controls.phone.dirty || infoContractGroup.controls.phone.touched)">
+                </p-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="row gender">
+            <div class="item col-head">担当者名</div>
+            <div class="item col-body">
+              <div class="item item-5-12">
+                <input class="w-100 h-35" formControlName="tantoName" autocomplete="off" type="text" pInputText>
+
+                <p-message style="margin-top: 10px;display: inline-block;" severity="error" text="担当者名は50字以内で入力してください。"
+                *ngIf="infoContractGroup.controls.tantoName.value&& infoContractGroup.controls.tantoName.value.length> 50 &&(infoContractGroup.controls.tantoName.dirty || infoContractGroup.controls.tantoName.touched)">
+                </p-message>
+              </div>
+            </div>
+          </div>
+
+          <div class="row gender">
+            <div class="item col-head">URL</div>
+            <div class="item col-body">
+              <div class="item item-5-12">
+                <input class="w-100 h-35" formControlName="url" autocomplete="off" type="text" pInputText>
+
+                <p-message style="margin-top: 10px;display: inline-block;" severity="error" text="URLは200字以内で入力してください。"
+                *ngIf="infoContractGroup.controls.url.value&& infoContractGroup.controls.url.value.length> 200 &&(infoContractGroup.controls.url.dirty || infoContractGroup.controls.url.touched)">
+                </p-message>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="box btn-group sp">
+          <div class="item item-12-12 text-left">
+            <button class="btn-orange w-100" [disabled]="infoContractGroup.invalid || (!infoContractGroup.controls.agentName.value && !infoContractGroup.controls.tantoName.value && !infoContractGroup.controls.phone.value && !infoContractGroup.controls.url.value)" (click)="saveContract()" pButton  type="button">
+              <span class="fs-16">入力内容を送信する</span>
+            </button>
+          </div>
+          <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)='back()' pButton type="button" label="前のページに戻る"></button>
+          </div>
+        </div>
+
+        <div class="box btn-group pc">
+          <div class="arrow_green item item-4-12 v-top"><button class="btn-gray h-35 w-100" (click)='back()' pButton type="button" label="前のページに戻る"></button>
+          </div>
+          <div class="item item-6-12 text-left">
+            <button class="btn-orange w-100" [disabled]="infoContractGroup.invalid || (!infoContractGroup.controls.agentName.value && !infoContractGroup.controls.tantoName.value && !infoContractGroup.controls.phone.value && !infoContractGroup.controls.url.value)" pButton (click)="saveContract()" type="button">
+              <span class="fs-16">入力内容を送信する</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- <div class="box">
+          <div class="item item-5-12"><button class="btn-gray h-35 w-100" pButton type="button" (click)="back()" label="戻る"></button></div>
+          <div class="item item-2-12"></div>
+          <div class="item item-5-12"><button class="btn-orange h-35 w-100" pButton type="button" [disabled]="infoContractGroup.invalid" (click)="saveContract()"
+            label="登録"></button></div>
+        </div> -->
+      </div>
+    </div>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

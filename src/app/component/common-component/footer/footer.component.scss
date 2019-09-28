@@ -1,0 +1,280 @@
+@import '../../../../assets/variables.scss';
+
+#footer {
+    position: fixed; 
+    left: 0px;
+    bottom: 0px; 
+    text-align: center;
+    width: 100%;
+    background-color: $color-white;
+    color: $color-white;
+    z-index: 9999;
+    height: 80px;
+    .content-footer{
+        margin: auto;
+        height: 100%;
+        .padding-footer {
+            height: 100%;
+            min-width: 680px;
+            max-width: 1500px;
+            margin: auto;
+            padding-left: 3%;
+            padding-right: 3%; 
+            display: flex;
+            align-items: center;
+            .block-footer-1 {
+                width: 40%;
+                height: 100%;
+                float: left;
+                .icon-block-1 {
+                    height: 100%;
+                    width: 45%;
+                    float: left;
+                }
+                .list {
+                    width: 55%;
+                    float: left;
+                    height: 100%;
+                    padding: 10px;
+                    .item-list {
+                        width: 100%;
+                        margin-bottom: 2px;
+                        min-height: 20px;
+                        display: flex;
+                        .number-item {
+                            height: 16px;
+                            width: 16px;
+                            float: left;
+                            border-radius: 50%;
+                            margin-top: 3px;
+                            color: $color-white;
+                            background-color: $color-number-list; 
+                            text-align: center;
+                            font-size: $font-size-small;
+                        }
+                        .text-item {
+                            font-size: $font-size-smallest;
+                            float: left;
+                            padding-left: 5px;
+                            padding-top: 3px;
+                            color: $color-black-text;
+                        }
+                    }
+                }
+            }
+            .block-footer-2 {
+                width: 25%;
+                height: 100%;
+                float: left;
+                // background-color: black;
+                padding: 15px;
+                .btn-block-2 {
+                    height: 100%;
+                    width: 100%;
+                    background-color: $color-orange !important;
+                    border: none !important;
+                    color: #fff !important;
+                }
+            }
+            .block-footer-3 {
+                width: 35%;
+                height: 100%;
+                float: left;
+                // background-color: black;
+                padding: 15px;
+                .phone {
+                    height: 30px;
+                    width: 100%;
+                    display: flex;
+                    .text {
+                        height: 20px;
+                        width: 70px;
+                        background-color: $color-green2;
+                        font-size: $font-size-smallest;
+                        color: $color-dark-text;
+                        padding-top: 3px;
+                        margin-right: 5px;
+                    }
+                    .h-20 {
+                        height: 20px;
+                        margin-right: 5px;
+                        
+                    }
+                    span {
+                        color: $color-black-text;
+                        font-weight: bold;
+                    }
+                }
+                .text-block-3 {
+                    height: 15px;
+                    width: 100%;
+                    font-size: $font-size-small;
+                    color:$color-black-text;
+                    text-align: left;
+                }
+            }
+        }
+        .icon-footer {
+            display: inline-flex;
+            width: 15%;
+            min-height: 100%;
+            background-color: $color-bg-footer;
+        }
+        .btn-group {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            width: 85%;
+            height: 80px;
+            padding: 10px;
+            .btn-footer{
+                min-height: 52px;
+                padding: 5px;
+                border-radius: 3px;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .btn-search {
+                display: flex;
+                position: relative;
+                align-content: center;
+                align-items: center;
+                float: left;
+                height: 60px;
+                background-color: $color-orange;
+                margin-left: 10%;
+                padding: 10px 5px 10px 5px;
+                text-align: center;
+                width: 100%;
+                .icon-search {
+                    margin-right: 5px;
+                    color: #FFF;
+                }
+            }
+            .btn-call {
+                float: left;
+                width: 60%;
+                height: 60px;
+                background-color: $color-yellow-pale;
+                padding-right: 5px;
+                .call-icon {
+                    float: left;
+                    display: grid;
+                    align-content: center;
+                    align-items: center;
+                    text-align: center;
+                    color: $color-green;
+                    height: 100%;
+                    strong{
+                        font-size: 3vw;
+                    }
+                }
+                .call-number {
+                    float: left;
+                    display: grid;
+                    align-content: center;
+                    align-items: center;
+                    text-align: center;
+                    color: $color-green;
+                    height: 100%;
+                    .fs-12{
+                        font-size: 3vw;
+                    }
+                    .small-text {
+                        font-size: 2.5vw;
+                        line-height: 1.5;
+                        text-align: center;   
+                    }
+                }
+            }
+        }
+    }
+}
+
+.font-search {
+    font-size: 12px;
+    color: #FFF;
+}
+
+@media screen and (max-width: 1023px) and (min-width: 510px) {
+    #footer{
+        .content-footer{
+            .btn-group{
+                .btn-call{
+                    .call-number{
+                        .fs-12{
+                            font-size: 2.5vw;
+                        }
+                        .small-text{
+                            font-size: 1.5vw;
+                        }
+                    }
+                    .call-icon{
+                        strong{
+                            font-size: 2vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 350px) {
+
+    .small-text {
+        font-size: 8px !important;
+        line-height: 1.5;
+        text-align: center;
+        
+    }
+    
+    .font-search {
+        font-size: 11px;
+    }
+
+}
+
+
+
+@media screen and (max-width: 1050px) {
+    
+#footer {
+    background-color: rgba(254, 228, 201, 0.8);
+    .content-footer{
+        margin: auto;
+        height: 100%;
+        .padding-footer {
+            .block-footer-1 {
+                width: 30%;
+                .icon-block-1 {
+                    width: 100%;
+                }
+            }
+            .block-footer-3 {
+                width: 40%;
+            }
+            .block-footer-2 {
+                width: 30%;
+            }
+
+            .block-footer-3 {
+                width: 40%;
+                .phone {
+                        span {
+                            font-size: 13px;
+                        }
+                }
+            }
+        }
+    }
+    .dpn {
+        display: none;
+    }
+}
+}
+
+:host {
+    ::ng-deep .pi-search {
+        transform: rotate(90deg) !important;
+    }
+}

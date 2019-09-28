@@ -1,0 +1,104 @@
+ /*CustomerInforList*/
+ #CustomerInforList{
+     h3{
+         margin: 0;
+         padding:0;
+     }
+    .box{
+        .row{
+            margin-bottom: 1rem;
+            
+            .heading{
+                margin-bottom: 10px;
+            }
+
+            .tbl-honin-info{
+                width: 100%;
+                tr{
+                    td{
+                        border-top:1px #d6d1ce solid;
+                        text-align: center;
+                        height: 40px;
+                        &:last-child{
+                            text-align: left;
+                            padding-left: 10px;
+                        }
+                    }
+                    td:nth-child(1){
+                        width: 15%;
+                        font-weight: bold;
+                        background: #fbf7f4;
+                    }
+                    &:last-child{
+                        td{
+                            border-bottom:1px #d6d1ce solid;
+                        }
+                    }
+                }
+            }
+            .edit{
+                text-decoration: underline;
+                cursor: pointer;
+                color: #367f48;
+            }
+            .edit:hover{
+                color: #116fbf;
+            }
+            .trash{
+                width: 50%;
+            }
+        }
+    }
+
+    
+
+    .middle-line{
+        margin: 30px 0;
+    }
+
+    .add-more{
+        margin: 2rem 0;
+        cursor: pointer;
+        .add-new{
+            width: 5%;
+        }
+        .icon{
+            padding-right: 10px;
+        }
+    }
+}
+
+.form-input{
+    .row{
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #CustomerInforList{
+        .col-r-title, .col-l-content{
+            display: block;
+            width: 100%;
+        }
+        .box{
+            .row{
+                .trash{
+                    width: 30px;
+                }
+                .tbl-honin-info{
+                    tr{
+                        td:nth-child(1){
+                            width: 25%;
+                        }
+                    }
+                }
+            }
+        }
+        .add-more{
+            .add-new    
+            {
+                width: 30px;
+            }    
+        }
+    }
+}

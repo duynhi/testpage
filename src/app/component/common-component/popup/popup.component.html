@@ -1,0 +1,46 @@
+<p-dialog [ngClass]="{'add-other': data.from==='addKeiyakuSha' || data.from==='addProduct'}"  (onHide)="valueChanged('back')" [(visible)]="display.status" [blockScroll]="true" [modal]="true" [responsive]="true" [style]="{width: '90% !important', minWidth: '200px'}" [minY]="70" 
+ [baseZIndex]="10000">
+        <p-header *ngIf="data.messageTitle">{{data.messageTitle}}</p-header>
+        <div *ngIf="data.from==='topMenu'&& data.value">
+            <div *ngIf="width<769" style="text-align: left; padding: 10px 0 10px 0; border-top: 1px solid #333333; border-bottom: 1px solid #333333">
+                <strong>{{data.value.messageTitle}}</strong>
+              </div>
+            <div *ngIf="width>768" style="text-align: left; padding: 10px 0 10px 0; border-top: 1px solid #333333; border-bottom: 1px solid #333333">
+              <strong>{{data.value.messageTitle}}</strong>
+            </div>
+        </div>
+        <div *ngIf="data.from==='addKeiyakuSha'|| data.from==='addProduct'" style="margin-top: 10px">
+            <div style="width: 30%; float: left; text-align: center; display: flex; align-items: center; height: 35px;">
+                <span *ngIf="data.from==='addKeiyakuSha'">契約者</span>
+                <span *ngIf="data.from==='addProduct'">保険種類（商品名）</span>
+            </div>
+            <div style="width: 70%; float: left; margin-bottom: 10px;">
+                <input type="text" maxlength="400" [(ngModel)]="dataName" (keyup)="checkRequire()" pInputText style="width: 100%"/>
+                <p-message style="margin-top: 10px;" severity="error" text="契約者が未入力です。"
+                  *ngIf="showRequire && data.from==='addKeiyakuSha'">
+                </p-message>
+                <p-message style="margin-top: 10px;" severity="error" text="保険種類（商品名）が未入力です。"
+                *ngIf="showRequire && data.from==='addProduct'">
+              </p-message>
+                <p-message style="margin-top: 10px;" severity="error" text="契約者は200字以内で入力してください。"
+                  *ngIf="data.from==='addKeiyakuSha' && dataName.length>200">
+                </p-message>
+                <p-message style="margin-top: 10px;" severity="error" text="保険分類は400字以内で入力してください。"
+                  *ngIf="data.from==='addProduct' && dataName.length>400">
+                </p-message>
+            </div>
+        </div>
+        <p-footer *ngIf="data.from!=='topMenu'">
+            <button *ngIf="data.from!=='topMenu'"  [disabled]="dataName.length === 0 || (data.from==='addKeiyakuSha' && dataName.length>200) || data.from==='addProduct' && dataName.length>400" (click)="valueChanged('save')" pButton type="button"  label="保存" class="ui-button-raised ui-button-success"></button>
+            <button pButton type="button" (click)="valueChanged('back')" label="閉じる" class="ui-button-raised ui-button-secondary"></button>
+        </p-footer>
+        <p-footer *ngIf="data.from==='topMenu'" style="text-align: left;">
+            <!-- <p>{{data.nameMain}}</p>
+            <br> -->
+            <div *ngIf="data.from==='topMenu'&& data.value" style="padding: 10px 0 10px 0">
+              <div *ngFor="let item of data.value.message">
+                <p>{{item}}</p>
+              </div>
+            </div>
+        </p-footer>
+</p-dialog>

@@ -1,0 +1,133 @@
+<!--CustomerInforList-->
+<section id="CustomerInforList">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">ご本人・ご家族一覧</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+
+      <div class="content padding3">
+        <div class="box">
+          
+          <div class="row" *ngIf="dataMain">
+            <h3 class="item item-2-12 v-top col-r-title">ご本人の設定</h3>
+            <div class="item item-9-12 col-l-content">
+
+              <div class="item item-12-12 heading pc">
+                <div class="item item-9-12 v-bottom fs-18"><img src="assets/image/icon-per-org.png" class="v-middle">&nbsp;&nbsp;<strong>{{dataMain.relation}}</strong></div>
+                <div class="item item-2-12 v-bottom text-right"><span class="edit" (click)="goToUpdateMain()">修正する</span></div>
+                <div class="item item-1-12 v-top"></div>
+              </div>
+
+              <div class="item item-12-12 heading sp">
+                <div class="item item-8-12 v-bottom fs-18"><img src="assets/image/icon-per-org.png" class="v-middle">&nbsp;&nbsp;<strong>{{dataMain.relation}}</strong></div>
+                <div class="item item-3-12 v-bottom text-right"><span class="edit" (click)="goToUpdateMain()">修正する</span></div>
+                <div class="item item-1-12 v-top"></div>
+              </div>
+
+              <div class="item item-12-12">
+                <table class="tbl-honin-info" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>氏&nbsp;&nbsp;&nbsp;&nbsp;名</td>
+                    <td>{{dataMain.lastName}}  {{dataMain.firstName}} 様</td>
+                  </tr>
+                  <tr>
+                    <td>ひらがな</td>
+                    <td>{{dataMain.lastNameKana}} {{dataMain.firstNameKana}}</td>
+                  </tr>
+                  <tr>
+                    <td>生年月日</td>
+                    <td>{{dataMain.birthday}}</td>
+                  </tr>
+                  <tr>
+                    <td>性&nbsp;&nbsp;&nbsp;&nbsp;別</td>
+                    <td>{{dataMain.sex}}</td>
+                  </tr>
+                  <tr>
+                    <td>住&nbsp;&nbsp;&nbsp;&nbsp;所</td>
+                    <td style="display: inline-table;padding-bottom: 10px;word-break: break-all;"><span *ngIf="myPageUserInfo.zip1 && myPageUserInfo.zip2">〒{{myPageUserInfo.zip1}}-{{myPageUserInfo.zip2}}   </span>{{myPageUserInfo.addressPref}}　{{myPageUserInfo.addressTown}}　{{myPageUserInfo.addressBldg}}</td>
+                  </tr>
+                  <tr>
+                    <td>電話番号</td>
+                    <td>{{myPageUserInfo.phone}}</td>
+                  </tr>
+                  <tr>
+                    <td>メール</td>
+                    <td><a mail:to="abc@irrc.co.jp">{{myPageUserInfo.mailAddress}}</a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <hr class="middle-line">
+
+          <div class="row" *ngFor="let family of listFamily, let i = index">
+            <h3 class="item item-2-12 v-top col-r-title"><span *ngIf="i===0">ご家族の設定</span></h3>
+            <div class="item item-9-12 col-l-content">
+
+              <div class="item item-12-12 heading pc">
+                <div class="item item-9-12 v-middle fs-18"><img src="assets/image/icon-per-yellow.png" class="v-middle">&nbsp;&nbsp;<strong>{{family.relation}}</strong></div>
+                <div class="item item-2-12 v-bottom text-right"><span class="edit" (click)="addFamily(family.familyNo)">修正する</span></div>
+                <div class="item item-1-12 text-right"><img (click)="deleteFamily(family.familyNo, i)" style="cursor: pointer;" src="assets/image/trash.png" class="v-top trash"></div>
+              </div>
+
+              <div class="item item-12-12 heading sp">
+                <div class="item item-8-12 v-middle fs-18"><img src="assets/image/icon-per-yellow.png" class="v-middle">&nbsp;&nbsp;<strong>{{family.relation}}</strong></div>
+                <div class="item item-3-12 v-bottom text-right"><span class="edit" (click)="addFamily(family.familyNo)">修正する</span></div>
+                <div class="item item-1-12 text-right"><img (click)="deleteFamily(family.familyNo, i)" style="cursor: pointer;" src="assets/image/trash.png" class="v-top trash"></div>
+              </div>
+
+              <div class="item item-12-12">
+                <table class="tbl-honin-info" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>氏&nbsp;&nbsp;&nbsp;&nbsp;名</td>
+                    <td>{{family.lastName}}  {{family.firstName}}  様</td>
+                  </tr>
+                  <tr>
+                    <td>ひらがな</td>
+                    <td>{{family.lastNameKana}}  {{family.firstNameKana}}  </td>
+                  </tr>
+                  <tr>
+                    <td>生年月日</td>
+                    <td>{{family.birthday}}</td>
+                  </tr>
+                  <tr>
+                    <td>性&nbsp;&nbsp;&nbsp;&nbsp;別</td>
+                    <td>{{family.sex}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-more box item-12-12">
+              <div style="margin: auto; text-align: center; display: flex; align-items: center; padding: 10px; cursor: auto" >
+                  <div style="margin: auto;display: flex; align-items: center" (click)="addFamily(0)">
+                      <img src="assets/image/plus.png" style="height: 20px; width: 20px; margin-right: 10px; cursor: pointer; " class="add-new" >
+                      <span class="link-hover" style="font-size: 16px; cursor: pointer; ">家族の追加</span>
+                  </div>
+              </div>
+              <!-- <div class="text-left item-6-12 item fs-16 v-middle" (click)="addFamily(0)">家族の追加</div>  -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+    <p-confirmDialog #family header="削除確認" icon="pi pi-exclamation-triangle">
+      <p-footer>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" label="いいえ"
+          (click)="family.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="はい" (click)="family.accept()"></button>
+      </p-footer>
+      </p-confirmDialog>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer> 
+  </div>
+</section>

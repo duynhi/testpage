@@ -1,0 +1,151 @@
+<!--InsuranceProcedureRegisSuccess-->
+<section id="InsuranceProcedureRegisSuccess">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">保険契約に関する手続き</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+
+      <div class="content padding3">
+        <div class="step" *ngIf="id===1">
+          <div class="item-12-12 fs-step">
+            <div class="w-20 fl-left" style="text-align: center; color: #898989">
+              <p>Step 1</p>
+              <p>手続内容</p>
+            </div>
+            <div class="w-20 fl-left" style="text-align: center; color: #898989">
+              <p>Step 2</p>
+              <p>変更内容</p>
+            </div>
+            <div class="w-20 fl-left" style="text-align: center; color: #898989">
+              <p>Step 3</p>
+              <p>連絡先</p>
+            </div>
+            <div class="w-20 fl-left" style="text-align: center; color: #898989">
+              <p>Step 4</p>
+              <p>確認</p>
+            </div>
+            <div class="w-20 fl-left" style="text-align: center">
+              <p><strong>Step 5</strong></p>
+              <p><strong>受付完了</strong></p>
+            </div>
+          </div>
+          <div class="item-12-12"
+            style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative ; ">
+            <div class="w-80" style="height: 16px; border-bottom: 3px dotted #d0ccc9; margin: auto"></div>
+            <div class='orange2'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px;left: calc(10% - 15px); background-color: #fff">
+            </div>
+            <div class='orange2'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(30% - 15px); margin-left: auto; margin-right: auto;  background-color: #fff">
+            </div>
+            <div class='orange2'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(50% - 15px); background-color: #fff">
+            </div>
+            <div class='orange2'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(70% - 15px); background-color: #fff">
+            </div>
+            <div class='orange'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(90% - 15px); background-color: #fff">
+            </div>
+          </div>
+        </div>
+        <div class="step" *ngIf="id===2">
+          <div class="item-12-12 fs-step">
+            <div class="w-25 fl-left" style="text-align: center; color: #898989">
+              <p>Step 1</p>
+              <p>契約確認</p>
+            </div>
+            <div class="w-25 fl-left" style="text-align: center; color: #898989">
+              <p>Step 2</p>
+              <p>送付先</p>
+            </div>
+            <div class="w-25 fl-left" style="text-align: center; color: #898989">
+              <p>Step 4</p>
+              <p>確認</p>
+            </div>
+            <div class="w-25 fl-left" style="text-align: center; font-weight: bold">
+              <p><strong>Step 5</strong></p>
+              <p><strong>受付完了</strong></p>
+            </div>
+          </div>
+          <div class="item-12-12"
+            style="padding-left: 20px; padding-right: 20px; height: 30px;position: relative; ">
+            <div class="w-75" style="height: 16px; border-bottom: 3px dotted #d0ccc9; margin: auto"></div>
+            <div class='orange2'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px;left: calc(12.5% - 15px); background-color: #fff">
+            </div>
+            <div class='orange2'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(37.5% - 15px); margin-left: auto; margin-right: auto;  background-color: #fff">
+            </div>
+            <div class='orange2'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(62.5% - 15px); background-color: #fff">
+            </div>
+            <div class='orange'
+              style="position: absolute ;height: 30px; width: 30px; border-radius: 50%; top: 0px; left: calc(87.5% - 15px); background-color: #fff">
+            </div>
+          </div>
+        </div>
+
+        <div class="box padding3 success-noti">
+          <h2 class="text-center">受付完了</h2>
+          <h3 class="text-center">お手続きのご希望を承りました</h3>
+          <div class="item-12-12 text-center icon-duck">
+              <img src="assets/image/ico-duck-pc.png">
+          </div>
+          <div class="item-12-12 text-center thanks">
+            <p>ご入力ありがとうございます。</p>
+            <p>ご登録中のメールアドレスに、ご依頼内容をお送りました。</p>
+            <p>後日、担当者からご連絡いたしますのでお待ちください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clinic-info">
+      <div class="content padding3">
+        <div class="row">
+          <div class="item item-12-12 text-left title">※お急ぎの場合は担当店舗へお電話ください。</div>
+          <div class="info-table">
+            <div class="table-row heading">
+              <div class="cell">担当店舗</div>
+            </div>
+            <div class="table-row">
+              <div class="cell"><strong>店舗</strong></div>
+              <div class="cell">{{tantoData[0].shopName}}</div>
+            </div>
+            <div class="table-row">
+                <div class="cell"><strong>店舗連絡先</strong></div>
+                <div class="cell"><span class="phone-free">通話料無料</span><b class="fs-20 ud">{{tantoData[0].phone}}</b></div>
+            </div>
+            <div class="table-row">
+                <div class="cell"><strong>定休日</strong></div>
+                <div class="cell">{{tantoData[0].regularHoliday}}（※完全予約制）</div>
+            </div>
+            <div class="table-row">
+                <div class="cell"><strong>営業時間</strong></div>
+                <div class="cell">{{tantoData[0].businessHours}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box btn-group">
+        <div class="item item-12-12 v-top text-center">
+          <div class="arrow_green" style="display: inline">
+            <button class="btn-gray h-35 w-100" pButton type="button" (click)="goToTop()" label="TOPへ戻る"></button>
+          </div>
+        </div>
+    </div>
+
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

@@ -1,0 +1,194 @@
+<!--ReservationList-->
+<section id="ReservationList">
+  <div class="container" style="display: inline-block;">
+    <app-header></app-header>
+    <div class="wrapper">
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">ご契約一覧（{{name}}様の場合）</h2>
+      <div style="width: 94%; margin: auto; margin-top: 10px;">
+        <div style="border-bottom: 2px solid #ffa366; float: left; width: 20%"></div>
+        <div style="border-bottom: 2px solid #d6d1ce; float: left; width: 80%"></div>
+      </div>
+      <div class="padding3" *ngIf="dataSlider.length > 1">
+        <div style="width: 80%; height: auto;padding-top: 20px; margin: auto; display: flex">
+            <div class="next-button" *ngIf="dataSlider.length > 3" style="float: left;display: flex;align-items: center;cursor: pointer; width: 10%;" (click)="owlGuide2.prev()">
+              <div style="width: 100%; text-align:center"><i *ngIf="activeSlides && activeSlides.startPosition !== 0" class="pi pi-angle-double-left"></i></div>
+            </div>
+            <owl-carousel-o [options]="slideOption" (translated)="getPassedData($event)" #owlGuide2 style="width: 80%; float: left; height: 100%;">
+              <ng-template carouselSlide *ngFor="let data of dataSlider, let i = index">               
+                    <div class="swiper-slide" style="padding-bottom: 20px; padding-right: 10px">
+                      <div [className]="currentSelect === i ? 'contract-item-pc arrow_box' : 'contract-item-pc '" (click)="showKeiyaku(i)" style="height: 100%;">
+                        <div class="contract-name text-center" style="white-space: nowrap; overflow: hidden;text-overflow:ellipsis;">
+                          <span style="margin: auto; white-space: nowrap; overflow: hidden;text-overflow:ellipsis;">{{ data.firstName }}</span>
+                        </div>
+                      </div>
+                    </div>
+               
+              </ng-template>
+            </owl-carousel-o>
+            <div class="next-button item" *ngIf="dataSlider.length > 3" style="float: left; display: flex;align-items: center;cursor: pointer; width: 10%; " (click)="owlGuide2.next()">
+              <div style="width: 100%; text-align:center"><i *ngIf="!activeSlides || activeSlides && activeSlides.startPosition <=  dataSlider.length -4" class="pi pi-angle-double-right"></i></div>
+            </div>
+          </div>
+      </div>
+      <div class="padding3 sp">
+        <div class="row text-center" style="margin-top: 20px" *ngIf="totalMoney">
+          <div class="item item-12-12" style="padding: 20px 0;">
+            <p><strong>月額保険料：{{totalMoney.totalMonthP}}円</strong></p>
+            <p><span class="fs-14" *ngIf="totalMoney && totalMoney.totalMonthUSP>0">
+              (外貨USドル: ${{totalMoney.totalMonthUSP}})
+            </span></p>
+            <p><strong>年額保険料：{{totalMoney.totalYearP}}円</strong></p>
+            <p><span class="fs-14"  *ngIf="totalMoney && totalMoney.totalYearUSP>0">
+              (外貨USドル: ${{totalMoney.totalYearUSP}})
+            </span></p>
+          </div>
+        </div>
+        <div class="row text-center" *ngIf="totalMoney&& (totalMoney.totalMonthUSP > 0 || totalMoney.totalYearUSP > 0)">
+          <div class="item item-12-12">
+            上記の金額にUSドル以外の外貨商品は含まれておりません。
+          </div>
+        </div>
+        <div style="border-bottom: 2px dotted #b8b3b0; width: 100%;margin-top: 20px;"></div>
+        <div class="box" *ngFor="let keiyaku of keiyakuList, let i = index">
+          <div class="family-insurance-detail item-12-12">
+              <div class="item-2-12 v-top" style="cursor: pointer" (click)="goToProductConfirm(keiyaku.keiyakuNo)">
+                <img *ngIf="keiyaku.hoshoCategoryF==='1'" src="assets/image/icon-heart.png" width="50%" style="max-width: 80px">
+                <img *ngIf="keiyaku.hoshoCategoryF==='4'" src="assets/image/icon-car.png" width="50%" style="max-width: 80px">
+                <img *ngIf="keiyaku.hoshoCategoryF==='2'" src="assets/image/icon-medical.png" width="50%" style="max-width: 80px">
+                <img *ngIf="keiyaku.hoshoCategoryF==='5'" src="assets/image/icon-house.png" width="50%" style="max-width: 80px">
+                <img *ngIf="keiyaku.hoshoCategoryF==='3'" src="assets/image/icon-pig.png" width="50%" style="max-width: 80px">
+                <img *ngIf="keiyaku.hoshoCategoryF==='6'" src="assets/image/icon-vali.png" width="50%" style="max-width: 80px">
+              </div>
+              <div class="detail fs-14 item-6-12 payment_info v-top" style="float: left; cursor: pointer;" (click)="goToProductConfirm(keiyaku.keiyakuNo)">
+                  <dl class="parent">
+                    <dt><span class="color-orange">・</span><strong>{{keiyaku.companyCd}}</strong></dt>
+                    <dd style="overflow: hidden;">{{keiyaku.productName}}</dd>
+                    <dd>保険料：{{keiyaku.hokenP}}{{keiyaku.currencyF}}<span *ngIf="keiyaku.haraikata">/{{keiyaku.haraikata}}</span></dd>
+                  </dl>
+              </div>
+              <div class="item-4-12 v-top" style="display: grid">
+                <div class="item-12-12">
+                  <div class="status item-10-12" style="float: right; padding: 5px">
+                    <div style="color: #fff; border-bottom: 2px solid #fff; text-align: center; font-size: 14px">
+                        <strong>契約中</strong>
+                    </div>
+                    <div style="color: #fff; text-align: center; font-size: 14px">{{keiyaku.status}}</div>
+                  </div>
+                </div>
+                <div class="item-12-12">
+                  <div class="trash text-right" style="cursor: pointer" (click)="confirm(i)" *ngIf="keiyaku.clinicKeiyakuF === '0'">
+                      <img src="assets/image/trash.png" style="color: #d6d1ce; height: 30px; padding-top: 5px">
+                  </div>
+                </div>
+                <div class="item-12-12 logo-clinic">
+                  <div style="text-align: right" *ngIf="keiyaku.clinicKeiyakuF === '1'">
+                    <img src="assets/image/logo.svg" style="width: 100%">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="add-more text-center box item-12-12" >
+          <div style="display: flex; align-items: center">
+            <div class="style-add-more" style="cursor: pointer;display: flex; align-items: center; margin: auto;" (click)="goToCamera()">
+                <img src="assets/image/plus.png" style="height: 18px; margin-right: 10px">保険証券の追加
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="padding3 pc">
+          <div class="row"  *ngIf="totalMoney">
+            <div class="row text-center" style="padding: 20px 0;">
+              <div class="item item-6-12 text-right">
+                  <strong>月額保険料：{{totalMoney.totalMonthP}}円</strong>
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="item item-6-12 text-left">
+                <strong>年額保険料：{{totalMoney.totalYearP}}円</strong>
+              </div>
+            </div>
+            <div class="row text-center" *ngIf="totalMoney&& (totalMoney.totalMonthUSP > 0)">
+              <div class="item item-12-12">
+                外貨USドル: ${{totalMoney.totalMonthUSP}}
+              </div>
+            </div>
+            <div class="row text-center" *ngIf="totalMoney&& (totalMoney.totalYearUSP > 0)">
+              <div class="item item-12-12">
+                外貨USドル: ${{totalMoney.totalYearUSP}}
+              </div>
+            </div>
+            <div class="row text-center" *ngIf="totalMoney&& (totalMoney.totalMonthUSP > 0 || totalMoney.totalYearUSP > 0)">
+              <div class="item item-12-12">
+                上記の金額にUSドル以外の外貨商品は含まれておりません。
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 2px dotted #b8b3b0; width: 100%;">
+  
+          </div>
+          <div class="box" *ngFor="let keiyaku of keiyakuList, let i = index">
+            <div class="family-insurance-detail item-12-12" style="align-items: center">
+                <div class="item-1-12" style="cursor: pointer" (click)="goToProductConfirm(keiyaku.keiyakuNo)">
+                  <img *ngIf="keiyaku.hoshoCategoryF==='1'" src="assets/image/icon-heart.png" width="80%" style="max-width: 50px">
+                  <img *ngIf="keiyaku.hoshoCategoryF==='4'" src="assets/image/icon-car.png" width="80%" style="max-width: 50px">
+                  <img *ngIf="keiyaku.hoshoCategoryF==='2'" src="assets/image/icon-medical.png" width="80%" style="max-width: 50px">
+                  <img *ngIf="keiyaku.hoshoCategoryF==='5'" src="assets/image/icon-house.png" width="80%" style="max-width: 50px">
+                  <img *ngIf="keiyaku.hoshoCategoryF==='3'" src="assets/image/icon-pig.png" width="80%" style="max-width: 50px">
+                  <img *ngIf="keiyaku.hoshoCategoryF==='6'" src="assets/image/icon-vali.png" width="80%" style="max-width: 50px">
+                </div>
+                <div class="detail fs-14 item-3-12" style="float: left; cursor: pointer;" (click)="goToProductConfirm(keiyaku.keiyakuNo)">
+                    <div title="{{keiyaku.companyCd}}"><span class="color-orange">・</span><strong>{{keiyaku.companyCd}}</strong></div>
+                </div>
+                <div class="detail fs-14 item-2-12" style="float: left;padding-right: 10px; cursor: pointer;" (click)="goToProductConfirm(keiyaku.keiyakuNo)">
+                    <div title="{{keiyaku.productName}}" style = "overflow: hidden;text-overflow: ellipsis;">{{keiyaku.productName}}</div>
+                </div>
+                <div class="detail fs-14 item-3-12" style="float: left;cursor: pointer;" (click)="goToProductConfirm(keiyaku.keiyakuNo)">
+                    <div title="{{keiyaku.hokenP}}{{keiyaku.currencyF}} / {{keiyaku.haraikata}}">保険料：{{keiyaku.hokenP}}{{keiyaku.currencyF}}<span *ngIf="keiyaku.haraikata">/{{keiyaku.haraikata}}</span>
+                    </div>
+                </div>
+                <div class="item-2-12" style="float: left; padding-right: 10px" *ngIf="keiyaku.clinicKeiyakuF === '0'">
+                    <div class="trash text-right" style="cursor: pointer" (click)="confirm(i)" >
+                      <!-- <i class="pi pi-trash fs-25"></i> -->
+                      <img src="assets/image/trash.png" style="color: #d6d1ce; height: 25px">
+                    </div>
+                  </div>
+                  <div class="item-2-12" style="float: left; padding-right: 10px" *ngIf="keiyaku.clinicKeiyakuF === '1'">
+                    <div style="text-align: right" >
+                      <img src="assets/image/logo.svg" style="width: 100%">
+                    </div>
+                  </div>
+                  <div class="item-2-12" style="float: left; ">
+                    <div class="status item-12-12" style="float: right; padding: 5px; width: 100%;">
+                      <div style="color: #fff; border-bottom: 2px solid #fff; text-align: center; font-size: 14px">
+                          <strong>契約中</strong>
+                      </div>
+                      <div style="color: #fff; text-align: center; font-size: 12px">{{keiyaku.status}}</div>
+                    </div>
+                  </div>
+                  
+              </div>
+          </div>
+          <div class="add-more text-center box item-12-12" >
+            <div style="display: flex; align-items: center">
+              <div class="style-add-more" style="cursor: pointer;display: flex; align-items: center; margin: auto;" (click)="goToCamera()">
+                  <img src="assets/image/plus.png" style="height: 18px; margin-right: 10px">保険証券の追加
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+  <p-confirmDialog #contract icon="pi pi-exclamation-triangle">
+    <p-footer>
+      <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" label="いいえ" style="cursor: pointer"
+        (click)="contract.reject()"></button>
+      <button type="button" pButton icon="pi pi-check" label="はい" style="cursor: pointer" (click)="contract.accept()"></button>
+    </p-footer>
+  </p-confirmDialog>
+  <app-loading [loading]="loading"></app-loading>
+  <app-footer-link></app-footer-link>
+  <app-footer></app-footer>
+</section>

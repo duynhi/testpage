@@ -1,0 +1,31 @@
+<!--MailUpdate-->
+<section id="MailUpdateSucess">
+  <div class="container">
+    <app-header></app-header>
+    <div class="wrapper">
+      <!--page title-->
+      <h1 class="padding3 fs-25">マイページ</h1>
+      <h2 class="padding3 fs-20">メールアドレス変更確認完了</h2>
+      <div class="page-title-line-bt">
+        <div class="l-orange"></div>
+        <div class="l-gray"></div>
+      </div>
+      <!--./page title-->
+      <div class="content padding3">
+        <div class="box text-center form-input">
+          <div class="row">
+            <h3>{{textShow}}</h3>
+          </div>
+          <div class="box text-center">
+              <div class="item item-4-12 arrow_green">
+                <button class="btn-gray h-35 w-100" pButton type="button" (click)="goToLogin()"
+                  label="ログイン画面へ"></button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer-link></app-footer-link>
+    <app-footer></app-footer>
+  </div>
+</section>

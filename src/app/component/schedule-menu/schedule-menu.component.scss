@@ -1,0 +1,59 @@
+    /*ReservationGuide*/
+    #ReservationGuide{
+        .box{
+            .banner-content{
+                margin-bottom: 1.5rem;
+                .btn-register{
+                    cursor: pointer;
+                    color: #fdeadb;
+                    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+                    background:  #fa700b;
+                    margin: auto;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                    .icon{
+                        background: #FFFFFF;
+                        vertical-align: bottom;
+                    }
+
+                    .guid{
+                        vertical-align: middle;
+                        p{
+                            margin: 0px;
+                            line-height: 22pt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .blk-inline{
+        position: relative;
+        .clinic-name{
+            cursor: pointer;
+            position: absolute;
+            top: 15%;
+            left: 11%;
+            color: #FFFDFD;
+            font-size: 1.3vw;
+        }
+    }
+
+@media screen and (min-width: 1000px) {
+    .w-100 {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .blk-inline{
+        .clinic-name{
+            cursor: pointer;
+            top: 18%;
+            left: 23%;
+            font-size: 3.4vw;
+        }
+    }
+}

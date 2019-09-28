@@ -1,0 +1,103 @@
+@import '../../../assets/_mixin.scss';
+/*CustomerInforSetting*/
+ #CustomerInforSetting{
+    .box{
+        display: table;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom:50px;
+        .row{
+            display: table-row;
+            .blk{
+                @include box-shadow(0px, 0px, 8px, #c8c8c8);
+                @media screen and(max-width:768px) {
+                    @include box-shadow(0px, 0px, 4px, #c8c8c8);
+                }
+                @include rounded(0.5em);
+                display: table-cell;
+                height: 150px;
+                padding: 15px 0px 15px 20px;
+                cursor: pointer;
+                .content{
+                    .item.item-8-12{
+                        span{
+                            display: inline-block;
+                            height: 100%;
+                            text-align: justify;
+                            vertical-align: top;
+                            &:first-child{
+                                width: 10px;
+                                margin-right: 10px;
+                            }
+                            &:last-child{
+                                width: 80%;
+                            }
+                        }
+                    }
+                }
+                h3{
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    padding-bottom:10px;
+                    border-bottom: 1px #B8B3B0 dotted;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 768px){
+    .box{
+        display: block !important;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom:50px;
+        .row{
+            display: block !important;
+            .blk{
+                @include box-shadow(0px, 0px, 8px, #c8c8c8);
+                @media screen and(max-width:768px) {
+                    @include box-shadow(0px, 0px, 4px, #c8c8c8);
+                }
+                @include rounded(0.5em);
+                width: 100%;
+                display: block !important;
+                padding: 7px !important;
+                margin-bottom: 20px;
+                height: auto !important;
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+                .content{
+                    .item.item-1-12{
+                        img{
+                            width: 12px;
+                        }
+                    }
+                    .item.item-3-12{
+                        img{
+                            width: 30px;
+                        }
+                    }
+                    .item.item-8-12{
+                        span{
+                            display: inline-block;
+                            height: 100%;
+                            text-align: justify;
+                            vertical-align: top;
+                            &:first-child{
+                                width: 10px;
+                                margin-right: 10px;
+                            }
+                            &:last-child{
+                                width: 80%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.honnin-content, .pasuwaado-content{
+    vertical-align: top;
+}
