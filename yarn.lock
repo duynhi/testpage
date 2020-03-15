@@ -206,10 +206,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@auth0/angular-jwt@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@auth0/angular-jwt/-/angular-jwt-2.1.0.tgz#5c90ee7d927e70cefa8db7c89a64eb67c05a912d"
-  integrity sha512-1KFtqswmJeM8JiniagSenpwHKTf9l+W+TmfsWV+x9SoZIShc6YmBsZDxd+oruZJL7MbJlxIJ3SQs7Yl1wraQdg==
+"@auth0/angular-jwt@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@auth0/angular-jwt/-/angular-jwt-2.1.2.tgz#0da5a22812323f115b8ccec3bc8e06e1cff1fe64"
+  integrity sha512-/ldNAqTmaX07PiabFZ7RZNT4Qdpt44/PxY9yoAcvmbGHhETpuKkBvcN11EC+4fKkO+J+KtTSxMGkcSIq0Wv5Ag==
   dependencies:
     url "^0.11.0"
 
@@ -308,24 +308,24 @@
   dependencies:
     tslib "^1.9.0"
 
-"@fortawesome/fontawesome-common-types@^0.2.19":
-  version "0.2.19"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.19.tgz#754a0f85e1290858152e1c05700ab502b11197f1"
-  integrity sha512-nd2Ul/CUs8U9sjofQYAALzOGpgkVJQgEhIJnOHaoyVR/LeC3x2mVg4eB910a4kS6WgLPebAY0M2fApEI497raQ==
+"@fortawesome/fontawesome-common-types@^0.2.27":
+  version "0.2.27"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.27.tgz#19706345859fc46adf3684ed01d11b40903b87e9"
+  integrity sha512-97GaByGaXDGMkzcJX7VmR/jRJd8h1mfhtA7RsxDBN61GnWE/PPCZhOdwG/8OZYktiRUF0CvFOr+VgRkJrt6TWg==
 
-"@fortawesome/fontawesome-svg-core@^1.2.19":
-  version "1.2.19"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.19.tgz#0eca1ce9285c3d99e6e340633ee8f615f9d1a2e0"
-  integrity sha512-D4ICXg9oU08eF9o7Or392gPpjmwwgJu8ecCFusthbID95CLVXOgIyd4mOKD9Nud5Ckz+Ty59pqkNtThDKR0erA==
+"@fortawesome/fontawesome-svg-core@^1.2.21":
+  version "1.2.27"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.27.tgz#e4db8e3be81a40988213507c3e3d0c158a6641a3"
+  integrity sha512-sOD3DKynocnHYpuw2sLPnTunDj7rLk91LYhi2axUYwuGe9cPCw7Bsu9EWtVdNJP+IYgTCZIbyARKXuy5K/nv+Q==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.19"
+    "@fortawesome/fontawesome-common-types" "^0.2.27"
 
-"@fortawesome/free-solid-svg-icons@^5.9.0":
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.9.0.tgz#1c73e7bac17417d23f934d83f7fff5b100a7fda9"
-  integrity sha512-U8YXPfWcSozsCW0psCtlRGKjjRs5+Am5JJwLOUmVHFZbIEWzaz4YbP84EoPwUsVmSAKrisu3QeNcVOtmGml0Xw==
+"@fortawesome/free-solid-svg-icons@^5.10.1":
+  version "5.12.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.12.1.tgz#76b6f958a3471821ff146f8f955e6d7cfe87147c"
+  integrity sha512-k3MwRFFUhyL4cuCJSaHDA0YNYMELDXX0h8JKtWYxO5XD3Dn+maXOMrVAAiNGooUyM2v/wz/TOaM0jxYVKeXX7g==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.19"
+    "@fortawesome/fontawesome-common-types" "^0.2.27"
 
 "@ngtools/webpack@7.3.9":
   version "7.3.9"
@@ -360,6 +360,11 @@
     rxjs "6.3.3"
     semver "5.6.0"
     semver-intersect "1.4.0"
+
+"@types/file-saver@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.1.tgz#e18eb8b069e442f7b956d313f4fadd3ef887354e"
+  integrity sha512-g1QUuhYVVAamfCifK7oB7G3aIl4BbOyzDOqVyUfEr4tfBKrXfeH+M+Tg7HKCXSrbzxYdhyCP7z9WbKo0R2hBCw==
 
 "@types/jasmine@*":
   version "3.3.12"
@@ -402,6 +407,11 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
+
+"@types/swiper@^4.4.4":
+  version "4.4.9"
+  resolved "https://registry.yarnpkg.com/@types/swiper/-/swiper-4.4.9.tgz#0071a30d9f513a6f767cc59e2f3ad37170f54167"
+  integrity sha512-pPbbQd2TcBnfGl+eYCwWfvIEKBPaOqSPajfCWaRbsWX5a2nW9YrHhruhlLp5ELBtrl/B0GGZlbHyTUkDeST0uA==
 
 "@types/webpack-sources@^0.1.5":
   version "0.1.5"
@@ -597,9 +607,9 @@ acorn-dynamic-import@^4.0.0:
   integrity sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==
 
 acorn@^6.0.5:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
-  integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 add@^2.0.6:
   version "2.0.6"
@@ -679,6 +689,13 @@ angular2-cookie@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/angular2-cookie/-/angular2-cookie-1.2.6.tgz#8fa845531e777adb042fe2f339c0040f6ddbf09d"
   integrity sha1-j6hFUx53etsEL+LzOcAED23b8J0=
+
+angular2-useful-swiper@^8.0.1-beta.1:
+  version "8.0.1-beta.1"
+  resolved "https://registry.yarnpkg.com/angular2-useful-swiper/-/angular2-useful-swiper-8.0.1-beta.1.tgz#b22cd8caada6ab92582f4b9164c20b2a995bfe80"
+  integrity sha512-vz3tagg/tgRHNzUPnmnhEsEhiOoQYlVEGu4tZ4PIynUzQedADaYykTjY9y+HvjbMgKhPQVH4TW6R2CcXrhJEXw==
+  dependencies:
+    tslib "^1.9.0"
 
 ansi-colors@^3.0.0:
   version "3.2.4"
@@ -1501,6 +1518,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classlist.js@^1.1.20150312:
+  version "1.1.20150312"
+  resolved "https://registry.yarnpkg.com/classlist.js/-/classlist.js-1.1.20150312.tgz#1d70842f7022f08d9ac086ce69e5b250f2c57789"
+  integrity sha1-HXCEL3Ai8I2awIbOaeWyUPLFd4k=
 
 clean-css@4.2.1:
   version "4.2.1"
@@ -2607,6 +2629,11 @@ file-loader@3.0.1:
     loader-utils "^1.0.2"
     schema-utils "^1.0.0"
 
+file-saver@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.2.tgz#06d6e728a9ea2df2cce2f8d9e84dfcdc338ec17a"
+  integrity sha512-Wz3c3XQ5xroCxd1G8b7yL0Ehkf0TC9oYC6buPFkNnU9EnaPlifeAFCyCh+iewXTyFRcg0a6j3J7FmJsIhlhBdw==
+
 fileset@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/fileset/-/fileset-2.0.3.tgz#8e7548a96d3cc2327ee5e674168723a333bba2a0"
@@ -3602,7 +3629,7 @@ isstream@~0.1.2:
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
-istanbul-api@^2.1.1:
+istanbul-api@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-2.1.6.tgz#d61702a9d1c66ad89d92e66d401e16b0bda4a35f"
   integrity sha512-x0Eicp6KsShG1k1rMgBAi/1GgY7kFGEBwQpw3PXGEmu+rBcBNhqU8g2DgY9mlepAsLPzrzrbqSgCGANnki4POA==
@@ -3862,12 +3889,12 @@ karma-chrome-launcher@~2.2.0:
     fs-access "^1.0.0"
     which "^1.2.1"
 
-karma-coverage-istanbul-reporter@~2.0.1:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-2.0.5.tgz#ca5899d4905e44a5984dd4f963adfc1a74dce767"
-  integrity sha512-yPvAlKtY3y+rKKWbOo0CzBMVTvJEeMOgbMXuVv3yWvS8YtYKC98AU9vFF0mVBZ2RP1E9SgS90+PT6Kf14P3S4w==
+karma-coverage-istanbul-reporter@^2.0.6:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-2.1.1.tgz#37a775fbfbb3cbe98cebf19605c94c6277c3b88a"
+  integrity sha512-CH8lTi8+kKXGvrhy94+EkEMldLCiUA0xMOiL31vvli9qK0T+qcXJAwWBRVJWnVWxYkTmyWar8lPz63dxX6/z1A==
   dependencies:
-    istanbul-api "^2.1.1"
+    istanbul-api "^2.1.6"
     minimatch "^3.0.4"
 
 karma-jasmine-html-reporter@^0.2.2:
@@ -4535,10 +4562,10 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
-ngx-device-detector@^1.3.6:
-  version "1.3.9"
-  resolved "https://registry.yarnpkg.com/ngx-device-detector/-/ngx-device-detector-1.3.9.tgz#94293dc011e44f6992e2cdb6790263a1f7f133c1"
-  integrity sha512-Lj4NS93GwL+qdkw4ZIwPbIWMvsuP0zJ87w4oFGZScboINirt9m9WnE1afbD4Vctwm0I+iktPwmKmxJRjWhB6OQ==
+ngx-device-detector@^1.3.9:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-device-detector/-/ngx-device-detector-1.4.0.tgz#141c258f5923f9ad8472f6a4d0c730db07633217"
+  integrity sha512-Lbf/soiH3fgQJY9p+RJvqQWE6zDl19wfKEwS9AWWZ6ecNoFcUqcmQPQDUma9FdD7ttm8iJku0f/D5/bEBjfn2A==
   dependencies:
     tslib "^1.9.0"
 
@@ -4549,10 +4576,10 @@ ngx-infinite-scroll@^7.2.0:
   dependencies:
     opencollective-postinstall "^2.0.2"
 
-ngx-owl-carousel-o@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/ngx-owl-carousel-o/-/ngx-owl-carousel-o-1.1.5.tgz#b877b43bb8cc585207fd91530739f27ebac91bbc"
-  integrity sha512-E9W/hWQFvRqweQoPDBlkZfa6eARpbVZbK8VlrUA+7RssCGM6FmcAftq+aBey/tXuKsKM9EJPH3UG+6HSkNHhuw==
+ngx-owl-carousel-o@^1.1.7:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-owl-carousel-o/-/ngx-owl-carousel-o-1.2.0.tgz#23bc7af8b81e50373b8ba4a8c9e354640de7f72c"
+  integrity sha512-cd2bRn+frU7MSo7CeQBO0AUZUT/bjMv4auOaGXH33XXGU+mzUiDwL8h2z+Emr19JAAzF7mYVYBp9b4PgMfvpPQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -7137,6 +7164,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+web-animations-js@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/web-animations-js/-/web-animations-js-2.3.2.tgz#a51963a359c543f97b47c7d4bc2d811f9fc9e153"
+  integrity sha512-TOMFWtQdxzjWp8qx4DAraTWTsdhxVSiWa6NkPFSaPtZ1diKUxTn4yTix73A1euG1WbSOMMPcY51cnjTIHrGtDA==
+
 webdriver-js-extender@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/webdriver-js-extender/-/webdriver-js-extender-2.1.0.tgz#57d7a93c00db4cc8d556e4d3db4b5db0a80c3bb7"
@@ -7487,10 +7519,10 @@ yargs@^7.0.0:
     y18n "^3.2.1"
     yargs-parser "^5.0.0"
 
-yarn@^1.15.2:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.15.2.tgz#7a064ca81ca34235f16376ad2f796ed432f9e285"
-  integrity sha512-DhqaGe2FcYKduO42d2hByXk7y8k2k42H3uzYdWBMTvcNcgWKx7xCkJWsVAQikXvaEQN2GyJNrz8CboqUmaBRrw==
+yarn@^1.17.3:
+  version "1.22.4"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.4.tgz#01c1197ca5b27f21edc8bc472cd4c8ce0e5a470e"
+  integrity sha512-oYM7hi/lIWm9bCoDMEWgffW8aiNZXCWeZ1/tGy0DWrN6vmzjCXIKu2Y21o8DYVBUtiktwKcNoxyGl/2iKLUNGA==
 
 yeast@0.1.2:
   version "0.1.2"
